@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhkgo.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-08-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhkgo.github.io/categories/index.html</loc>
+    
+    <lastmod>2020-08-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhkgo.github.io/2020/01/05/newwork/</loc>
     
     <lastmod>2020-08-11</lastmod>
