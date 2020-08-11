@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-10T16:35:08.341Z</updated>
+  <updated>2020-08-11T02:08:59.895Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,57 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>software-struct</title>
-    <link href="http://yoursite.com/2020/08/11/software-struct/"/>
-    <id>http://yoursite.com/2020/08/11/software-struct/</id>
-    <published>2020-08-10T16:32:43.939Z</published>
-    <updated>2020-08-10T16:35:08.341Z</updated>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/07/17/hello-world/"/>
+    <id>http://yoursite.com/2020/07/17/hello-world/</id>
+    <published>2020-07-17T08:56:13.091Z</published>
+    <updated>2020-08-11T02:08:59.895Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener external nofollow noreferrer&quot;&gt;Hexo&lt;/a&gt;! This is your very first</summary>
+        
+      
+    
+    
+    
+    
+    <category term="测试" scheme="http://yoursite.com/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>newwork</title>
+    <link href="http://yoursite.com/2020/01/05/newwork/"/>
+    <id>http://yoursite.com/2020/01/05/newwork/</id>
+    <published>2020-01-05T12:48:00.000Z</published>
+    <updated>2020-08-11T02:11:37.796Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h2&gt;&lt;h3 id=&quot;简述分组交换的要点&quot;&gt;&lt;a href=&quot;#简述分组交换的要点&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="计算机网络" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件构造复习</title>
+    <link href="http://yoursite.com/2019/01/07/software-struct/"/>
+    <id>http://yoursite.com/2019/01/07/software-struct/</id>
+    <published>2019-01-06T16:00:00.000Z</published>
+    <updated>2020-08-11T02:08:47.432Z</updated>
     
     
       
@@ -36,26 +82,31 @@
     
     
     
+    <category term="软件工程" scheme="http://yoursite.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2020/07/17/hello-world/"/>
-    <id>http://yoursite.com/2020/07/17/hello-world/</id>
-    <published>2020-07-17T08:56:13.091Z</published>
-    <updated>2020-07-17T08:56:13.091Z</updated>
+    <title>python文件拷贝</title>
+    <link href="http://yoursite.com/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/"/>
+    <id>http://yoursite.com/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/</id>
+    <published>2018-06-18T02:11:54.000Z</published>
+    <updated>2020-08-11T02:12:31.025Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener external nofollow noreferrer&quot;&gt;Hexo&lt;/a&gt;! This is your very first</summary>
+    <summary type="html">&lt;p&gt;###&lt;strong&gt;背景&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;前段时间准备六级的时候，拿到了一个光盘，里面有很多听力，但是听力分为很多文件夹，还有很多听力的字幕（.lrc）,就想要把里面的听力</summary>
         
       
     
     
     
+    
+    <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
   </entry>
   
