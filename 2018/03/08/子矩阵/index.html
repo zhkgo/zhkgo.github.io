@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="python文件拷贝, 章杭奎的博客">
+    <meta name="keywords" content="子矩阵, 章杭奎的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>python文件拷贝 | 章杭奎的博客</title>
+    <title>子矩阵 | 章杭奎的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">python文件拷贝</h1>
+                    <h1 class="description center-align post-title">子矩阵</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python/">
-                                <span class="chip bg-color">python</span>
+                            <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                                <span class="chip bg-color">算法 动态规划</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-06-18
+                    2018-03-08
                 </div>
                 
 
@@ -463,59 +463,140 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a><strong>背景</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;前段时间准备六级的时候，拿到了一个光盘，里面有很多听力，但是听力分为很多文件夹，还有很多听力的字幕（.lrc）,就想要把里面的听力都拷贝出来全部放到我的手机某个文件夹里，但是一个个文件夹打开，全选，拷贝，粘贴，这一系列操作显得效率不高，因此我想到了使用python来实现这一系列功能。</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a><strong>实现</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;制作出了一个可以实现<strong>筛选该程序所在目录下的所有文件</strong>，通过关键词进行筛选，然后复制到目标文件夹里，高效得实现了文件的整理。还可以用到一些资料的整理上，比如想整理所有关于毕业设计的资料，我就把毕业设计作为关键词，（当然平常命名的时候还得要规范一点），然后把我的程序放到磁盘根目录下运行，就能筛选出当前磁盘下的全部含关键词的文件了。代码如下</p>
-<pre><code># -*- coding: utf-8 -*-
-&quot;&quot;&quot;
-Created on Fri May 18 13:50:09 2018
+                <p>题目描述<br>链接如下<br><a href="https://www.luogu.org/problemnew/show/P2258" target="_blank" rel="noopener external nofollow noreferrer">https://www.luogu.org/problemnew/show/P2258</a></p>
+<pre><code>给出如下定义：
 
-@author: zhkgo
-&quot;&quot;&quot;
+子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
 
-import os
-import re
-import shutil
-def findmykey(keyword,head=os.path.abspath(&#39;.&#39;)):
-    dirs=set()
-    files=[]
-    pattern=&#39;.*&#39;+keyword+&#39;.*&#39;
-    dirs.add(head)
-    while(len(dirs)!=0):
-        mydir=dirs.pop()
-        for x in os.listdir(mydir):
-          #  print(x)
-            absp=os.path.join(mydir,x)
-            if os.path.isdir(absp):
-                dirs.add(absp)           
-            elif os.path.isfile(absp):
-            #    print(pattern+&#39; &#39;+keyword)
-             #   print(&quot;isfile&quot;)    
-                if re.match(pattern,x):
-                    files.append(absp)
-    return files
+例如，下面左图中选取第2、4行和第2、4、5列交叉位置的元素得到一个2*3的子矩阵如右图所示。
 
+9 3 3 3 9
 
+9 4 8 7 4
 
-#shutil.copyfile(r&#39;F:\华研外语\2.六级2套预测\Model Test 2.lrc&#39;,&#39;F:\\fas\\&#39;+&#39;madel.lrc&#39;)
-goal=&quot;&quot; 
-goal=input(&#39;复制到哪里？ (例如 F:\\文档)\n&#39;)
-while not os.path.exists(goal):  
-   print(&quot;文件夹不存在！&quot;)         
-   goal=input(&#39;复制到哪里？ (例如 F:\\文档)\n&#39;)
-keyword=input(&#39;输入关键词(例如 jpg)\n&#39;)
-ret=findmykey(keyword)
-#print(ret)
+1 7 4 6 6
 
-try:
-    for x in ret:
-        pa=os.path.join(goal,os.path.split(x)[1])    
-   # print(pa)
-        shutil.copyfile(x,pa)
-except:
-    print(&quot;复制失败&quot;)
-else:
-    print(&#39;复制完成&#39;)</code></pre><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;代码肯定是不完善的，没有考虑很多情况，目前这个代码实现的时候 ，对于重复的文件，后面进入的会覆盖已经存在的文件。<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;这个还可以加入输入正则表达式来进行匹配文件名，这样就不是单纯的文件名匹配了，还可以加入运算符，如 “与”，“或”等来进行匹配。就写到这里吧，有错误希望能够指正。</p>
+6 8 5 6 9
 
+7 4 5 6 1
+
+的其中一个2*3的子矩阵是
+
+4 7 4
+
+8 6 9
+
+相邻的元素：矩阵中的某个元素与其上下左右四个元素（如果存在的话）是相邻的。
+
+矩阵的分值：矩阵中每一对相邻元素之差的绝对值之和。
+
+本题任务：给定一个n行m列的正整数矩阵，请你从这个矩阵中选出一个r行c列的子矩阵，使得这个子矩阵的分值最小，并输出这个分值。
+
+(本题目为2014NOIP普及T4)
+
+输入输出格式
+
+输入格式：
+
+第一行包含用空格隔开的四个整数n，m，r，c，意义如问题描述中所述，每两个整数之间用一个空格隔开。
+
+接下来的n行，每行包含m个用空格隔开的整数，用来表示问题描述中那个n行m列的矩阵。
+
+输出格式：
+
+输出共1行，包含1个整数，表示满足题目描述的子矩阵的最小分值。
+
+【数据说明】
+
+对于50%的数据，1 ≤ n ≤ 12，1 ≤ m ≤ 12，矩阵中的每个元素1 ≤ a[i][j] ≤ 20；
+
+对于100%的数据，1 ≤ n ≤ 16，1 ≤ m ≤ 16，矩阵中的每个元素1 ≤ a[i][j] ≤ 1,000，
+
+1 ≤ r ≤ n，1 ≤ c ≤ m。</code></pre><p>对于以上的数据范围，我一开始想到的是直接搜索，然后我就估算了一下搜索的代价，最差的情况是，有16行16列，选8行8列，直接枚举的话，有</p>
+<p><img src="http://latex.codecogs.com/gif.latex?(C_%7B16%7D%5E%7B8%7D%20)%5E%7B2%7D*%7Bn%7D%5E2" alt=" "><br>的运算次数，结果是超过100亿的运算次数显然不能再规定时间内完成。</p>
+<p>看到这类矩阵 ，我也能想到是dp，但是对于这种选择分开的dp感觉无从下手。</p>
+<p>后来想到，将dp与搜索结合起来使用，先搜索确定是那几行，然后题目就变成了</p>
+<p>从m列里选择c列 ，找出最小的分值，这样就可以进行dp了,dp的复杂度是16^3。</p>
+<p>最差的情况也只是5000多万次运算。</p>
+<p>首先确定状态，状态为dp[i][j]</p>
+<p>i表示选择的最后一个列，j表示已经选择的列数。</p>
+<p>显然j&lt;=i</p>
+<p>状态转移方程也显而易见</p>
+<p>dp[i][j]=min(dp[k][j-1]+col[i]+cha[k][i]),k&lt;=i;</p>
+<p>其中col[i]表示i列内部之间的分值，cha[k][i]表示第k列与第i列相邻时，他们列之间相差的分值。这两个数组可以在确定行之后预处理出来，预处理的时间是O(n^2)相对于dp的O(n^3）显然可以忽略不计。</p>
+<p>下面附上代码。</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+int n,m,r,c;
+int mp[20][20];
+int chose[20];
+int dp[20][20];
+int res=0x3f3f3f3f;
+inline int myabs(int a){
+    return a&gt;=0?a:-a;
+}
+inline int mymax(int a,int b){
+    return a&gt;b?a:b;
+}
+inline int mymin(int a,int b){
+    return a&lt;b?a:b;
+}
+void solve(){
+    memset(dp,0x3f,sizeof(dp));
+    int f[20][20];
+    for(int i=1;i&lt;m;i++){
+        for(int j=i+1;j&lt;=m;j++){
+            f[i][j]=0;
+            for(int k=0;k&lt;r;k++){
+                f[i][j]+=myabs(mp[chose[k]][i]-mp[chose[k]][j]);
+            }
+        }
+    }
+    int col[20];
+    for(int i=1;i&lt;=m;i++){
+        col[i]=0;
+        for(int j=1;j&lt;r;j++){
+            col[i]+=myabs(mp[chose[j]][i]-mp[chose[j-1]][i]);
+        }
+    }
+    for(int i=1;i&lt;=m;i++){
+        dp[i][1]=col[i];
+    }
+    for(int i=2;i&lt;=m;i++){
+        int minc=i&lt;c?i:c;
+        for(int j=2;j&lt;=minc;j++){
+            for(int k=j-1;k&lt;i;k++){
+                dp[i][j]=mymin(dp[i][j],dp[k][j-1]+col[i]+f[k][i]);
+            }
+        }
+    }
+    for(int i=c;i&lt;=m;i++){
+        res=mymin(dp[i][c],res);
+    }
+}
+void dfs(int x,int now){
+    if(x==r){
+        solve();
+        return;
+    }
+    if(r-x&gt;n-now+1)return;
+    for(int i=now;i&lt;=n;i++){
+        chose[x]=i;
+        dfs(x+1,i+1);
+    }
+} 
+int main(){
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    scanf(&quot;%d%d&quot;,&amp;r,&amp;c);
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=m;j++){
+            scanf(&quot;%d&quot;,mp[i]+j);
+        }
+    }
+    dfs(0,1);
+    printf(&quot;%d\n&quot;,res);
+    return 0;
+} </code></pre>
             </div>
             <hr/>
 
@@ -540,7 +621,7 @@ else:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zhkgo.github.io/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/">https://zhkgo.github.io/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/</a>
+                    <a href="https://zhkgo.github.io/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/">https://zhkgo.github.io/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -578,8 +659,8 @@ else:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python/">
-                                    <span class="chip bg-color">python</span>
+                                <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                                    <span class="chip bg-color">算法 动态规划</span>
                                 </a>
                             
                         </div>
@@ -751,27 +832,24 @@ else:
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/01/07/software-struct/">
+                <a href="/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="软件构造复习">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="python文件拷贝">
                         
-                        <span class="card-title">软件构造复习</span>
+                        <span class="card-title">python文件拷贝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-前言最佳食用方法是理解记忆，考试时能扯多少是多少，有小部分直接复制＠hwq的答案．其实有心人想要找出那些题目考的概率大也是相对明显的．答案都是基于我自己理解的，不保证正确，觉得不对的也可以下面评论．
-解答
-解释模块耦合性的含义，对不同的耦
+                            背景&#160;&#160;&#160;&#160;&#160;&#160;&#160;前段时间准备六级的时候，拿到了一个光盘，里面有很多听力，但是听力分为很多文件夹，还有很多听力的字幕（.lrc）,就想要把里面的听力都拷贝出来全部放到我的
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-01-07
+                            <i class="far fa-clock fa-fw icon-date"></i>2018-06-18
                         </span>
                         <span class="publish-author">
                             
@@ -784,8 +862,8 @@ else:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
-                        <span class="chip bg-color">软件工程</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
                 </div>
@@ -796,7 +874,7 @@ else:
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
                 <a href="/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/">
@@ -831,6 +909,7 @@ else:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
