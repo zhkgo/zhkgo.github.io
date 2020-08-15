@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 青椒的博客">
+    <meta name="keywords" content="利用paddlepaddle手写数字识别, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 青椒的博客</title>
+    <title>利用paddlepaddle手写数字识别 | 青椒的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">利用paddlepaddle手写数字识别</h1>
                 </div>
             </div>
         </div>
@@ -365,8 +365,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                <span class="chip bg-color">测试</span>
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-paddlepaddle/">
+                                <span class="chip bg-color">深度学习 paddlepaddle</span>
                             </a>
                         
                     </div>
@@ -381,7 +381,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-17
+                    2020-08-15
                 </div>
                 
 
@@ -390,7 +390,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.8k
                 </div>
                 
 
@@ -407,16 +407,193 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener external nofollow noreferrer">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener external nofollow noreferrer">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener external nofollow noreferrer">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener external nofollow noreferrer">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener external nofollow noreferrer">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener external nofollow noreferrer">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener external nofollow noreferrer">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener external nofollow noreferrer">Deployment</a></p>
+                <blockquote>
+<p>因为百度的AIStudio平台提供了免费的GPU算力,而且帮我配好了运行环境，只不过需要使用paddlepaddle这个框架，我就打算顺便在学习paddlepaddle的同时完成lintcode上面的刷题任务。</p>
+</blockquote>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="https://www.lintcode.com/ai/digit-recognition/overview" target="_blank" rel="noopener external nofollow noreferrer">题目链接</a><br><br><br>MNIST是计算机视觉领域的“hello world”数据集。 自1999年发布以来，这种手写图像的经典数据集已经成为基准分类算法的基础。 随着新的机器学习技术的出现，MNIST仍然是研究人员和学习者的可靠资源。</p>
+<p>这个题目，您的目标是正确识别数以万计的手写图像数据集中的数字。<br>每一张图片，图片里面写了一个数字可能是0-9，然后需要设计算法判断出这个数字是0-9中哪一个数字。 我们鼓励您尝试不同的算法，以便第一手掌握哪些方法或者技术可行。</p>
+<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>对于手写数字识别，简单的网络即可完成这个任务，但是最让人难忘的是<strong>LeNet</strong>在这上面的表现，我这次用的就是LeNet看看最终究竟有多好的效果,优化器采用<strong>Aadm</strong>。<br><br><br>LeNet是最早的卷积神经网络之一。1998年，Yan LeCun第一次将LeNet卷积神经网络应用到图像分类上，在手写数字识别任务中取得了巨大成功。LeNet通过连续使用卷积和池化层的组合提取图像特征，其架构如 <strong>图1</strong> 所示，这里展示的是作者论文中的LeNet-5模型：<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/33bbff96924e4b36b613f0c1c36a89dfb72e3b56b3be464dbbce22f7ce575b0d" width = "800"></center>
+<center><br>图1：LeNet模型网络结构示意图</br></center>
 
+
+<ul>
+<li><p>第一模块：包含5×5的6通道卷积和2×2的池化。卷积提取图像中包含的特征模式（激活函数使用sigmoid），图像尺寸从32减小到28。经过池化层可以降低输出特征图对空间位置的敏感性，图像尺寸减到14。</p>
+</li>
+<li><p>第二模块：和第一模块尺寸相同，通道数由6增加为16。卷积操作使图像尺寸减小到10，经过池化后变成5。</p>
+</li>
+<li><p>第三模块：包含5×5的120通道卷积。卷积之后的图像尺寸减小到1，但是通道数增加为120。将经过第3次卷积提取到的特征图输入到全连接层。第一个全连接层的输出神经元的个数是64，第二个全连接层的输出神经元个数是分类标签的类别数，对于手写数字识别其大小是10。然后使用Softmax激活函数即可计算出每个类别的预测概率。</p>
+</li>
+</ul>
+<h2 id="导入需要的包"><a href="#导入需要的包" class="headerlink" title="导入需要的包"></a>导入需要的包</h2><p>主要是paddlepaddle、numpy等等科学计算的包，plt主要用于测试的时候显示图像。</p>
+<pre><code>import paddle
+import paddle.fluid as fluid
+import numpy as np
+from paddle.fluid.dygraph import Conv2D, Pool2D, Linear, BatchNorm
+import pandas as pd
+import os
+import random
+import matplotlib.pyplot as plt</code></pre><h2 id="数据读取模块的编写"><a href="#数据读取模块的编写" class="headerlink" title="数据读取模块的编写"></a>数据读取模块的编写</h2><p>读取模块分为4个函数，一个是读训练数据，一个是读测试数据，一个是读全部有标签的数据，一个是读待预测的数据。</p>
+<pre><code>#数据读取模块
+
+#训练数据
+def trainDatareader(path=&#39;ml_problems_1_train.csv&#39;):
+    df=pd.read_csv(path)
+    arr=np.array(df.values)
+    x=arr[:,1:]
+    x=x/255.0
+    y=arr[:,0]
+    for i in range(int(len(x)*0.9)):
+        yield np.array([x[i],y[i]])
+#测试数据
+def testDatareader(path=&#39;ml_problems_1_train.csv&#39;):
+    df=pd.read_csv(path)
+    arr=np.array(df.values)
+    x=arr[:,1:]
+    x=x/255.0
+    y=arr[:,0]
+    for i in range(int(len(x)*0.9),len(x)):
+        yield np.array([x[i],y[i]])
+#全部数据
+def dataReader(path=&#39;ml_problems_1_train.csv&#39;):
+    df=pd.read_csv(path)
+    arr=np.array(df.values)
+    x=arr[:,1:]
+    x=x/255.0
+    y=arr[:,0]
+    for i in range(len(x)):
+        yield np.array([x[i],y[i]])
+#待预测数据
+def evalReader(path=&quot;ml_problems_1_test.csv&quot;):
+    df=pd.read_csv(path)
+    arr=np.array(df.values)
+    arr=arr/255.0
+    for i in range(len(arr)):
+        yield arr[i]</code></pre><h2 id="网络结构模块"><a href="#网络结构模块" class="headerlink" title="网络结构模块"></a>网络结构模块</h2><pre><code># 定义 LeNet 网络结构
+class LeNet(fluid.dygraph.Layer):
+    def __init__(self, num_classes=1):
+        super(LeNet, self).__init__()
+
+        # 创建卷积和池化层块，每个卷积层使用relu激活函数，后面跟着一个2x2的池化
+        self.conv1 = Conv2D(num_channels=1, num_filters=6, filter_size=5, act=&#39;sigmoid&#39;)
+        self.pool1 = Pool2D(pool_size=2, pool_stride=2, pool_type=&#39;max&#39;)
+        self.conv2 = Conv2D(num_channels=6, num_filters=16, filter_size=5, act=&#39;sigmoid&#39;)
+        self.pool2 = Pool2D(pool_size=2, pool_stride=2, pool_type=&#39;max&#39;)
+        # 创建第3个卷积层
+        self.conv3 = Conv2D(num_channels=16, num_filters=120, filter_size=4, act=&#39;sigmoid&#39;)
+        # 创建全连接层，第一个全连接层的输出神经元个数为64， 第二个全连接层输出神经元个数为分类标签的类别数
+        self.fc1 = Linear(input_dim=120, output_dim=64, act=&#39;relu&#39;)
+        self.fc2 = Linear(input_dim=64, output_dim=num_classes)
+    # 网络的前向计算过程
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.pool1(x)
+        x = self.conv2(x)
+        x = self.pool2(x)
+        x = self.conv3(x)
+        x = fluid.layers.reshape(x, [x.shape[0], -1])
+        x = self.fc1(x)
+        x = self.fc2(x)
+        return x</code></pre><h2 id="训练模块"><a href="#训练模块" class="headerlink" title="训练模块"></a>训练模块</h2><p>一开始的batchsize是10后来改成50效果有所改善，而且小网络训练速度也比较快，可以多调几次参数看看。</p>
+<pre><code># LeNet 识别手写数字 训练模块
+
+# 定义训练过程
+def train(model):
+    print(&#39;start training ... &#39;)
+    # model_dict, _ = fluid.load_dygraph(&quot;LeNet&quot;)
+    # model.load_dict(model_dict)
+    model.train()
+    epoch_num =30
+    opt =fluid.optimizer.AdamOptimizer(learning_rate=0.0001, parameter_list=model.parameters())
+    # 使用Paddle自带的数据读取器
+    train_loader = paddle.batch(trainDatareader, batch_size=50)
+    valid_loader = paddle.batch(testDatareader, batch_size=50)
+    for epoch in range(epoch_num):
+        for batch_id, data in enumerate(train_loader()):
+            # 调整输入数据形状和类型
+            x_data = np.array([item[0] for item in data], dtype=&#39;float32&#39;).reshape(-1, 1, 28, 28)
+            #plt.imshow(x_data[0][0])
+            #plt.show()
+            y_data = np.array([item[1] for item in data], dtype=&#39;int64&#39;).reshape(-1, 1)
+            #print(y_data[0][0].shape)
+            # 将numpy.ndarray转化成Tensor
+            img = fluid.dygraph.to_variable(x_data)
+            label = fluid.dygraph.to_variable(y_data)
+            # 计算模型输出
+            #print(img)
+            logits = model(img)
+            #print(logits)
+            #print(logits)
+            # 计算损失函数
+            loss = fluid.layers.softmax_with_cross_entropy(logits, label)
+            avg_loss = fluid.layers.mean(loss)
+            if batch_id % 200 == 0:
+                print(&quot;epoch: {}, batch_id: {}, loss is: {}&quot;.format(epoch, batch_id, avg_loss.numpy()))
+            avg_loss.backward()
+            opt.minimize(avg_loss)
+            model.clear_gradients()
+
+        model.eval()
+        accuracies = []
+        losses = []
+        for batch_id, data in enumerate(valid_loader()):
+            # 调整输入数据形状和类型
+            x_data = np.array([item[0] for item in data], dtype=&#39;float32&#39;).reshape(-1, 1, 28, 28)
+            y_data = np.array([item[1] for item in data], dtype=&#39;int64&#39;).reshape(-1, 1)
+            # 将numpy.ndarray转化成Tensor
+            img = fluid.dygraph.to_variable(x_data)
+            label = fluid.dygraph.to_variable(y_data)
+            # 计算模型输出
+            logits = model(img)
+
+            pred = fluid.layers.softmax(logits)
+            # 计算损失函数
+            loss = fluid.layers.softmax_with_cross_entropy(logits, label)
+            #print(pred)
+            acc = fluid.layers.accuracy(pred, label)
+            accuracies.append(acc.numpy())
+            losses.append(loss.numpy())
+        print(&quot;[validation] accuracy/loss: {}/{}&quot;.format(np.mean(accuracies), np.mean(losses)))
+        model.train()
+
+        # 保存模型参数
+        fluid.save_dygraph(model.state_dict(), &#39;LeNet&#39;)
+
+
+if __name__ == &#39;__main__&#39;:
+    # 创建模型 用GPU训练  没有配置好GPU环境的话把fluid.CUDAPlace(0)删掉就行
+    with fluid.dygraph.guard(fluid.CUDAPlace(0)):
+        model=LeNet(10)
+        #启动训练过程
+        train(model)</code></pre><h2 id="预测模块"><a href="#预测模块" class="headerlink" title="预测模块"></a>预测模块</h2><p>预测并且将预测结果保存到csv文件中，到时候用excel打开删除第一列就可以了。</p>
+<pre><code>def predict(model):
+    print(&#39;start predict ... &#39;)
+    model_dict, _ = fluid.load_dygraph(&quot;LeNet&quot;)
+    model.load_dict(model_dict)
+    model.eval()
+    df=[]
+    i=1
+    for item in evalReader():
+        item=np.array(item,dtype=&#39;float32&#39;).reshape(-1,1,28,28)
+        # item2=np.array(item*255,dtype=&#39;int32&#39;).reshape(28,28)
+        # plt.imshow(item2)
+        # plt.show()
+        img=fluid.dygraph.to_variable(item)
+        result = model(img)
+        # print(result)
+        # print(&quot;预测结果为&quot;,np.argmax(result.numpy()[0]))
+        df.append([i,np.argmax(result.numpy()[0])])
+        i+=1
+        # time.sleep(0.5)
+    df=pd.DataFrame(df,columns=[&quot;ImageId&quot;,&quot;Label&quot;])
+    df.to_csv(&quot;results1.csv&quot;)
+
+if __name__ == &#39;__main__&#39;:
+    # 创建模型
+    with fluid.dygraph.guard():
+        model = LeNet(10)
+        #启动预测
+        predict(model)</code></pre>
             </div>
             <hr/>
 
@@ -441,7 +618,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zhkgo.github.io/2020/07/17/hello-world/">https://zhkgo.github.io/2020/07/17/hello-world/</a>
+                    <a href="https://zhkgo.github.io/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/">https://zhkgo.github.io/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -479,8 +656,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                    <span class="chip bg-color">测试</span>
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-paddlepaddle/">
+                                    <span class="chip bg-color">深度学习 paddlepaddle</span>
                                 </a>
                             
                         </div>
@@ -653,24 +830,27 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2020/07/17/hello-world/">
+                <a href="/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="利用paddlepaddle手写数字识别">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">利用paddlepaddle手写数字识别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            
+因为百度的AIStudio平台提供了免费的GPU算力,而且帮我配好了运行环境，只不过需要使用paddlepaddle这个框架，我就打算顺便在学习paddlepaddle的同时完成lintcode上面的刷题任务。
+
+题目描述题目链接MNIS
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-15
                             </span>
                         <span class="publish-author">
                             
@@ -684,8 +864,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                        <span class="chip bg-color">测试</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-paddlepaddle/">
+                        <span class="chip bg-color">深度学习 paddlepaddle</span>
                     </a>
                     
                 </div>
@@ -942,7 +1122,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.5k</span>&nbsp;字
+                class="white-color">11.2k</span>&nbsp;字
             
             
             

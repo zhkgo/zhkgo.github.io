@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2020-08-11T02:08:59.895Z</updated>
+  <updated>2020-08-15T00:27:52.587Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -17,25 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://zhkgo.github.io/2020/07/17/hello-world/"/>
-    <id>https://zhkgo.github.io/2020/07/17/hello-world/</id>
-    <published>2020-07-17T08:56:13.091Z</published>
-    <updated>2020-08-11T02:08:59.895Z</updated>
+    <title>利用paddlepaddle手写数字识别</title>
+    <link href="https://zhkgo.github.io/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/"/>
+    <id>https://zhkgo.github.io/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</id>
+    <published>2020-08-14T23:54:11.000Z</published>
+    <updated>2020-08-15T00:27:52.587Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener external nofollow noreferrer&quot;&gt;Hexo&lt;/a&gt;! This is your very first</summary>
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;因为百度的AIStudio平台提供了免费的GPU算力,而且帮我配好了运行环境，只不过需要使用paddlepaddle这个框架，我就打算顺便在学习paddlepaddle的同时完成lintcode上面的刷题任务。&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
         
       
     
     
     
     
-    <category term="测试" scheme="https://zhkgo.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
+    <category term="深度学习 paddlepaddle" scheme="https://zhkgo.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-paddlepaddle/"/>
     
   </entry>
   
