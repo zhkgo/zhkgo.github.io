@@ -74,6 +74,13 @@
 
   
   <url>
+    <loc>https://zhkgo.github.io/tags/python/</loc>
+    <lastmod>2020-08-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zhkgo.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2020-08-15</lastmod>
     <changefreq>daily</changefreq>
@@ -82,13 +89,6 @@
   
   <url>
     <loc>https://zhkgo.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-paddlepaddle/</loc>
-    <lastmod>2020-08-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhkgo.github.io/tags/python/</loc>
     <lastmod>2020-08-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
