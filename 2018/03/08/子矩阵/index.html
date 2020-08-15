@@ -394,7 +394,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -412,55 +412,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>题目描述<br>链接如下<br><a href="https://www.luogu.org/problemnew/show/P2258" target="_blank" rel="noopener external nofollow noreferrer">https://www.luogu.org/problemnew/show/P2258</a></p>
-<pre><code>给出如下定义：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">给出如下定义：</span><br><span class="line"></span><br><span class="line">子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。</span><br><span class="line"></span><br><span class="line">例如，下面左图中选取第2、4行和第2、4、5列交叉位置的元素得到一个2*3的子矩阵如右图所示。</span><br><span class="line"></span><br><span class="line">9 3 3 3 9</span><br><span class="line"></span><br><span class="line">9 4 8 7 4</span><br><span class="line"></span><br><span class="line">1 7 4 6 6</span><br><span class="line"></span><br><span class="line">6 8 5 6 9</span><br><span class="line"></span><br><span class="line">7 4 5 6 1</span><br><span class="line"></span><br><span class="line">的其中一个2*3的子矩阵是</span><br><span class="line"></span><br><span class="line">4 7 4</span><br><span class="line"></span><br><span class="line">8 6 9</span><br><span class="line"></span><br><span class="line">相邻的元素：矩阵中的某个元素与其上下左右四个元素（如果存在的话）是相邻的。</span><br><span class="line"></span><br><span class="line">矩阵的分值：矩阵中每一对相邻元素之差的绝对值之和。</span><br><span class="line"></span><br><span class="line">本题任务：给定一个n行m列的正整数矩阵，请你从这个矩阵中选出一个r行c列的子矩阵，使得这个子矩阵的分值最小，并输出这个分值。</span><br><span class="line"></span><br><span class="line">(本题目为2014NOIP普及T4)</span><br><span class="line"></span><br><span class="line">输入输出格式</span><br><span class="line"></span><br><span class="line">输入格式：</span><br><span class="line"></span><br><span class="line">第一行包含用空格隔开的四个整数n，m，r，c，意义如问题描述中所述，每两个整数之间用一个空格隔开。</span><br><span class="line"></span><br><span class="line">接下来的n行，每行包含m个用空格隔开的整数，用来表示问题描述中那个n行m列的矩阵。</span><br><span class="line"></span><br><span class="line">输出格式：</span><br><span class="line"></span><br><span class="line">输出共1行，包含1个整数，表示满足题目描述的子矩阵的最小分值。</span><br><span class="line"></span><br><span class="line">【数据说明】</span><br><span class="line"></span><br><span class="line">对于50%的数据，1 ≤ n ≤ 12，1 ≤ m ≤ 12，矩阵中的每个元素1 ≤ a[i][j] ≤ 20；</span><br><span class="line"></span><br><span class="line">对于100%的数据，1 ≤ n ≤ 16，1 ≤ m ≤ 16，矩阵中的每个元素1 ≤ a[i][j] ≤ 1,000，</span><br><span class="line"></span><br><span class="line">1 ≤ r ≤ n，1 ≤ c ≤ m。</span><br></pre></td></tr></table></figure>
 
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
-
-例如，下面左图中选取第2、4行和第2、4、5列交叉位置的元素得到一个2*3的子矩阵如右图所示。
-
-9 3 3 3 9
-
-9 4 8 7 4
-
-1 7 4 6 6
-
-6 8 5 6 9
-
-7 4 5 6 1
-
-的其中一个2*3的子矩阵是
-
-4 7 4
-
-8 6 9
-
-相邻的元素：矩阵中的某个元素与其上下左右四个元素（如果存在的话）是相邻的。
-
-矩阵的分值：矩阵中每一对相邻元素之差的绝对值之和。
-
-本题任务：给定一个n行m列的正整数矩阵，请你从这个矩阵中选出一个r行c列的子矩阵，使得这个子矩阵的分值最小，并输出这个分值。
-
-(本题目为2014NOIP普及T4)
-
-输入输出格式
-
-输入格式：
-
-第一行包含用空格隔开的四个整数n，m，r，c，意义如问题描述中所述，每两个整数之间用一个空格隔开。
-
-接下来的n行，每行包含m个用空格隔开的整数，用来表示问题描述中那个n行m列的矩阵。
-
-输出格式：
-
-输出共1行，包含1个整数，表示满足题目描述的子矩阵的最小分值。
-
-【数据说明】
-
-对于50%的数据，1 ≤ n ≤ 12，1 ≤ m ≤ 12，矩阵中的每个元素1 ≤ a[i][j] ≤ 20；
-
-对于100%的数据，1 ≤ n ≤ 16，1 ≤ m ≤ 16，矩阵中的每个元素1 ≤ a[i][j] ≤ 1,000，
-
-1 ≤ r ≤ n，1 ≤ c ≤ m。</code></pre><p>对于以上的数据范围，我一开始想到的是直接搜索，然后我就估算了一下搜索的代价，最差的情况是，有16行16列，选8行8列，直接枚举的话，有</p>
+<p>对于以上的数据范围，我一开始想到的是直接搜索，然后我就估算了一下搜索的代价，最差的情况是，有16行16列，选8行8列，直接枚举的话，有</p>
 <p><img src="http://latex.codecogs.com/gif.latex?(C_%7B16%7D%5E%7B8%7D%20)%5E%7B2%7D*%7Bn%7D%5E2" alt=" "><br>的运算次数，结果是超过100亿的运算次数显然不能再规定时间内完成。</p>
 <p>看到这类矩阵 ，我也能想到是dp，但是对于这种选择分开的dp感觉无从下手。</p>
 <p>后来想到，将dp与搜索结合起来使用，先搜索确定是那几行，然后题目就变成了</p>
@@ -473,78 +427,8 @@
 <p>dp[i][j]=min(dp[k][j-1]+col[i]+cha[k][i]),k&lt;=i;</p>
 <p>其中col[i]表示i列内部之间的分值，cha[k][i]表示第k列与第i列相邻时，他们列之间相差的分值。这两个数组可以在确定行之后预处理出来，预处理的时间是O(n^2)相对于dp的O(n^3）显然可以忽略不计。</p>
 <p>下面附上代码。</p>
-<pre><code>#include&lt;stdio.h&gt;
-#include&lt;string.h&gt;
-int n,m,r,c;
-int mp[20][20];
-int chose[20];
-int dp[20][20];
-int res=0x3f3f3f3f;
-inline int myabs(int a){
-    return a&gt;=0?a:-a;
-}
-inline int mymax(int a,int b){
-    return a&gt;b?a:b;
-}
-inline int mymin(int a,int b){
-    return a&lt;b?a:b;
-}
-void solve(){
-    memset(dp,0x3f,sizeof(dp));
-    int f[20][20];
-    for(int i=1;i&lt;m;i++){
-        for(int j=i+1;j&lt;=m;j++){
-            f[i][j]=0;
-            for(int k=0;k&lt;r;k++){
-                f[i][j]+=myabs(mp[chose[k]][i]-mp[chose[k]][j]);
-            }
-        }
-    }
-    int col[20];
-    for(int i=1;i&lt;=m;i++){
-        col[i]=0;
-        for(int j=1;j&lt;r;j++){
-            col[i]+=myabs(mp[chose[j]][i]-mp[chose[j-1]][i]);
-        }
-    }
-    for(int i=1;i&lt;=m;i++){
-        dp[i][1]=col[i];
-    }
-    for(int i=2;i&lt;=m;i++){
-        int minc=i&lt;c?i:c;
-        for(int j=2;j&lt;=minc;j++){
-            for(int k=j-1;k&lt;i;k++){
-                dp[i][j]=mymin(dp[i][j],dp[k][j-1]+col[i]+f[k][i]);
-            }
-        }
-    }
-    for(int i=c;i&lt;=m;i++){
-        res=mymin(dp[i][c],res);
-    }
-}
-void dfs(int x,int now){
-    if(x==r){
-        solve();
-        return;
-    }
-    if(r-x&gt;n-now+1)return;
-    for(int i=now;i&lt;=n;i++){
-        chose[x]=i;
-        dfs(x+1,i+1);
-    }
-} 
-int main(){
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-    scanf(&quot;%d%d&quot;,&amp;r,&amp;c);
-    for(int i=1;i&lt;=n;i++){
-        for(int j=1;j&lt;=m;j++){
-            scanf(&quot;%d&quot;,mp[i]+j);
-        }
-    }
-    dfs(0,1);
-    printf(&quot;%d\n&quot;,res);
-    return 0;
-} </code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">int n,m,r,c;</span><br><span class="line">int mp[20][20];</span><br><span class="line">int chose[20];</span><br><span class="line">int dp[20][20];</span><br><span class="line">int res&#x3D;0x3f3f3f3f;</span><br><span class="line">inline int myabs(int a)&#123;</span><br><span class="line">    return a&gt;&#x3D;0?a:-a;</span><br><span class="line">&#125;</span><br><span class="line">inline int mymax(int a,int b)&#123;</span><br><span class="line">    return a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line">inline int mymin(int a,int b)&#123;</span><br><span class="line">    return a&lt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line">void solve()&#123;</span><br><span class="line">    memset(dp,0x3f,sizeof(dp));</span><br><span class="line">    int f[20][20];</span><br><span class="line">    for(int i&#x3D;1;i&lt;m;i++)&#123;</span><br><span class="line">        for(int j&#x3D;i+1;j&lt;&#x3D;m;j++)&#123;</span><br><span class="line">            f[i][j]&#x3D;0;</span><br><span class="line">            for(int k&#x3D;0;k&lt;r;k++)&#123;</span><br><span class="line">                f[i][j]+&#x3D;myabs(mp[chose[k]][i]-mp[chose[k]][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int col[20];</span><br><span class="line">    for(int i&#x3D;1;i&lt;&#x3D;m;i++)&#123;</span><br><span class="line">        col[i]&#x3D;0;</span><br><span class="line">        for(int j&#x3D;1;j&lt;r;j++)&#123;</span><br><span class="line">            col[i]+&#x3D;myabs(mp[chose[j]][i]-mp[chose[j-1]][i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i&#x3D;1;i&lt;&#x3D;m;i++)&#123;</span><br><span class="line">        dp[i][1]&#x3D;col[i];</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i&#x3D;2;i&lt;&#x3D;m;i++)&#123;</span><br><span class="line">        int minc&#x3D;i&lt;c?i:c;</span><br><span class="line">        for(int j&#x3D;2;j&lt;&#x3D;minc;j++)&#123;</span><br><span class="line">            for(int k&#x3D;j-1;k&lt;i;k++)&#123;</span><br><span class="line">                dp[i][j]&#x3D;mymin(dp[i][j],dp[k][j-1]+col[i]+f[k][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i&#x3D;c;i&lt;&#x3D;m;i++)&#123;</span><br><span class="line">        res&#x3D;mymin(dp[i][c],res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void dfs(int x,int now)&#123;</span><br><span class="line">    if(x&#x3D;&#x3D;r)&#123;</span><br><span class="line">        solve();</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if(r-x&gt;n-now+1)return;</span><br><span class="line">    for(int i&#x3D;now;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">        chose[x]&#x3D;i;</span><br><span class="line">        dfs(x+1,i+1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;r,&amp;c);</span><br><span class="line">    for(int i&#x3D;1;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">        for(int j&#x3D;1;j&lt;&#x3D;m;j++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,mp[i]+j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(0,1);</span><br><span class="line">    printf(&quot;%d\n&quot;,res);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
             </div>
             <hr/>
 
@@ -842,11 +726,7 @@ int main(){
                     <div class="summary block-with-text">
                         
                             题目描述链接如下https://www.luogu.org/problemnew/show/P2258
-给出如下定义：
-
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
-
-例
+12345678910111213141516171819202122232425262728293031323334353637383
                         
                     </div>
                     <div class="publish-info">
@@ -1077,7 +957,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.2k</span>&nbsp;字
+                class="white-color">11.4k</span>&nbsp;字
             
             
             

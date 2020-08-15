@@ -390,7 +390,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    659
+                    670
                 </div>
                 
 
@@ -409,56 +409,9 @@
             <div id="articleContent">
                 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a><strong>背景</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;前段时间准备六级的时候，拿到了一个光盘，里面有很多听力，但是听力分为很多文件夹，还有很多听力的字幕（.lrc）,就想要把里面的听力都拷贝出来全部放到我的手机某个文件夹里，但是一个个文件夹打开，全选，拷贝，粘贴，这一系列操作显得效率不高，因此我想到了使用python来实现这一系列功能。</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a><strong>实现</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;制作出了一个可以实现<strong>筛选该程序所在目录下的所有文件</strong>，通过关键词进行筛选，然后复制到目标文件夹里，高效得实现了文件的整理。还可以用到一些资料的整理上，比如想整理所有关于毕业设计的资料，我就把毕业设计作为关键词，（当然平常命名的时候还得要规范一点），然后把我的程序放到磁盘根目录下运行，就能筛选出当前磁盘下的全部含关键词的文件了。代码如下</p>
-<pre><code># -*- coding: utf-8 -*-
-&quot;&quot;&quot;
-Created on Fri May 18 13:50:09 2018
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Fri May 18 13:50:09 2018</span><br><span class="line"></span><br><span class="line">@author: zhkgo</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line">import shutil</span><br><span class="line">def findmykey(keyword,head&#x3D;os.path.abspath(&#39;.&#39;)):</span><br><span class="line">    dirs&#x3D;set()</span><br><span class="line">    files&#x3D;[]</span><br><span class="line">    pattern&#x3D;&#39;.*&#39;+keyword+&#39;.*&#39;</span><br><span class="line">    dirs.add(head)</span><br><span class="line">    while(len(dirs)!&#x3D;0):</span><br><span class="line">        mydir&#x3D;dirs.pop()</span><br><span class="line">        for x in os.listdir(mydir):</span><br><span class="line">          #  print(x)</span><br><span class="line">            absp&#x3D;os.path.join(mydir,x)</span><br><span class="line">            if os.path.isdir(absp):</span><br><span class="line">                dirs.add(absp)           </span><br><span class="line">            elif os.path.isfile(absp):</span><br><span class="line">            #    print(pattern+&#39; &#39;+keyword)</span><br><span class="line">             #   print(&quot;isfile&quot;)    </span><br><span class="line">                if re.match(pattern,x):</span><br><span class="line">                    files.append(absp)</span><br><span class="line">    return files</span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line"> </span><br><span class="line">#shutil.copyfile(r&#39;F:\华研外语\2.六级2套预测\Model Test 2.lrc&#39;,&#39;F:\\fas\\&#39;+&#39;madel.lrc&#39;)</span><br><span class="line">goal&#x3D;&quot;&quot; </span><br><span class="line">goal&#x3D;input(&#39;复制到哪里？ (例如 F:\\文档)\n&#39;)</span><br><span class="line">while not os.path.exists(goal):  </span><br><span class="line">   print(&quot;文件夹不存在！&quot;)         </span><br><span class="line">   goal&#x3D;input(&#39;复制到哪里？ (例如 F:\\文档)\n&#39;)</span><br><span class="line">keyword&#x3D;input(&#39;输入关键词(例如 jpg)\n&#39;)</span><br><span class="line">ret&#x3D;findmykey(keyword)</span><br><span class="line">#print(ret)</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    for x in ret:</span><br><span class="line">        pa&#x3D;os.path.join(goal,os.path.split(x)[1])    </span><br><span class="line">   # print(pa)</span><br><span class="line">        shutil.copyfile(x,pa)</span><br><span class="line">except:</span><br><span class="line">    print(&quot;复制失败&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&#39;复制完成&#39;)</span><br></pre></td></tr></table></figure>
 
-@author: zhkgo
-&quot;&quot;&quot;
-
-import os
-import re
-import shutil
-def findmykey(keyword,head=os.path.abspath(&#39;.&#39;)):
-    dirs=set()
-    files=[]
-    pattern=&#39;.*&#39;+keyword+&#39;.*&#39;
-    dirs.add(head)
-    while(len(dirs)!=0):
-        mydir=dirs.pop()
-        for x in os.listdir(mydir):
-          #  print(x)
-            absp=os.path.join(mydir,x)
-            if os.path.isdir(absp):
-                dirs.add(absp)           
-            elif os.path.isfile(absp):
-            #    print(pattern+&#39; &#39;+keyword)
-             #   print(&quot;isfile&quot;)    
-                if re.match(pattern,x):
-                    files.append(absp)
-    return files
-
-
-
-#shutil.copyfile(r&#39;F:\华研外语\2.六级2套预测\Model Test 2.lrc&#39;,&#39;F:\\fas\\&#39;+&#39;madel.lrc&#39;)
-goal=&quot;&quot; 
-goal=input(&#39;复制到哪里？ (例如 F:\\文档)\n&#39;)
-while not os.path.exists(goal):  
-   print(&quot;文件夹不存在！&quot;)         
-   goal=input(&#39;复制到哪里？ (例如 F:\\文档)\n&#39;)
-keyword=input(&#39;输入关键词(例如 jpg)\n&#39;)
-ret=findmykey(keyword)
-#print(ret)
-
-try:
-    for x in ret:
-        pa=os.path.join(goal,os.path.split(x)[1])    
-   # print(pa)
-        shutil.copyfile(x,pa)
-except:
-    print(&quot;复制失败&quot;)
-else:
-    print(&#39;复制完成&#39;)</code></pre><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;代码肯定是不完善的，没有考虑很多情况，目前这个代码实现的时候 ，对于重复的文件，后面进入的会覆盖已经存在的文件。<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;这个还可以加入输入正则表达式来进行匹配文件名，这样就不是单纯的文件名匹配了，还可以加入运算符，如 “与”，“或”等来进行匹配。就写到这里吧，有错误希望能够指正。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;代码肯定是不完善的，没有考虑很多情况，目前这个代码实现的时候 ，对于重复的文件，后面进入的会覆盖已经存在的文件。<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;这个还可以加入输入正则表达式来进行匹配文件名，这样就不是单纯的文件名匹配了，还可以加入运算符，如 “与”，“或”等来进行匹配。就写到这里吧，有错误希望能够指正。</p>
 
             </div>
             <hr/>
@@ -756,11 +709,7 @@ else:
                     <div class="summary block-with-text">
                         
                             题目描述链接如下https://www.luogu.org/problemnew/show/P2258
-给出如下定义：
-
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
-
-例
+12345678910111213141516171819202122232425262728293031323334353637383
                         
                     </div>
                     <div class="publish-info">
@@ -990,7 +939,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.2k</span>&nbsp;字
+                class="white-color">11.4k</span>&nbsp;字
             
             
             
