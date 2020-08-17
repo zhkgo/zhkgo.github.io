@@ -628,7 +628,7 @@
 </li>
 <li><p>A发送分组的时间为$T_D$,B发送确认分组的时间为$T_A$,往返时间为RTT。<br>$$信道利用率U=\frac{T_D}{T_D+RTT+T_A}$$</p>
 </li>
-<li><p>超时重传机制计算<strong>$$新RTT_S＝(1-\alpha)<em>(旧的RTT_S)+\alpha</em>x新的RTT样本$$</strong><br>$$RTO=RTT_S+4<em>RTT_D$$<br>$$新的RTT_D=(1-\beta)</em>(旧的RTT_D)+\beta*|RTT_S-新的RTT样本|$$</p>
+<li><p>超时重传机制计算<br>$$新RTT_S＝(1-\alpha)<em>(旧的RTT_S)+\alpha<em>x新的RTT样本$$<br>$$RTO=RTT_S+4</em>RTT_D$$<br>$$新的RTT_D=(1-\beta)</em>(旧的RTT_D)+\beta*|RTT_S-新的RTT样本|$$</p>
 </li>
 <li><p><strong>流量控制</strong>就是让发送方的发送速率不要太快，要让接收方来得及接收。</p>
 </li>
