@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhkgo.github.io/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/</loc>
+    
+    <lastmod>2020-08-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhkgo.github.io/2019/01/07/software-struct/</loc>
     
     <lastmod>2020-08-17</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://zhkgo.github.io/2020/08/17/%E5%88%A9%E7%94%A8paddlepaddle%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</loc>
     
     <lastmod>2020-08-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhkgo.github.io/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/</loc>
-    
-    <lastmod>2020-08-15</lastmod>
     
   </url>
   
@@ -88,13 +88,6 @@
 
   
   <url>
-    <loc>https://zhkgo.github.io/tags/python/</loc>
-    <lastmod>2020-08-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zhkgo.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
@@ -102,7 +95,7 @@
   </url>
   
   <url>
-    <loc>https://zhkgo.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</loc>
+    <loc>https://zhkgo.github.io/tags/python/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -117,6 +110,13 @@
   
   <url>
     <loc>https://zhkgo.github.io/tags/paddlepaddle/</loc>
+    <lastmod>2020-08-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhkgo.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
