@@ -130,13 +130,6 @@
   </url>
   
   <url>
-    <loc>https://zhkgo.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2020-08-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zhkgo.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
@@ -145,6 +138,13 @@
   
   <url>
     <loc>https://zhkgo.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2020-08-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhkgo.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
