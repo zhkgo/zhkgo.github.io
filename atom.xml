@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2020-08-17T10:35:28.433Z</updated>
+  <updated>2020-08-21T10:50:17.007Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>办理中国移动校园卡遇到的神坑</title>
+    <link href="https://zhkgo.github.io/2020/08/21/%E5%8A%9E%E7%90%86%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E6%A0%A1%E5%9B%AD%E5%8D%A1%E9%81%87%E5%88%B0%E7%9A%84%E7%A5%9E%E5%9D%91/"/>
+    <id>https://zhkgo.github.io/2020/08/21/%E5%8A%9E%E7%90%86%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E6%A0%A1%E5%9B%AD%E5%8D%A1%E9%81%87%E5%88%B0%E7%9A%84%E7%A5%9E%E5%9D%91/</id>
+    <published>2020-08-21T09:23:58.000Z</published>
+    <updated>2020-08-21T10:50:17.007Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;关键词&quot;&gt;&lt;a href=&quot;#关键词&quot; class=&quot;headerlink&quot; title=&quot;关键词&quot;&gt;&lt;/a&gt;关键词&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;校园卡推销 二次放号 未提及的违约金 催贷款电话\短信&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="校园卡推销" scheme="https://zhkgo.github.io/tags/%E6%A0%A1%E5%9B%AD%E5%8D%A1%E6%8E%A8%E9%94%80/"/>
+    
+    <category term="二次放号" scheme="https://zhkgo.github.io/tags/%E4%BA%8C%E6%AC%A1%E6%94%BE%E5%8F%B7/"/>
+    
+    <category term="未提及的违约金" scheme="https://zhkgo.github.io/tags/%E6%9C%AA%E6%8F%90%E5%8F%8A%E7%9A%84%E8%BF%9D%E7%BA%A6%E9%87%91/"/>
+    
+    <category term="催贷款电话\短信" scheme="https://zhkgo.github.io/tags/%E5%82%AC%E8%B4%B7%E6%AC%BE%E7%94%B5%E8%AF%9D-%E7%9F%AD%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>利用paddlepaddle实现猫狗分类</title>
