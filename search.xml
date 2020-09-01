@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>办理中国移动校园卡遇到的神坑</title>
-      <link href="/2020/08/21/%E5%8A%9E%E7%90%86%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E6%A0%A1%E5%9B%AD%E5%8D%A1%E9%81%87%E5%88%B0%E7%9A%84%E7%A5%9E%E5%9D%91/"/>
-      <url>/2020/08/21/%E5%8A%9E%E7%90%86%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E6%A0%A1%E5%9B%AD%E5%8D%A1%E9%81%87%E5%88%B0%E7%9A%84%E7%A5%9E%E5%9D%91/</url>
-      
-        <content type="html"><![CDATA[<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><pre><code>校园卡推销 二次放号 未提及的违约金 催贷款电话\短信</code></pre><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本人杭州某大学研究生即将就读，在校园推销人员的推销下，办卡前推销人员<strong>表示随时可以注销</strong>,我就办理了中国移动的校园卡(8月初,办理过程未提及为二次放号号码)。<br>随后推销人员的优惠中说明有免费赠送的视频VIP会员，随心选会员，我就开通了这个随心选会员，充值到腾讯视频中去，随后用手机号登陆腾讯视频，发现此手机号已有绑定的微信号码，<strong>随心选会员充值到了原户主的微信号里面去了</strong>。<br>随即就发现了此号码为二次放号号码，我测试了支付宝、微信、饿了么、知乎等生活中常用的平台<strong>全部被注册</strong>了，本来想妥协，注册就注册了，我还能强制注册新的，而且这张卡也不会怎么用于互联网平台登录。<br>后来的事情超乎我的想象了，我收到了来自各种<strong>贷款机构</strong>的催款电话，找该号码的前户主要钱，各种奇怪的短信电话。我表示我不是前户主(借贷者)的情况下依旧不依不饶的打<strong>催款电话</strong>给我，发<strong>催款短信</strong>给我。我不堪其扰，<br>推销人员表示可以注销，只要来杭州，我从绍兴地区来到杭州营业厅办理注销号码，第一个营业厅说权限不够，需要我去另一个权限更高的营业厅办理，我就去了金沙湖的移动营业厅。我在说明这张卡的电话，营业厅营业员的话让我难忘，我实话和你说吧，这张卡是有四年合约的，不能注销，注销是要付四年违约金的,<strong>用卡两周,违约金四年</strong>。<br>坐车绍兴来到杭州，骑共享单车几公里跑了两个营业厅，依旧未完成号码的注销，收着催款短信……</p><h2 id="相关图片"><a href="#相关图片" class="headerlink" title="相关图片"></a>相关图片</h2><p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-18-02-10-970_com.tencent.mm.jpg" alt="选号界面未标注是二次放号"><br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-17-01-54-986_com.tencent.mm.jpg" alt="未提及合约"><br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-17-14-58-797_com.android.co.jpg" alt="新卡收到的催款电话以及其他骚扰电话-1"><br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-17-13-37-745_com.android.co.jpg" alt="新卡收到的催款电话以及其他骚扰电话-2"><br>更多的就不展示了<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-17-17-33-065_com.android.mm.jpg" alt="收到的短信"><br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-17-17-06-853_com.android.mm.jpg" alt="信用卡短信"><br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-17-16-44-015_com.android.mm.jpg" alt="苏宁"><br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/IMG_20200821_171604.jpg" alt="到杭州刚刚插上卡收到的"><br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/mobief/Screenshot_2020-08-21-17-16-52-615_com.android.mm.jpg" alt="华夏银行"></p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>本来还有好多照片截图，跑两个营业厅有点身心疲惫，先不放了。<strong>再说一句，办号码前，千万注意！！！测试一下支付宝、微信等平台或者直接询问，看看是不是二次号码</strong>！！！！</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 校园卡推销 </tag>
-            
-            <tag> 二次放号 </tag>
-            
-            <tag> 未提及的违约金 </tag>
-            
-            <tag> 催贷款电话\短信 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>利用paddlepaddle实现猫狗分类</title>
       <link href="/2020/08/17/%E5%88%A9%E7%94%A8paddlepaddle%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/"/>
       <url>/2020/08/17/%E5%88%A9%E7%94%A8paddlepaddle%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/</url>
