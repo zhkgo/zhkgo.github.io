@@ -4,6 +4,17 @@
 
 <head>
     <meta charset="utf-8">
+    <script>
+        (function(){
+            if('{{ page.password }}'){
+                if (prompt('请输入文章密码') !== '{{ page.password }}'){
+                    alert('密码错误');
+                    //防君子，不防小人
+                    history.back();
+                }
+            }
+        })();
+    </script>
     <meta name="keywords" content="标签: 动态规划, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -301,46 +312,19 @@
                 </a>
                 
                 
-                <a href="/tags/%E6%A0%A1%E5%9B%AD%E5%8D%A1%E6%8E%A8%E9%94%80/" title="校园卡推销: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="校园卡推销" style="background-color: #F5EEF8;">校园卡推销
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E4%BA%8C%E6%AC%A1%E6%94%BE%E5%8F%B7/" title="二次放号: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="二次放号" style="background-color: #D5F5E3;">二次放号
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%9C%AA%E6%8F%90%E5%8F%8A%E7%9A%84%E8%BF%9D%E7%BA%A6%E9%87%91/" title="未提及的违约金: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="未提及的违约金" style="background-color: #E8F8F5;">未提及的违约金
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%82%AC%E8%B4%B7%E6%AC%BE%E7%94%B5%E8%AF%9D-%E7%9F%AD%E4%BF%A1/" title="催贷款电话\短信: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="催贷款电话\短信" style="background-color: #FEF9E7;">催贷款电话\短信
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="计算机网络" style="background-color: #F8F9F9;">计算机网络
+                            data-tagname="计算机网络" style="background-color: #F5EEF8;">计算机网络
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="软件工程: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="软件工程" style="background-color: #D5F5E3;">软件工程
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -349,7 +333,7 @@
                 <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="深度学习: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="深度学习" style="background-color: #82E0AA;">深度学习
+                            data-tagname="深度学习" style="background-color: #E8F8F5;">深度学习
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -358,16 +342,43 @@
                 <a href="/tags/paddlepaddle/" title="paddlepaddle: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="paddlepaddle" style="background-color: #D7BDE2;">paddlepaddle
+                            data-tagname="paddlepaddle" style="background-color: #FEF9E7;">paddlepaddle
                         <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="软件工程: 1">
+                <a href="/tags/%E6%A0%A1%E5%9B%AD%E5%8D%A1%E6%8E%A8%E9%94%80/" title="校园卡推销: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="软件工程" style="background-color: #A3E4D7;">软件工程
+                            data-tagname="校园卡推销" style="background-color: #F8F9F9;">校园卡推销
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%BA%8C%E6%AC%A1%E6%94%BE%E5%8F%B7/" title="二次放号: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="二次放号" style="background-color: #82E0AA;">二次放号
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%9C%AA%E6%8F%90%E5%8F%8A%E7%9A%84%E8%BF%9D%E7%BA%A6%E9%87%91/" title="未提及的违约金: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="未提及的违约金" style="background-color: #D7BDE2;">未提及的违约金
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%82%AC%E8%B4%B7%E6%AC%BE%E7%94%B5%E8%AF%9D-%E7%9F%AD%E4%BF%A1/" title="催贷款电话\短信: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="催贷款电话\短信" style="background-color: #A3E4D7;">催贷款电话\短信
                         <span class="tag-length">1</span>
                     </span>
                 </a>

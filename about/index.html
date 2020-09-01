@@ -4,6 +4,17 @@
 
 <head>
     <meta charset="utf-8">
+    <script>
+        (function(){
+            if('{{ page.password }}'){
+                if (prompt('请输入文章密码') !== '{{ page.password }}'){
+                    alert('密码错误');
+                    //防君子，不防小人
+                    history.back();
+                }
+            }
+        })();
+    </script>
     <meta name="keywords" content="有点大的青椒, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -539,7 +550,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["深度学习","paddlepaddle","python","校园卡推销","二次放号","未提及的违约金","催贷款电话\\短信","计算机网络","软件工程","算法"]
+                data: ["深度学习","paddlepaddle","python","计算机网络","软件工程","校园卡推销","二次放号","未提及的违约金","催贷款电话\\短信","算法"]
             }
         ],
         yAxis: [
@@ -672,6 +683,30 @@
             
             
             
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                <span class="chip center-align waves-effect waves-light chip-default">计算机网络</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
+                <span class="chip center-align waves-effect waves-light chip-default">软件工程</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                <span class="chip center-align waves-effect waves-light chip-default">深度学习</span>
+            </a>
+            
+            
+            
+            <a href="/tags/paddlepaddle/">
+                <span class="chip center-align waves-effect waves-light chip-default">paddlepaddle</span>
+            </a>
+            
+            
+            
             <a href="/tags/%E6%A0%A1%E5%9B%AD%E5%8D%A1%E6%8E%A8%E9%94%80/">
                 <span class="chip center-align waves-effect waves-light chip-default">校园卡推销</span>
             </a>
@@ -692,30 +727,6 @@
             
             <a href="/tags/%E5%82%AC%E8%B4%B7%E6%AC%BE%E7%94%B5%E8%AF%9D-%E7%9F%AD%E4%BF%A1/">
                 <span class="chip center-align waves-effect waves-light chip-default">催贷款电话\短信</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-                <span class="chip center-align waves-effect waves-light chip-default">计算机网络</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                <span class="chip center-align waves-effect waves-light chip-default">深度学习</span>
-            </a>
-            
-            
-            
-            <a href="/tags/paddlepaddle/">
-                <span class="chip center-align waves-effect waves-light chip-default">paddlepaddle</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
-                <span class="chip center-align waves-effect waves-light chip-default">软件工程</span>
             </a>
             
             
