@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2020-08-17T10:35:28.433Z</updated>
+  <updated>2020-09-02T16:24:54.207Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用强化学习训练AI玩俄罗斯方块</title>
+    <link href="https://zhkgo.github.io/2020/09/01/%E7%94%A8%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%8E%A9%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/"/>
+    <id>https://zhkgo.github.io/2020/09/01/%E7%94%A8%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%8E%A9%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/</id>
+    <published>2020-09-01T13:42:16.000Z</published>
+    <updated>2020-09-02T16:24:54.207Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;暑假空闲时间比较多，就来试试炼丹。这个AI我尝试设计了好多次，总是会有这样那样的问题，现在总算有了相对稳定的效果。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;动作的设计&quot;&gt;&lt;a href=&quot;#动作的设计&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="强化学习" scheme="https://zhkgo.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="DDQN" scheme="https://zhkgo.github.io/tags/DDQN/"/>
+    
+  </entry>
   
   <entry>
     <title>利用paddlepaddle实现猫狗分类</title>
