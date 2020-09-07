@@ -365,6 +365,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                                <span class="chip bg-color">俄罗斯方块</span>
+                            </a>
+                        
                             <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">
                                 <span class="chip bg-color">强化学习</span>
                             </a>
@@ -658,6 +662,7 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
         main<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 <h2 id="训练结果"><a href="#训练结果" class="headerlink" title="训练结果"></a>训练结果</h2><p>跑了几个小时得分的分布如下图。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/score.png" alt="得分分布图"><br>可以看出分数都分布在1000以上，偶尔突破1500算是有不错的效果了。<br>下面是在本机跑俄罗斯方块AI的效果图。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/Snipaste_2020-09-03_00-21-54.jpg" alt="运行图"><br>可以看出这边对于空洞的重视程度还不是特别足，需要更好的设计奖励函数。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>发现了一个bug,游戏内部的设定问题，导致组合后的动作有些区域落不到方块，修复了bug之后重新训练得分变得很好。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/score20200907.png" alt="得分图"></p>
 
             </div>
             <hr/>
@@ -720,6 +725,10 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
+                            
+                                <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                                    <span class="chip bg-color">俄罗斯方块</span>
+                                </a>
                             
                                 <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">
                                     <span class="chip bg-color">强化学习</span>
@@ -894,17 +903,16 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/01/%E7%94%A8%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%8E%A9%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                <a href="/2020/09/03/tetris2/">
                     <div class="card-image">
                         
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/timg.jpg" class="responsive-img" alt="用强化学习训练AI玩俄罗斯方块">
+                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/timg.jpg" class="responsive-img" alt="基于Pierre Dellacherie评估算法玩俄罗斯方块">
                         
-                        <span class="card-title">用强化学习训练AI玩俄罗斯方块</span>
+                        <span class="card-title">基于Pierre Dellacherie评估算法玩俄罗斯方块</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -913,13 +921,13 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
                             
 暑假空闲时间比较多，就来试试炼丹。这个AI我尝试设计了好多次，总是会有这样那样的问题，现在总算有了相对稳定的效果。
 
-动作的设计俄罗斯方块最原始的动作是五个，分别是不动，下落，旋转，左移，右移。为了能够使得他直击目标，我们对动作进行了组合
+Pierre Dellacherie评估算法介绍
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-01
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-03
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -928,16 +936,11 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">强化学习</span>
-                    </a>
-                    
-                    <a href="/tags/DDQN/">
-                        <span class="chip bg-color">DDQN</span>
+                    <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                        <span class="chip bg-color">俄罗斯方块</span>
                     </a>
                     
                 </div>
@@ -1195,7 +1198,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15k</span>&nbsp;字
+                class="white-color">15.2k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="计算机网络期末复习, 青椒的博客">
+    <meta name="keywords" content="基于Pierre Dellacherie评估算法玩俄罗斯方块, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>计算机网络期末复习 | 青椒的博客</title>
+    <title>基于Pierre Dellacherie评估算法玩俄罗斯方块 | 青椒的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597671116205&di=d4c463ac6e5e7f3771c82d80a2257cd7&imgtype=0&src=http%3A%2F%2Fp.ananas.chaoxing.com%2Fstar3%2F733_434%2F56cbbf4fe4b0e85354cd1249.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://blog-1252419034.cos.ap-beijing.myqcloud.com/timg.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">计算机网络期末复习</h1>
+                    <h1 class="description center-align post-title">基于Pierre Dellacherie评估算法玩俄罗斯方块</h1>
                 </div>
             </div>
         </div>
@@ -365,8 +365,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-                                <span class="chip bg-color">计算机网络</span>
+                            <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                                <span class="chip bg-color">俄罗斯方块</span>
                             </a>
                         
                     </div>
@@ -381,7 +381,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-05
+                    2020-09-03
                 </div>
                 
 
@@ -390,7 +390,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    59
                 </div>
                 
 
@@ -407,301 +407,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="网络及其计算复习"><a href="#网络及其计算复习" class="headerlink" title="网络及其计算复习"></a>网络及其计算复习</h1><hr>
-<p>如有谬误，欢迎指正</p>
-<hr>
-<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="简述分组交换的要点"><a href="#简述分组交换的要点" class="headerlink" title="简述分组交换的要点"></a>简述分组交换的要点</h3><ol>
-<li>报文分组，加首部。</li>
-<li>经路由器储存转发。</li>
-<li>在目的地合并。</li>
-</ol>
-<h3 id="比较电路交换、报文交换和分组交换的主要优缺点"><a href="#比较电路交换、报文交换和分组交换的主要优缺点" class="headerlink" title="比较电路交换、报文交换和分组交换的主要优缺点"></a>比较电路交换、报文交换和分组交换的主要优缺点</h3><p><strong>电路交换</strong>——整个报文的比特流连续地从源点直达终点，好像在一个管道中传送。<br>时延小，但是独占信道，利用率低。<br><strong>报文交换</strong><br>信道利用率相对较高，时延较长。<br><strong>分组交换</strong><br>信道利用率高时延小，总结就是<strong>高效、灵活、迅速、可靠</strong>。<br>缺点是加入了大量控制信息，技术实现复杂。</p>
-<h3 id="网络协议三个要素及其含义"><a href="#网络协议三个要素及其含义" class="headerlink" title="网络协议三个要素及其含义"></a>网络协议三个要素及其含义</h3><ol>
-<li><strong>语法</strong>，即数据与控制信息的结构或格式。</li>
-<li><strong>语义</strong>，即发出何种控制信息，完成何种动作以及做出何种响应。</li>
-<li><strong>同步</strong>，即事件实现顺序的详细说明。</li>
-</ol>
-<h3 id="试解释以下名词：协议栈、实体、对等层、协议数据单元、服务访问点、客户、服务器、客户-服务器方式。"><a href="#试解释以下名词：协议栈、实体、对等层、协议数据单元、服务访问点、客户、服务器、客户-服务器方式。" class="headerlink" title="试解释以下名词：协议栈、实体、对等层、协议数据单元、服务访问点、客户、服务器、客户-服务器方式。"></a>试解释以下名词：协议栈、实体、对等层、协议数据单元、服务访问点、客户、服务器、客户-服务器方式。</h3><ol>
-<li>实体(entity) 表示任何可发送或接收信息的硬件或软件进程。<br>协议是控制两个对等实体进行通信的规则的集合。</li>
-<li>客户(client)和服务器(server)都是指通信中所涉及的两个应用进程。客户是服务的请求方，服务器是服务的提供方。客户服务器方式所描述的是进程之间服务和被服务的关系。</li>
-<li>协议栈:指计算机网络体系结构采用分层模型后,每层的主要功能由对等层协议的运行来实现,因而每层可用一些主要协议来表征,几个层次画在一起很像一个栈的结构。</li>
-</ol>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol>
-<li>计算机网络是由<strong>若干结点</strong>和<strong>连接这些节点的链路</strong>组成。</li>
-<li>互联网是指<strong>路由器</strong>把一个个网络连接到一起，形成的网络的网络。</li>
-<li>ISP分为：<strong>主干ISP、地区ISP和本地ISP</strong></li>
-<li>IXP指换联网交换点</li>
-<li>网络边缘部分-主机（端系统）组成-<strong>用户使用</strong>-通信和资源共享</li>
-<li>网络核心部分-路由器组成-<strong>为边缘部分提供服务</strong>-连通性和交换</li>
-<li>互联网之所以能够向用户提供许多服务，就是因为两个特点，<strong>连通性</strong>和<strong>共享</strong>。</li>
-<li>共享指<strong>资源共享</strong>，包括<strong>信息共享、软件共享、硬件共享</strong>。</li>
-<li>客户是服务请求方，服务器是服务提供方。</li>
-<li>对等连接指两台主机在通信时不区分请求方和服务方，P2P。</li>
-<li>交换就是按某种方式动态地分配传输线路的资源。</li>
-<li>网络按作用范围分为：<strong>广域网、城域网、局域网、个人区域网</strong>。</li>
-<li>网络按使用者进行分类：<strong>公用网、专用网</strong>。</li>
-<li>通常速率以$10^3$来划分层次k、m、g等，单位bit/s。</li>
-<li>在表示数据块大小的时候采用$2^{10}$来划分K、M、G等,单位应当注意是B(byte)还是b(bit)。</li>
-<li>吞吐量是指单位时间内通过某个网络的实际数据量。</li>
-<li>总时延=发送时延+传播时延+处理时延+排队时间。</li>
-<li>时延带宽积=传播时延 * 带宽</li>
-<li>$有效数据率=\frac{数据长度}{发送时间+RTT}$</li>
-<li>五层协议体系结构：应用层、运输层（TCP\UDP协议）、网络层（IP协议）、数据链路层、物理层。</li>
-<li>集线器特点。</li>
-</ol>
-<ul>
-<li>使用集线器的以太网逻辑上认识一个总线网，同一时刻只允许一个站发送数据。</li>
-<li>有许多接口。</li>
-<li>工作在物理层，不进行碰撞检测。</li>
-<li>采用专门芯片，进行自适应串音回波抵消。<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2></li>
-</ul>
-<ol>
-<li>物理层四个特性：<strong>机械特性、电气特性、功能特性、过程特性</strong>。</li>
-<li>通信系统分为：<strong>源系统、传输系统和目的系统</strong>。</li>
-<li>信号分为两大类： 模拟信号（连续），数字信号（离散）。</li>
-<li>从通信的双方信息交互的方式看分为：<strong>单向通信（单工通信）、双向交替通信（半双工通信）、双向同时通信（全双工通信）</strong>。</li>
-<li>来自信源的信号称为<strong>基带信号</strong>。</li>
-<li>经过载波调制后的信号称为<strong>带通信号</strong>，而使用载波的调制称为<strong>带通调制</strong>。</li>
-<li>四种编码方式：不归零制、归零制、曼切斯特编码、差分曼切斯特编码。</li>
-<li>信噪比：信号的平均功率和噪声的平均功率之比。</li>
-<li>$信噪比（dB)=10 log_{10}(S/N)(dB)$</li>
-<li>香农公式指明了信道的极限信息传输速率C。<br>$$ C=Wlog_2(1+S/N) $$</li>
-<li>传输媒体也称传输介质或传输媒体。分为导引型传输媒体和非导引型传输媒体。</li>
-<li>同轴电缆是由内导体铜质芯线、绝缘层、网状编织的外导体屏蔽层和保护塑料外层所所组成。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/timg.jpg" alt="line"></li>
-<li>光纤通常由非常透明的<strong>石英玻璃拉成细丝</strong>，主要由<strong>纤芯</strong>（高折射率）和<strong>包层</strong>（低折射率）构成双层通信圆柱体。</li>
-<li>可以存在多条不同角度入射的光纤在同一光纤中传输，这种光纤称为<strong>多模光纤</strong>。</li>
-<li>光纤直径减小到只有一个光的波长，不会产生多次反射，<strong>单模光纤</strong>。</li>
-<li>传统微波通信：<strong>地面微波接力通信</strong>和<strong>卫星通信</strong>。</li>
-<li>卫星通信，距离远，通信费用与通信距离无关。传播时延较大。</li>
-<li>最基本的复用技术是<strong>频分复用</strong>（FDM）和<strong>时分复用</strong>（TDM）。</li>
-<li>波分复用WDM就是光的频分复用。</li>
-<li>码分复用CDM,更多的是码分多址CDMA，多用户同一时间同样频带通信。抗干扰能力强，类似白噪声的频谱。（我猜有个计算题，信不信由你）</li>
-</ol>
-<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><ol>
-<li>链路是指从一个结点到相邻结点的物理线路。</li>
-<li>数据链路是由通信协议和软件加到链路上构成的。 <strong>网络适配器</strong>来实现这些协议。</li>
-<li>点对点信道的数据链路层的协议数据单元———帧。</li>
-<li>在互联网中，网络层协议数据单元就是<strong>IP数据报</strong>（简称数据报、分组或包）。</li>
-<li>数据链路层协议的三个基本问题：<strong>封装成帧、透明传输和差错检测</strong>。</li>
-<li>封装成帧就是在一段数据的前后<strong>添加首部（SOH 0x01)和尾部(EOT 0x04)，构成帧</strong>。</li>
-<li>数据中出现SOH或者EOT时应当插入转义字符ESC 0x1B，这种方法称为字节填充或者字符填充。</li>
-<li>转义字符本身也需要转义。</li>
-<li>比特在传输中可能出错，叫比特差错。</li>
-<li>在一段时间内，传输错误的比特占传输比特总数的比率称为<strong>误码率BER</strong>。</li>
-<li>数据链路层广泛使用<strong>循环冗余检验CRC</strong>。（计算题，上书上看详细例题）</li>
-<li>需要注意的CRC是并不保证可靠传输。zongxianw</li>
-<li>传输差错两类，比特差错和没有出现比特差错，却出现了帧丢失、帧重复或帧失序。</li>
-<li>在CRC的基础上增加<strong>帧编号、确认和重传机制</strong>。</li>
-<li>点对点协议PPP是目前使用得最广的数据链路层协议。</li>
-<li>PPP协议的组成。<ul>
-<li>一个将IP数据包封装到串行链路的方法。</li>
-<li>一个用来建立、配置和测试数据链路连接的链路控制协议LCP。</li>
-<li>一套网络控制协议NCP。</li>
-</ul>
-</li>
-<li>零比特填充：只要发现5个连续的1，则立刻填入一个0。</li>
-<li>共享信道技术两种方法。静态划分信道和动态媒体介入控制（随机接入和受控接入）。</li>
-<li>计算机与外界局域网的连接是通过通信适配器进行的，接口版形式的适配器，又称网络接口卡，简称为网卡。</li>
-<li>适配器所实现的功能包含了数据链路层及物理层两个层次的功能。</li>
-<li>CSMA/CD意思是载波监听多点接入/碰撞检测。</li>
-<li>载波监听就是用电子技术检测总线上有没有其他计算机也在发送。也就是检测信道，不管在发送前发送中每个站都必须不停地检测信道。</li>
-<li>碰撞检测也就是边发送边监听，即适配器边发送数据边检测信道上的信号电压变化情况。</li>
-<li>CSMA/CD协议使用时，一个站不可能同时进行发送和接受（但必须边发送边监听信道）。因此该协议不可能全双工，只能半双工。</li>
-<li>传统以太网最初是使用粗同轴电缆，后来演进到使用比较便宜的细同轴电缆、最后到双绞线。</li>
-<li>以太网采用星形拓扑，在星形的中心则增加了一些可靠性非常高的设备，叫做集线器。</li>
-<li>10BASE-T的标准802.3i。10代表10Mbit/s的数据率，BASE表示连接线上的信号是基带信号，T表示双绞线。通信距离较短，<strong>每个站到集线器的距离不超过100m。</strong></li>
-<li>以太网中定义了参数$a=\frac{t}{T_0}$ ，其中t表示端到端时延，$T_0$表示帧的发送时间。$a-&gt;0$时，表示只要一发送碰撞就能检测出来，停止发送。</li>
-<li>硬件地址又称物理地址或MAC地址，<strong>是一种48位的全球地址</strong>。</li>
-<li>适配器有过滤功能，收到一个MAC帧就先用硬件检查MAC帧种的目的地址。</li>
-<li>MAC帧包括三种，<strong>单播帧，广播帧，多播帧</strong>。</li>
-<li>在三个系的以太网互连起来之前，每一个系的10BASE-T以太网式一个独立的碰撞域（冲突域）。</li>
-<li>最初拓展以太网使用网桥，对收到的帧根据其MAC帧的目的地址进行转发和过滤。</li>
-<li>后来是<strong>交换机，工作在数据链路层</strong>。</li>
-<li>虚拟局域网VLAN是由一些局域网网段构成的与物理位置无关的逻辑组，而这些网段具有某些共同的需求。</li>
-<li>虚拟局域网只是局域网给用户提供的一种服务。</li>
-<li>虚拟局域网限制接收广播信息的计算机数，<strong>避免因为传播过多广播信息（广播风暴）而引起性能恶化。</strong></li>
-</ol>
-<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><p>1.虚电路服务与数据报服务的对比。</p>
-<table>
-<thead>
-<tr>
-<th align="center">试试</th>
-<th align="center">虚电路服务</th>
-<th align="center">数据报服务</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">思路</td>
-<td align="center">可靠通信应当由网络来保证</td>
-<td align="center">可靠通讯应当由用户主机来保证</td>
-</tr>
-<tr>
-<td align="center">连接的建立</td>
-<td align="center">必须有</td>
-<td align="center">不需要</td>
-</tr>
-<tr>
-<td align="center">终点地址</td>
-<td align="center">仅在连接建立阶段使用，每个分组使用短的虚电路号</td>
-<td align="center">每个分组都有终点的完整地址</td>
-</tr>
-<tr>
-<td align="center">分组的转发</td>
-<td align="center">属于同一条虚电路的分组均按照同一路由进行转发</td>
-<td align="center">每个分组独立选择路由进行转发</td>
-</tr>
-<tr>
-<td align="center">当结点出故障时</td>
-<td align="center">所有通过出故障的结点的虚电路均不能工作</td>
-<td align="center">出故障的结点可能会丢失分组，一些路由可能会发生变化</td>
-</tr>
-<tr>
-<td align="center">分组的顺序</td>
-<td align="center">总是按发送顺序到达终点</td>
-<td align="center">到达终点时不一定按发送顺序</td>
-</tr>
-<tr>
-<td align="center">差错处理和流量控制</td>
-<td align="center">由网络负责，也可以由用户主机负责</td>
-<td align="center">由用户主机负责</td>
-</tr>
-</tbody></table>
-<ol start="2">
-<li>网际协议IP式TCP/IP体系中两个最主要的协议之一。与IP协议配套使用的还有三个协议，<strong>地址解析协议ARP，网际控制报文协议ICMP，网际组管理协议IGMP。</strong></li>
-<li>网络互连的四种中间设备。<strong>物理层-转发器。数据链路层-网桥或桥接器。网络层 -路由器。网络层以上-网关。</strong></li>
-<li>IP地址的编址三个阶段，<strong>分类的IP地址，子网的划分，构成超网。</strong></li>
-<li>IP地址中的网络号字段和主机号字段。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/u%3D3447840984%2C2899861555%26fm%3D26%26gp%3D0.jpg" alt="ipsort"></li>
-<li>从层次的的角度看，物理地址是数据链路层和物理层使用的地址，而IP地址是网络层和以上各层所用的地址，是一种逻辑地址。</li>
-<li>ARP协议的用途式为了从网络层使用的IP地址，解析出在数据链路层使用的硬件地址。</li>
-<li>划分子网后在本单位内部就变成了三级IP地址:网络号，子网号和主机号。</li>
-<li>路由表必须包括<strong>目的网络地址，子网掩码，下一跳地址</strong>。</li>
-<li>CIDR无分类编址。<br>= =消除了传统的A类B类C类地址以及划分子网的概念。<br>把网络前缀都相同的连续的IP地址组成一个CIDR地址块。</li>
-<li>路由器结构分为两大部分：<strong>路由选择和分组转发</strong>。</li>
-<li>IPV6把地址从IPV4的32位增大到4倍，即增大到128位。</li>
-<li>IPV6数据报目的地址。单播、多播、任播。</li>
-<li>为了使地址简洁，IPV6采用冒号十六进制记法。</li>
-<li>IPV6地址分类了解一下。</li>
-</ol>
-<p>##　第五章</p>
-<ol>
-<li>面向<strong>连接的TCP和无连接的UDP</strong>。</li>
-<li>用户数据包协议UDP，传输控制协议TCP。</li>
-<li>常用的熟知端口号。</li>
-</ol>
-<ul>
-<li>FTP-21</li>
-<li>TELNET-23</li>
-<li>SMTP-25</li>
-<li>DNS-53</li>
-<li>TFTP-69</li>
-<li>HTTP-80</li>
-<li>SNMP-161</li>
-<li>SNMP-162(trap)</li>
-<li>HTTPS-443</li>
-</ul>
-<ol start="4">
-<li>UDP 的主要<strong>特点</strong>是：</li>
-</ol>
-<ul>
-<li>UDP是无连接的。</li>
-<li>UDP尽最大努力交付，所以不保证可靠交付。</li>
-<li>UDP是面向报文的。</li>
-<li>UDP没有拥塞控制。</li>
-<li>UDP支持一对一，一对多，多对一和多对多的交互通信。</li>
-<li>UDP的首部开销小(8个字节)。</li>
-</ul>
-<ol start="5">
-<li>UDP首部<strong>四个字段</strong>。</li>
-</ol>
-<ul>
-<li>源端口</li>
-<li>目的端口</li>
-<li>长度</li>
-<li>检验和</li>
-</ul>
-<ol start="6">
-<li><p>TCP把连接作为最基本的抽象。</p>
-</li>
-<li><p>套接字socket=IP地址：端口号</p>
-</li>
-<li><p>理想的传输条件有以下两个特点。<br>　- 传输信道不产生差错。<br>　- 不管发送方以多快的速度发送数据，接收方总是来得及处理收到的数据。</p>
-</li>
-<li><p>A发送分组的时间为$T_D$,B发送确认分组的时间为$T_A$,往返时间为RTT。<br>$$信道利用率U=\frac{T_D}{T_D+RTT+T_A}$$</p>
-</li>
-<li><p>超时重传机制计算<br>$$新RTT_S＝(1-\alpha)<em>(旧的RTT_S)+\alpha<em>x新的RTT样本$$<br>$$RTO=RTT_S+4</em>RTT_D$$<br>$$新的RTT_D=(1-\beta)</em>(旧的RTT_D)+\beta*|RTT_S-新的RTT样本|$$</p>
-</li>
-<li><p><strong>流量控制</strong>就是让发送方的发送速率不要太快，要让接收方来得及接收。</p>
-</li>
-<li><p>计算机网络中的链路容量、交换节点中的缓存和处理机等都是<strong>网络资源</strong>。</p>
-</li>
-<li><p>对于某一资源需求超过可用资源，即会<strong>拥塞</strong>。</p>
-</li>
-<li><p>拥塞控制就是防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。</p>
-</li>
-<li><p>流量控制往往指点对点通信量的控制。</p>
-</li>
-<li><p>TCP拥塞控制的算法四种。(计算题）</p>
-</li>
-</ol>
-<ul>
-<li>慢开始 ＊２</li>
-<li>拥塞避免　＋１</li>
-<li>快重传　</li>
-<li>快恢复 $cwnd=ssthresh=cwnd*\frac{1}{2}$</li>
-</ul>
-<ol start="17">
-<li>TCP运输连接就有三个阶段</li>
-</ol>
-<ul>
-<li>连接建立</li>
-<li>数据传送</li>
-<li>连接释放</li>
-</ul>
-<ol start="18">
-<li>TCP需解决的三问题。</li>
-</ol>
-<ul>
-<li>要使每一方能够确知对方的存在。</li>
-<li>允许双方协商一些参数。</li>
-<li>能够对运输实体资源进行分配。</li>
-</ul>
-<ol start="19">
-<li>TCP中主动的叫客户，被动的叫服务器。</li>
-<li>　TCP三次握手四次挥手。</li>
-</ol>
-<h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><ol>
-<li>域名系统DNS是互联网使用的命名系统，用来把便于人们使用的机器名字转换为IP地址。</li>
-<li>顶级域名分为三大类。<strong>国家顶级域名nTLD,通用顶级域名gTLD,基础结构域名</strong>。</li>
-<li>互联网的域名空间。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/7604477-3809ca06eb6f5881.jpg" alt="domain"></li>
-<li>树状结构的DNS域名服务器。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/u%3D137121673%2C1402111241%26fm%3D26%26gp%3D0.jpg" alt="tree-domain"></li>
-<li>根域名服务器是最高层次的域名服务器，也是最重要的域名服务器。</li>
-<li>文件传送协议FTP是互联网上使用得最广泛的<strong>文件传送协议</strong>。</li>
-<li>FTP <strong>主进程工作流程</strong>如下。</li>
-</ol>
-<ul>
-<li>打开熟知端口，使客户进程能够连接上。</li>
-<li>等待客户进程发出连接请求。</li>
-<li>启动从属进程处理客户进程请求。</li>
-<li>回到等待状态，继续接受其他客户进程发来的请求。</li>
-</ul>
-<ol start="8">
-<li>TELNET是一个简单的<strong>远程终端协议</strong>，也是互联网的正式标准。</li>
-<li>万维网以客户服务器方式工作，客户程序向服务器发出请求，服务器程序向客户程序送回客户所需的万维网文档。</li>
-<li><strong>统一资源定位符URL</strong>。用来表示从互联网上得到的资源位置和访问这些资源的方法。</li>
-<li>http://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</li>
-<li>主页概念。</li>
-</ol>
-<ul>
-<li>一个WWW服务器的最高级别页面。</li>
-<li>某一个组织或部门一个定制的页面或目录。</li>
-<li>由某一个人自己设计的描述他本人情况的WWW页面。</li>
-</ul>
-<ol start="13">
-<li>电子邮件的两个重要标准：<strong>简单邮件传送协议SMTP和互联网文本报文格式</strong>。</li>
-<li>邮件读取协议POP3和IMAP。</li>
-</ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>非计算题占了四十分，计算题占了六十分。若想看整理好的计算题，有个URL下去下载，支持20次下载,20次下载后文件自动删除。<br><a href="https://send.firefox.com/download/af93107b3d/#uTEMLp2WILU8rG_HFWjk7g" target="_blank" rel="noopener external nofollow noreferrer">下载网址</a></p>
-
+                <blockquote>
+<p>暑假空闲时间比较多，就来试试炼丹。这个AI我尝试设计了好多次，总是会有这样那样的问题，现在总算有了相对稳定的效果。</p>
+</blockquote>
+<h2 id="Pierre-Dellacherie评估算法介绍"><a href="#Pierre-Dellacherie评估算法介绍" class="headerlink" title="Pierre Dellacherie评估算法介绍"></a>Pierre Dellacherie评估算法介绍</h2>
             </div>
             <hr/>
 
@@ -726,7 +435,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zhkgo.github.io/2020/01/05/newwork/">https://zhkgo.github.io/2020/01/05/newwork/</a>
+                    <a href="https://zhkgo.github.io/2020/09/03/tetris2/">https://zhkgo.github.io/2020/09/03/tetris2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -764,8 +473,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-                                    <span class="chip bg-color">计算机网络</span>
+                                <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                                    <span class="chip bg-color">俄罗斯方块</span>
                                 </a>
                             
                         </div>
@@ -933,31 +642,32 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/">
+                <a href="/2020/09/03/tetris2/">
                     <div class="card-image">
                         
-                        <img src="https://exp-picture.cdn.bcebos.com/38332303bbea3e86b1d821f75cd4483105eb5524.jpg?x-bce-process=image%2Fresize%2Cm_lfit%2Cw_500%2Climit_1" class="responsive-img" alt="利用paddlepaddle手写数字识别">
+                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/timg.jpg" class="responsive-img" alt="基于Pierre Dellacherie评估算法玩俄罗斯方块">
                         
-                        <span class="card-title">利用paddlepaddle手写数字识别</span>
+                        <span class="card-title">基于Pierre Dellacherie评估算法玩俄罗斯方块</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-因为百度的AIStudio平台提供了免费的GPU算力,而且帮我配好了运行环境，只不过需要使用paddlepaddle这个框架，我就打算顺便在学习paddlepaddle的同时完成lintcode上面的刷题任务。
+暑假空闲时间比较多，就来试试炼丹。这个AI我尝试设计了好多次，总是会有这样那样的问题，现在总算有了相对稳定的效果。
 
-题目描述题目链接MNIS
+Pierre Dellacherie评估算法介绍
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -966,15 +676,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">深度学习</span>
-                    </a>
-                    
-                    <a href="/tags/paddlepaddle/">
-                        <span class="chip bg-color">paddlepaddle</span>
+                    <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                        <span class="chip bg-color">俄罗斯方块</span>
                     </a>
                     
                 </div>
@@ -988,26 +695,26 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/01/07/software-struct/">
+                <a href="/2020/09/01/%E7%94%A8%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%8E%A9%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
                     <div class="card-image">
                         
-                        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1417265144,484703170&fm=26&gp=0.jpg" class="responsive-img" alt="软件构造复习">
+                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/timg.jpg" class="responsive-img" alt="用强化学习训练AI玩俄罗斯方块">
                         
-                        <span class="card-title">软件构造复习</span>
+                        <span class="card-title">用强化学习训练AI玩俄罗斯方块</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-前言最佳食用方法是理解记忆，考试时能扯多少是多少，有小部分直接复制＠hwq的答案．其实有心人想要找出那些题目考的概率大也是相对明显的．答案都是基于我自己理解的，不保证正确，觉得不对的也可以下面评论．
-解答
-解释模块耦合性的含义，对不同的耦
+暑假空闲时间比较多，就来试试炼丹。这个AI我尝试设计了好多次，总是会有这样那样的问题，现在总算有了相对稳定的效果。
+
+动作的设计俄罗斯方块最原始的动作是五个，分别是不动，下落，旋转，左移，右移。为了能够使得他直击目标，我们对动作进行了组合
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-01-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-01
                             </span>
                         <span class="publish-author">
                             
@@ -1020,8 +727,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
-                        <span class="chip bg-color">软件工程</span>
+                    <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+                        <span class="chip bg-color">俄罗斯方块</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">强化学习</span>
+                    </a>
+                    
+                    <a href="/tags/DDQN/">
+                        <span class="chip bg-color">DDQN</span>
                     </a>
                     
                 </div>
@@ -1159,13 +874,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 
