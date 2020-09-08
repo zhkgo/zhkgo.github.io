@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基于Pierre Dellacherie评估算法玩俄罗斯方块, 青椒的博客">
+    <meta name="keywords" content="基于Pierre Dellacherie算法玩俄罗斯方块, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>基于Pierre Dellacherie评估算法玩俄罗斯方块 | 青椒的博客</title>
+    <title>基于Pierre Dellacherie算法玩俄罗斯方块 | 青椒的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -248,7 +248,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于Pierre Dellacherie评估算法玩俄罗斯方块</h1>
+                    <h1 class="description center-align post-title">基于Pierre Dellacherie算法玩俄罗斯方块</h1>
                 </div>
             </div>
         </div>
@@ -390,7 +390,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    59
+                    1.1k
                 </div>
                 
 
@@ -408,9 +408,172 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>暑假空闲时间比较多，就来试试炼丹。这个AI我尝试设计了好多次，总是会有这样那样的问题，现在总算有了相对稳定的效果。</p>
+<p>这个算法更加注重俄罗斯方块的不死性，如果用遗传算法或者模拟退火算法训练好权重后能够达到很好的效果。主要参考<a href="https://blog.csdn.net/qq_41882147/article/details/80005763进行设计。" target="_blank" rel="noopener external nofollow noreferrer">https://blog.csdn.net/qq_41882147/article/details/80005763进行设计。</a></p>
 </blockquote>
-<h2 id="Pierre-Dellacherie评估算法介绍"><a href="#Pierre-Dellacherie评估算法介绍" class="headerlink" title="Pierre Dellacherie评估算法介绍"></a>Pierre Dellacherie评估算法介绍</h2>
+<h2 id="评价函数"><a href="#评价函数" class="headerlink" title="评价函数"></a>评价函数</h2><ul>
+<li>landingHeight:指当前板块放置之后，板块重心距离游戏区域底部的距离。（也就是小方块的海拔高度）</li>
+<li>erodedPieceCellsMetric:这是消除参数的体现，他代表的是消除的行数与当前摆放的板块中被消除的小方块的格数的成绩。</li>
+<li>boardRowTransitions:对于每一行小方格，从左往右看，从无小方格到有小方格是一种“变换”，从有小方格到无小方格也是一种“变换”，这个属性是各行中“变换”之和</li>
+<li>boardColTransitions:这是每一列的变换次数之和</li>
+<li>boardBuriedHoles:各列中的“空洞的小方格数之和”</li>
+<li>boardWells:各列中“井”的深度的连加和。“井”的定义是，两边（包括边界）都有方块填充的空列。</li>
+</ul>
+<p>这里用到的权重如下<br>| 参数名 | 权值 |<br>| —— | —— |<br>| landingHeight |-4.500158825082766 |<br>| erodedPieceCellsMetric | 3.4181268101392694 |<br>| boardRowTransitions | -3.2178882868487753 |<br>| boardColTransitions | -9.348695305445199 |<br>| boardBuriedHoles | -7.899265427351652 |<br>| boardWells | -3.3855972247263626 |</p>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>主要是像上篇文章所讲的一样，将方块的动作进行重组，以落下一次作为一个组合动作(像格斗游戏里的组合技)，不区分方块类型总共可以有40个组合动作，即分别从0-9列下降，旋转0-3次。<br>然后在操作之前先模拟操作，模拟完这40个动作之后，看看哪个动作得分最高就选哪个进行实操。</p>
+<pre class=" language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">frame_step</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>input<span class="token punctuation">,</span>dummy<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        pygame<span class="token punctuation">.</span>event<span class="token punctuation">.</span>pump<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>movingLeft <span class="token operator">=</span> <span class="token boolean">False</span>
+        self<span class="token punctuation">.</span>movingRight <span class="token operator">=</span> <span class="token boolean">False</span>
+        <span class="token comment" spellcheck="true"># time.sleep(0.2)</span>
+        terminal <span class="token operator">=</span> <span class="token boolean">False</span>
+        landed <span class="token operator">=</span> <span class="token boolean">False</span>
+        <span class="token comment" spellcheck="true">#none is 10000, left is 01000, right is 00100, space(rotate) is 00010, down is 00001</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>fallingPiece <span class="token operator">==</span> None<span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># No falling piece in play, so start a new piece at the top</span>
+            self<span class="token punctuation">.</span>fallingPiece <span class="token operator">=</span> self<span class="token punctuation">.</span>nextPiece
+            self<span class="token punctuation">.</span>nextPiece <span class="token operator">=</span> self<span class="token punctuation">.</span>getNewPiece<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>lastFallTime <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># reset self.lastFallTime</span>
+
+            <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>isValidPosition<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                image_data <span class="token operator">=</span> pygame<span class="token punctuation">.</span>surfarray<span class="token punctuation">.</span>array3d<span class="token punctuation">(</span>pygame<span class="token punctuation">.</span>display<span class="token punctuation">.</span>get_surface<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token comment" spellcheck="true"># cv2.imshow("name",image_data)</span>
+                <span class="token comment" spellcheck="true"># time.sleep(5)</span>
+                terminal <span class="token operator">=</span> <span class="token boolean">True</span>
+
+                self<span class="token punctuation">.</span>reinit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> image_data<span class="token punctuation">,</span> landed<span class="token punctuation">,</span> terminal <span class="token comment" spellcheck="true"># can't fit a new piece on the self.board, so game over</span>
+
+
+        <span class="token comment" spellcheck="true"># move left</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>input<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">and</span> self<span class="token punctuation">.</span>isValidPosition<span class="token punctuation">(</span>adjX<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span> 
+            self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
+            self<span class="token punctuation">.</span>movingLeft <span class="token operator">=</span> <span class="token boolean">True</span>
+            self<span class="token punctuation">.</span>movingRight <span class="token operator">=</span> <span class="token boolean">False</span>
+            self<span class="token punctuation">.</span>lastMoveSidewaysTime <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># move right</span>
+        <span class="token keyword">elif</span> <span class="token punctuation">(</span>input<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">and</span> self<span class="token punctuation">.</span>isValidPosition<span class="token punctuation">(</span>adjX<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+            self<span class="token punctuation">.</span>movingRight <span class="token operator">=</span> <span class="token boolean">True</span>
+            self<span class="token punctuation">.</span>movingLeft <span class="token operator">=</span> <span class="token boolean">False</span>
+            self<span class="token punctuation">.</span>lastMoveSidewaysTime <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># rotating the piece (if there is room to rotate)</span>
+        <span class="token keyword">elif</span> <span class="token punctuation">(</span>input<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'rotation'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'rotation'</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> len<span class="token punctuation">(</span>PIECES<span class="token punctuation">[</span>self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'shape'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>isValidPosition<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'rotation'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'rotation'</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> len<span class="token punctuation">(</span>PIECES<span class="token punctuation">[</span>self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'shape'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># move the current piece all the way down</span>
+        <span class="token keyword">elif</span> <span class="token punctuation">(</span>input<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>movingDown <span class="token operator">=</span> <span class="token boolean">False</span>
+            self<span class="token punctuation">.</span>movingLeft <span class="token operator">=</span> <span class="token boolean">False</span>
+            self<span class="token punctuation">.</span>movingRight <span class="token operator">=</span> <span class="token boolean">False</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> BOARDHEIGHT<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>isValidPosition<span class="token punctuation">(</span>adjY<span class="token operator">=</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">break</span>
+            self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'y'</span><span class="token punctuation">]</span> <span class="token operator">+=</span> i <span class="token operator">-</span> <span class="token number">1</span>
+
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>movingDown<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'y'</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+            self<span class="token punctuation">.</span>lastMoveDownTime <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># let the piece fall if it is time to fall</span>
+        <span class="token comment" spellcheck="true"># see if the piece has landed</span>
+        cleared <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>isValidPosition<span class="token punctuation">(</span>adjY<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># falling piece has landed, set it on the self.board</span>
+            landed<span class="token operator">=</span><span class="token boolean">True</span>
+            self<span class="token punctuation">.</span>lh <span class="token operator">=</span> BOARDHEIGHT <span class="token operator">-</span> self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'y'</span><span class="token punctuation">]</span> <span class="token operator">-</span> self<span class="token punctuation">.</span>getmid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>addToBoard<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>epcm <span class="token operator">=</span> self<span class="token punctuation">.</span>getEpcm<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            cleared <span class="token operator">=</span> self<span class="token punctuation">.</span>removeCompleteLines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>epcm <span class="token operator">*=</span> cleared
+            <span class="token keyword">if</span> cleared <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> cleared <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                    self<span class="token punctuation">.</span>score <span class="token operator">+=</span> <span class="token number">40</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>level
+                <span class="token keyword">elif</span> cleared <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
+                    self<span class="token punctuation">.</span>score <span class="token operator">+=</span> <span class="token number">100</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>level
+                <span class="token keyword">elif</span> cleared <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+                    self<span class="token punctuation">.</span>score <span class="token operator">+=</span> <span class="token number">300</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>level
+                <span class="token keyword">elif</span> cleared <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>
+                    self<span class="token punctuation">.</span>score <span class="token operator">+=</span> <span class="token number">1200</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>level
+            self<span class="token punctuation">.</span>brt <span class="token operator">=</span> self<span class="token punctuation">.</span>getBrt<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>bct <span class="token operator">=</span> self<span class="token punctuation">.</span>getBct<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>holes <span class="token operator">=</span> self<span class="token punctuation">.</span>getHoles<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>wells <span class="token operator">=</span> self<span class="token punctuation">.</span>getWells<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>score <span class="token operator">+=</span> self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'y'</span><span class="token punctuation">]</span>
+
+            self<span class="token punctuation">.</span>lines <span class="token operator">+=</span> cleared
+            self<span class="token punctuation">.</span>total_lines <span class="token operator">+=</span> cleared
+
+
+            self<span class="token punctuation">.</span>height <span class="token operator">=</span> self<span class="token punctuation">.</span>getHeight<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            self<span class="token punctuation">.</span>level<span class="token punctuation">,</span> self<span class="token punctuation">.</span>fallFreq <span class="token operator">=</span> self<span class="token punctuation">.</span>calculateLevelAndFallFreq<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>fallingPiece <span class="token operator">=</span> None
+
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># piece did not land, just move the piece down</span>
+            self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">[</span><span class="token string">'y'</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> dummy<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None<span class="token punctuation">,</span>landed<span class="token punctuation">,</span>terminal
+        <span class="token comment" spellcheck="true"># drawing everything on the screen</span>
+        DISPLAYSURF<span class="token punctuation">.</span>fill<span class="token punctuation">(</span>BGCOLOR<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>drawBoard<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>drawStatus<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>drawNextPiece<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>fallingPiece <span class="token operator">!=</span> None<span class="token punctuation">:</span>
+           self<span class="token punctuation">.</span>drawPiece<span class="token punctuation">(</span>self<span class="token punctuation">.</span>fallingPiece<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>drawPiece<span class="token punctuation">(</span>self<span class="token punctuation">.</span>nextPiece<span class="token punctuation">)</span>
+        pygame<span class="token punctuation">.</span>display<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        image_data <span class="token operator">=</span> pygame<span class="token punctuation">.</span>surfarray<span class="token punctuation">.</span>array3d<span class="token punctuation">(</span>pygame<span class="token punctuation">.</span>display<span class="token punctuation">.</span>get_surface<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> image_data<span class="token punctuation">,</span>landed<span class="token punctuation">,</span> terminal</code></pre>
+<p>这个代码里面有单一动作下落，dummy==True的时候就会不更新pygame显示的画面，也就是用于模拟下落。</p>
+<h2 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h2><p>主函数的设计如下，主要就是尝试调用恢复。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> sys
+sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">"game/"</span><span class="token punctuation">)</span>
+<span class="token keyword">import</span> tetris_fun_nice <span class="token keyword">as</span> game
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+<span class="token keyword">import</span> copy
+ACTION<span class="token operator">=</span> <span class="token number">40</span>
+<span class="token keyword">def</span> <span class="token function">playGame</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tetris <span class="token operator">=</span> game<span class="token punctuation">.</span>GameState<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    action0 <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>ACTION<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># do nothing'</span>
+    action0<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+    observation0<span class="token punctuation">,</span> reward0<span class="token punctuation">,</span> terminal <span class="token operator">=</span> tetris<span class="token punctuation">.</span>combine_step<span class="token punctuation">(</span>action0<span class="token punctuation">)</span>
+    lobservation <span class="token operator">=</span> observation0
+    lscore<span class="token operator">=</span><span class="token number">0</span>
+    i <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        maxid <span class="token operator">=</span> <span class="token number">0</span>
+        maxr <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1000</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>ACTION<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            action0 <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>ACTION<span class="token punctuation">)</span>
+            action0<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+            ttt <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>tetris<span class="token punctuation">)</span>
+            nextObservation<span class="token punctuation">,</span> reward<span class="token punctuation">,</span> terminal <span class="token operator">=</span> ttt<span class="token punctuation">.</span>combine_step<span class="token punctuation">(</span>action0<span class="token punctuation">,</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> reward <span class="token operator">></span> maxr<span class="token punctuation">:</span>
+                maxr <span class="token operator">=</span> reward
+                maxid <span class="token operator">=</span> j
+        action0 <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>ACTION<span class="token punctuation">)</span>
+        action0<span class="token punctuation">[</span>maxid<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+        nextObservation<span class="token punctuation">,</span> reward<span class="token punctuation">,</span> terminal <span class="token operator">=</span> tetris<span class="token punctuation">.</span>combine_step<span class="token punctuation">(</span>action0<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> terminal<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"得分为"</span><span class="token punctuation">,</span>lscore<span class="token punctuation">)</span>
+        lscore<span class="token operator">=</span>tetris<span class="token punctuation">.</span>score
+        lobservation<span class="token operator">=</span>nextObservation
+        <span class="token comment" spellcheck="true"># print("maxaction=%s,reward=%s"%(maxid, reward))</span>
+        i <span class="token operator">+=</span> <span class="token number">1</span>
+
+playGame<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h2 id="最后结果"><a href="#最后结果" class="headerlink" title="最后结果"></a>最后结果</h2><p>用这个评价函数得到的结果表现异常的卓越。看下面的图就知道了分数。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/Snipaste_2020-09-08_16-46-45.jpg" alt="得分"><br>我也不知道他能拿多少，只知道它玩的停不下来。</p>
+
             </div>
             <hr/>
 
@@ -642,48 +805,44 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/03/tetris2/">
+                <a href="/2020/09/08/pdflifegame/">
                     <div class="card-image">
                         
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/timg.jpg" class="responsive-img" alt="基于Pierre Dellacherie评估算法玩俄罗斯方块">
                         
-                        <span class="card-title">基于Pierre Dellacherie评估算法玩俄罗斯方块</span>
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="pdflifegame">
+                        
+                        <span class="card-title">pdflifegame</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-暑假空闲时间比较多，就来试试炼丹。这个AI我尝试设计了好多次，总是会有这样那样的问题，现在总算有了相对稳定的效果。
 
-Pierre Dellacherie评估算法介绍
+	
+    
+	
+
+
+
+
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-03
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            章杭奎
+                            章杭奎,徐森威,胡宏洋
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
-                        <span class="chip bg-color">俄罗斯方块</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -943,7 +1102,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15.2k</span>&nbsp;字
+                class="white-color">16.2k</span>&nbsp;字
             
             
             
