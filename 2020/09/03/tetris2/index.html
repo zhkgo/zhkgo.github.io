@@ -418,7 +418,39 @@
 <li>boardBuriedHoles:各列中的“空洞的小方格数之和”</li>
 <li>boardWells:各列中“井”的深度的连加和。“井”的定义是，两边（包括边界）都有方块填充的空列。</li>
 </ul>
-<p>这里用到的权重如下<br>| 参数名 | 权值 |<br>| —— | —— |<br>| landingHeight |-4.500158825082766 |<br>| erodedPieceCellsMetric | 3.4181268101392694 |<br>| boardRowTransitions | -3.2178882868487753 |<br>| boardColTransitions | -9.348695305445199 |<br>| boardBuriedHoles | -7.899265427351652 |<br>| boardWells | -3.3855972247263626 |</p>
+<p>这里用到的权重如下</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>权值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>landingHeight</td>
+<td>-4.500158825082766</td>
+</tr>
+<tr>
+<td>erodedPieceCellsMetric</td>
+<td>3.4181268101392694</td>
+</tr>
+<tr>
+<td>boardRowTransitions</td>
+<td>-3.2178882868487753</td>
+</tr>
+<tr>
+<td>boardColTransitions</td>
+<td>-9.348695305445199</td>
+</tr>
+<tr>
+<td>boardBuriedHoles</td>
+<td>-7.899265427351652</td>
+</tr>
+<tr>
+<td>boardWells</td>
+<td>-3.3855972247263626</td>
+</tr>
+</tbody></table>
 <h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>主要是像上篇文章所讲的一样，将方块的动作进行重组，以落下一次作为一个组合动作(像格斗游戏里的组合技)，不区分方块类型总共可以有40个组合动作，即分别从0-9列下降，旋转0-3次。<br>然后在操作之前先模拟操作，模拟完这40个动作之后，看看哪个动作得分最高就选哪个进行实操。</p>
 <pre class=" language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">frame_step</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>input<span class="token punctuation">,</span>dummy<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         pygame<span class="token punctuation">.</span>event<span class="token punctuation">.</span>pump<span class="token punctuation">(</span><span class="token punctuation">)</span>
