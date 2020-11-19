@@ -495,74 +495,75 @@
 <li>所需参数数量N* F2*(T//32)</li>
 <li>激活函数Softmax</li>
 </ul>
-<h2 id="复现EEGNet"><a href="#复现EEGNet" class="headerlink" title="复现EEGNet"></a>复现EEGNet</h2><pre><code>import paddle.fluid as fluid
+<h2 id="复现EEGNet"><a href="#复现EEGNet" class="headerlink" title="复现EEGNet"></a>复现EEGNet</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> paddle<span class="token punctuation">.</span>fluid <span class="token keyword">as</span> fluid
 
-import paddle
-import paddle.fluid as fluid
-from paddle.fluid.dygraph import Pool2D, Linear, Dropout, BatchNorm
-from paddle.nn import Conv2D
-class EEGNet(fluid.dygraph.Layer):
-    &quot;&quot;&quot;
+<span class="token keyword">import</span> paddle
+<span class="token keyword">import</span> paddle<span class="token punctuation">.</span>fluid <span class="token keyword">as</span> fluid
+<span class="token keyword">from</span> paddle<span class="token punctuation">.</span>fluid<span class="token punctuation">.</span>dygraph <span class="token keyword">import</span> Pool2D<span class="token punctuation">,</span> Linear<span class="token punctuation">,</span> Dropout<span class="token punctuation">,</span> BatchNorm
+<span class="token keyword">from</span> paddle<span class="token punctuation">.</span>nn <span class="token keyword">import</span> Conv2D
+<span class="token keyword">class</span> <span class="token class-name">EEGNet</span><span class="token punctuation">(</span>fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>Layer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
     EEGNet 暂未加入weight正则化 max norm 1 and 0.25
-    &quot;&quot;&quot;
-    def __init__(self, name_scope,ch_nums=16,T=250,class_dim=2):
-        &quot;&quot;&quot;
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name_scope<span class="token punctuation">,</span>ch_nums<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span>T<span class="token operator">=</span><span class="token number">250</span><span class="token punctuation">,</span>class_dim<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
         构造函数
-        &quot;&quot;&quot;
-        super(EEGNet, self).__init__(name_scope)
-        self.F1 = 16
-        self.D = 2
-        self.kern = 25
-        self.p = 0.25 
-        self.F2 = 16*2 #self.F1*self.D #可自定义
-        self.fcin =  self.F2*(T//32)
+        """</span>
+        super<span class="token punctuation">(</span>EEGNet<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name_scope<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>F1 <span class="token operator">=</span> <span class="token number">16</span>
+        self<span class="token punctuation">.</span>D <span class="token operator">=</span> <span class="token number">2</span>
+        self<span class="token punctuation">.</span>kern <span class="token operator">=</span> <span class="token number">25</span>
+        self<span class="token punctuation">.</span>p <span class="token operator">=</span> <span class="token number">0.25</span> 
+        self<span class="token punctuation">.</span>F2 <span class="token operator">=</span> <span class="token number">16</span><span class="token operator">*</span><span class="token number">2</span> <span class="token comment" spellcheck="true">#self.F1*self.D #可自定义</span>
+        self<span class="token punctuation">.</span>fcin <span class="token operator">=</span>  self<span class="token punctuation">.</span>F2<span class="token operator">*</span><span class="token punctuation">(</span>T<span class="token operator">//</span><span class="token number">32</span><span class="token punctuation">)</span>
 
-        #第一层 时间卷积
-        self.conv1 = Conv2D(1, self.F1, (1,self.kern), padding=&quot;SAME&quot;)
-        self.bn1 = BatchNorm(self.F1)
+        <span class="token comment" spellcheck="true">#第一层 时间卷积</span>
+        self<span class="token punctuation">.</span>conv1 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>F1<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>self<span class="token punctuation">.</span>kern<span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">"SAME"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>bn1 <span class="token operator">=</span> BatchNorm<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">)</span>
 
-        #第二层 空间卷积
-        self.conv2 = Conv2D(self.F1,self.D*self.F1,(ch_nums,1),padding=&quot;VALID&quot;,groups=self.F1) #max norm 1
-        self.bn2 = BatchNorm(self.F1*self.D)
-        self.pool2 = Pool2D(pool_size=(1,4),pool_stride=(1,4),pool_type=&#39;avg&#39;)
+        <span class="token comment" spellcheck="true">#第二层 空间卷积</span>
+        self<span class="token punctuation">.</span>conv2 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">,</span>self<span class="token punctuation">.</span>D<span class="token operator">*</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">,</span><span class="token punctuation">(</span>ch_nums<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>padding<span class="token operator">=</span><span class="token string">"VALID"</span><span class="token punctuation">,</span>groups<span class="token operator">=</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#max norm 1</span>
+        self<span class="token punctuation">.</span>bn2 <span class="token operator">=</span> BatchNorm<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pool2 <span class="token operator">=</span> Pool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_type<span class="token operator">=</span><span class="token string">'avg'</span><span class="token punctuation">)</span>
 
-        # clip = fluid.clip.GradientClipByNorm(clip_norm=1.0)
+        <span class="token comment" spellcheck="true"># clip = fluid.clip.GradientClipByNorm(clip_norm=1.0)</span>
 
-        #第三层 可分离卷积
-        self.conv3_1 = Conv2D(self.F1*self.D,self.F1*self.D,(1,16),padding=&quot;SAME&quot;,groups=self.F1*self.D)
-        self.conv3_2 = Conv2D(self.F1*self.D,self.F2,(1,1))
-        self.bn3 = BatchNorm(self.F2)
-        self.pool3 = Pool2D(pool_size=(1,8),pool_stride=(1,8),pool_type=&#39;avg&#39;)
+        <span class="token comment" spellcheck="true">#第三层 可分离卷积</span>
+        self<span class="token punctuation">.</span>conv3_1 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">,</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>padding<span class="token operator">=</span><span class="token string">"SAME"</span><span class="token punctuation">,</span>groups<span class="token operator">=</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>conv3_2 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">,</span>self<span class="token punctuation">.</span>F2<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>bn3 <span class="token operator">=</span> BatchNorm<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F2<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pool3 <span class="token operator">=</span> Pool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_type<span class="token operator">=</span><span class="token string">'avg'</span><span class="token punctuation">)</span>
 
-        self.fc = fluid.dygraph.Linear(input_dim=self.fcin, output_dim=class_dim, act=&#39;softmax&#39;) #max norm 0.25
+        self<span class="token punctuation">.</span>fc <span class="token operator">=</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>input_dim<span class="token operator">=</span>self<span class="token punctuation">.</span>fcin<span class="token punctuation">,</span> output_dim<span class="token operator">=</span>class_dim<span class="token punctuation">,</span> act<span class="token operator">=</span><span class="token string">'softmax'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#max norm 0.25</span>
 
-    def forward(self, x):
-        &quot;&quot;&quot;前向计算&quot;&quot;&quot;
-        # 第一层
-        x=self.conv1(x)
-        x=self.bn1(x)
-        # x=fluid.layers.dropout(x,0.25)
-        # x=fluid.layers.transpose(x,[0,3,1,2])
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""前向计算"""</span>
+        <span class="token comment" spellcheck="true"># 第一层</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>bn1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># x=fluid.layers.dropout(x,0.25)</span>
+        <span class="token comment" spellcheck="true"># x=fluid.layers.transpose(x,[0,3,1,2])</span>
 
-        #第二层
-        x=self.conv2(x)
-        x=self.bn2(x)
-        x=fluid.layers.elu(x)
-        x=self.pool2(x)
-        x=fluid.layers.dropout(x,self.p)
+        <span class="token comment" spellcheck="true">#第二层</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>conv2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>bn2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>elu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>pool2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>dropout<span class="token punctuation">(</span>x<span class="token punctuation">,</span>self<span class="token punctuation">.</span>p<span class="token punctuation">)</span>
 
-        #第三层
-        x=self.conv3_2(self.conv3_1(x))
-        x=self.bn3(x)
-        x=fluid.layers.elu(x)
-        x=self.pool3(x)
-        x=fluid.layers.dropout(x,self.p)
+        <span class="token comment" spellcheck="true">#第三层</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>conv3_2<span class="token punctuation">(</span>self<span class="token punctuation">.</span>conv3_1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>bn3<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>elu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>pool3<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>dropout<span class="token punctuation">(</span>x<span class="token punctuation">,</span>self<span class="token punctuation">.</span>p<span class="token punctuation">)</span>
 
-        # 全连接层
+        <span class="token comment" spellcheck="true"># 全连接层</span>
 
-        out = fluid.layers.reshape(x, [-1, self.fcin])
-        out = self.fc(out)
-        return out</code></pre><p>对于tensorflow实现的版本，EEGNet论文作者早已给出，也不需要我来给了。这边我用paddlepaddle复现了一下EEGNet，并且在百度的AIStudio上也有公开的项目供大家参考，如果有什么错误的地方也欢迎指出。<br><a href="https://aistudio.baidu.com/aistudio/projectdetail/1153529" target="_blank" rel="noopener external nofollow noreferrer">项目地址</a></p>
+        out <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>fcin<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>fc<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> out</code></pre>
+<p>对于tensorflow实现的版本，EEGNet论文作者早已给出，也不需要我来给了。这边我用paddlepaddle复现了一下EEGNet，并且在百度的AIStudio上也有公开的项目供大家参考，如果有什么错误的地方也欢迎指出。<br><a href="https://aistudio.baidu.com/aistudio/projectdetail/1153529" target="_blank" rel="noopener external nofollow noreferrer">项目地址</a></p>
 
             </div>
             <hr/>
