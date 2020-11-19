@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2020-09-10T09:49:28.676Z</updated>
+  <updated>2020-11-19T03:17:56.460Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>EEGNET网络结构解析与复现</title>
+    <link href="https://zhkgo.github.io/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/"/>
+    <id>https://zhkgo.github.io/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/</id>
+    <published>2020-11-19T02:01:39.000Z</published>
+    <updated>2020-11-19T03:17:56.460Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;脑机接口(BCI)使用神经活动作为控制信号，实现与计算机的直接通信。这种神经信号通常是从各种研究透彻的脑电图(EEG)信号中挑选出来的。卷积神经网络(CNN)主要用来自动特征提取和分类，其在计算机视觉和语音识别领域中的使用已经很广泛。CNN已成功应</summary>
+        
+      
+    
+    
+    
+    
+    <category term="深度学习" scheme="https://zhkgo.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="paddlepaddle" scheme="https://zhkgo.github.io/tags/paddlepaddle/"/>
+    
+    <category term="脑电信号" scheme="https://zhkgo.github.io/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>用支持向量机处理快速序列视觉呈现的脑电信号</title>

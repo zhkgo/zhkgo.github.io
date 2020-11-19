@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="子矩阵, 青椒的博客">
+    <meta name="keywords" content="EEGNET网络结构解析与复现, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>子矩阵 | 青椒的博客</title>
+    <title>EEGNET网络结构解析与复现 | 青椒的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20200910170835.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119100354.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">子矩阵</h1>
+                    <h1 class="description center-align post-title">EEGNET网络结构解析与复现</h1>
                 </div>
             </div>
         </div>
@@ -365,12 +365,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
                             </a>
                         
-                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                <span class="chip bg-color">动态规划</span>
+                            <a href="/tags/paddlepaddle/">
+                                <span class="chip bg-color">paddlepaddle</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                                <span class="chip bg-color">脑电信号</span>
                             </a>
                         
                     </div>
@@ -385,7 +389,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-03-08
+                    2020-11-19
                 </div>
                 
 
@@ -394,7 +398,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2k
                 </div>
                 
 
@@ -411,140 +415,154 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目描述<br>链接如下<br><a href="https://www.luogu.org/problemnew/show/P2258" target="_blank" rel="noopener external nofollow noreferrer">https://www.luogu.org/problemnew/show/P2258</a></p>
-<pre><code>给出如下定义：
+                <blockquote>
+<p>脑机接口(BCI)使用神经活动作为控制信号，实现与计算机的直接通信。这种神经信号通常是从各种研究透彻的脑电图(EEG)信号中挑选出来的。卷积神经网络(CNN)主要用来自动特征提取和分类，其在计算机视觉和语音识别领域中的使用已经很广泛。CNN已成功应用于基于EEG的BCI；但是，CNN主要应用于单个BCI范式，在其他范式中的使用比较少，论文作者提出是否可以设计一个CNN架构来准确分类来自不同BCI范式的EEG信号，同时尽可能地紧凑(定义为模型中的参数数量)。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在后面的讲述中以单个脑电图为例，追寻单个脑电图在EEGNet中的变化。C表示channel即通道数，T表示times,准确的说是对应样本的采样点数量。</p>
+<h2 id="第一部分-时间卷积"><a href="#第一部分-时间卷积" class="headerlink" title="第一部分 时间卷积"></a>第一部分 时间卷积</h2><p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119100544.png" alt="时间卷积模块"><br>这一部分主要用了F1个(1,64)的卷积核，对时间层面进行了卷积，其填充方式为’same’故最终时间维度的长度没有变。其张量变换如下。</p>
+<ul>
+<li>输入张量(1,C,T)</li>
+<li>卷积核形状(1,64)</li>
+<li>卷积核数量F1</li>
+<li>卷积核参数F1*64</li>
+<li>输出张量(F1,C,T)</li>
+<li>BatchNorm</li>
+</ul>
+<p>这一层对时间上的信息进行了融合，提取了F1种时间维度上的信息。</p>
+<h2 id="第二部分-空间卷积"><a href="#第二部分-空间卷积" class="headerlink" title="第二部分 空间卷积"></a>第二部分 空间卷积</h2><p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119101441.png" alt="空间卷积"><br>这一部分有一个非常有意思的东西，叫做深度卷积(Depthwise Convolution)，在接触EEGNet之前我对深度卷积也是只闻其声不见其人。深入了解了它后面的产物深度可分离卷积，再次感叹前人的智慧无穷，还得多看论文。它卷积核的形状是(C,1)负责对各个空间(不同位置电极的输入)的信息进行整合，填充方式选择了”valid”。其张量变换如下。</p>
+<ul>
+<li>输入张量(F1,C,T)</li>
+<li>卷积核形状(C,1)</li>
+<li>卷积核数量 D*F1</li>
+<li>卷积核的参数 C* D*F1</li>
+<li>输出张量(D*F1,1,T)</li>
+<li>BatchNorm</li>
+</ul>
+<p>这边有个相较于普通卷积不同的地方，普通卷积从F1个核变化到D*F1个核需要 F1 *D * F1个卷积核。而深度卷积只用了D *F1个卷积核。其区别在哪里呢？得到的信息又会有什么不同呢？下面就来带大家看看二者的区别。</p>
+<h3 id="普通卷积"><a href="#普通卷积" class="headerlink" title="普通卷积"></a>普通卷积</h3><p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119102527.png" alt="普通卷积图"></p>
+<p>从图中可以看到，普通卷积的每个通道都要经过一个不一样的卷积核卷积，然后对得到的所有得到的数据进行相加得到一个新的通道。也就是说普通卷积得到新一层的每个通道都整合了上一层网络中所有通道的信息。<br>对于每个输出的通道都需要一组与原通道数量相同的卷积核来进行卷积。</p>
+<h3 id="深度卷积"><a href="#深度卷积" class="headerlink" title="深度卷积"></a>深度卷积</h3><p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119103151.png" alt="深度卷积图"></p>
+<p>从图中可以看出，深度卷积的每个通道在经过卷积核之后，没有相加的操作，也就是说一个输出的通道对应一个输入的通道，当然也可以多个输出的通道对应一个输入的通道，在EEGNet里面就有体现，深度卷积里面D就是说D个输出的通道对应一个输入的通道。换句话说，我们对同一个通道进行了D次信息提取。</p>
+<h3 id="在EEGNet的实例中对比"><a href="#在EEGNet的实例中对比" class="headerlink" title="在EEGNet的实例中对比"></a>在EEGNet的实例中对比</h3><p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119104216.png" alt="深度卷积与普通卷积的区别，图来我自己的内部交流PPT"></p>
+<h3 id="激活函数与平均池化"><a href="#激活函数与平均池化" class="headerlink" title="激活函数与平均池化"></a>激活函数与平均池化</h3><p>经过激活函数ELU并且平均池化。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119104620.png" alt="激活函数ELU"><br>张量变换如下</p>
+<ul>
+<li>输入张量(D*F1,1,T)</li>
+<li>池化形状(1,4)</li>
+<li>池化步长(1,4)</li>
+<li>Dropout p=0.25,p=0.5</li>
+<li>输出张量(D*F1,1,T//4)</li>
+</ul>
+<h2 id="第三部分-深度可分离卷积"><a href="#第三部分-深度可分离卷积" class="headerlink" title="第三部分 深度可分离卷积"></a>第三部分 深度可分离卷积</h2><p>EEGNet论文中结构如下。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119105150.png" alt="可分离卷积概览"></p>
+<p>假设我们现在的目标是从三个通道转换到四个通道。</p>
+<h3 id="普通卷积-1"><a href="#普通卷积-1" class="headerlink" title="普通卷积"></a>普通卷积</h3><p>普通卷积的操作是下面这样的。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119105317.png" alt="普通卷积"><br>前面有提到，每个输出通道对应一组卷积核，总共需要4*3个共12个3 *3卷积核。</p>
+<h3 id="深度可分离卷积"><a href="#深度可分离卷积" class="headerlink" title="深度可分离卷积"></a>深度可分离卷积</h3><p>这个卷积分成两步。第一步就是前面提到的深度卷积，第二步就是带有1*1卷积核的普通卷积。<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119103151.png" alt="第一步 深度卷积"><br>如果仅仅只走第一步，那么存在两个问题。首先，输出通道的数量不对，我们的目标是要4个通道，但是它只有3个通道；其次，输出通道只包含了对应输入通道的信息，没有包含所有输入通道的信息，没有起到信息整合的作用。所以第二步就显得尤为重要。</p>
+<p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119110040.png" alt="第二步 1*1卷积"><br>引入了1*1卷积核的普通卷积，对通道的数量进行转换的同时整合了输入通道的信息。</p>
+<h3 id="在EEGNet的实例中对比-1"><a href="#在EEGNet的实例中对比-1" class="headerlink" title="在EEGNet的实例中对比"></a>在EEGNet的实例中对比</h3><p>同样是需要将输入的张量从(D*F1,1,T//4) 转换到(F2,1,T//4)。</p>
+<p>普通卷积所需参数计算如下。</p>
+<ul>
+<li>(1，16)形状卷积核</li>
+<li>F2组卷积核每组D*F1个</li>
+<li>输出张量（F2，1，T//4）</li>
+<li>所需参数F2* D* F1*16</li>
+</ul>
+<p>深度可分离卷积所需的参数计算如下：</p>
+<ul>
+<li>第一步卷积：</li>
+<li>(1，16)形状卷积核</li>
+<li>D*F1组 每组1个</li>
+<li>输出张量(D*F1，1，T//4)</li>
+<li>所需参数D<em>F1</em>16</li>
+<li>第二步卷积：</li>
+<li>使用（1,1）形状卷积核进行卷积</li>
+<li>F2组卷积核 每组D*F1个</li>
+<li>输出张量（F2，1，T//4）</li>
+<li>所需参数F2* D* F1* 1*1</li>
+<li>共需参数D* F1* 16+F2* D* F1</li>
+</ul>
+<p>把一个乘法变成了加法，从而减少了所需的参数数量。</p>
+<h2 id="剩余部分"><a href="#剩余部分" class="headerlink" title="剩余部分"></a>剩余部分</h2><p>剩下的部分简单说一下，大家也都会。<br>将前面得到的张量归一化，并使用ELU激活函数激活</p>
+<h3 id="池化部分"><a href="#池化部分" class="headerlink" title="池化部分"></a>池化部分</h3><ul>
+<li>输入张量(F2,1,T//4)</li>
+<li>池化形状(1,8)</li>
+<li>池化步长(1,8)</li>
+<li>Dropout p=0.25 or p=0.5</li>
+<li>输出张量(F2,1,T//32)</li>
+</ul>
+<h3 id="全连接层-不含Bias"><a href="#全连接层-不含Bias" class="headerlink" title="全连接层(不含Bias)"></a>全连接层(不含Bias)</h3><ul>
+<li>输入张量(F2,1,T//32)</li>
+<li>Reshape To(F2*(T//32))</li>
+<li>输出张量N（class_num）</li>
+<li>所需参数数量N* F2*(T//32)</li>
+<li>激活函数Softmax</li>
+</ul>
+<h2 id="复现EEGNet"><a href="#复现EEGNet" class="headerlink" title="复现EEGNet"></a>复现EEGNet</h2><pre><code>import paddle.fluid as fluid
 
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
+import paddle
+import paddle.fluid as fluid
+from paddle.fluid.dygraph import Pool2D, Linear, Dropout, BatchNorm
+from paddle.nn import Conv2D
+class EEGNet(fluid.dygraph.Layer):
+    &quot;&quot;&quot;
+    EEGNet 暂未加入weight正则化 max norm 1 and 0.25
+    &quot;&quot;&quot;
+    def __init__(self, name_scope,ch_nums=16,T=250,class_dim=2):
+        &quot;&quot;&quot;
+        构造函数
+        &quot;&quot;&quot;
+        super(EEGNet, self).__init__(name_scope)
+        self.F1 = 16
+        self.D = 2
+        self.kern = 25
+        self.p = 0.25 
+        self.F2 = 16*2 #self.F1*self.D #可自定义
+        self.fcin =  self.F2*(T//32)
 
-例如，下面左图中选取第2、4行和第2、4、5列交叉位置的元素得到一个2*3的子矩阵如右图所示。
+        #第一层 时间卷积
+        self.conv1 = Conv2D(1, self.F1, (1,self.kern), padding=&quot;SAME&quot;)
+        self.bn1 = BatchNorm(self.F1)
 
-9 3 3 3 9
+        #第二层 空间卷积
+        self.conv2 = Conv2D(self.F1,self.D*self.F1,(ch_nums,1),padding=&quot;VALID&quot;,groups=self.F1) #max norm 1
+        self.bn2 = BatchNorm(self.F1*self.D)
+        self.pool2 = Pool2D(pool_size=(1,4),pool_stride=(1,4),pool_type=&#39;avg&#39;)
 
-9 4 8 7 4
+        # clip = fluid.clip.GradientClipByNorm(clip_norm=1.0)
 
-1 7 4 6 6
+        #第三层 可分离卷积
+        self.conv3_1 = Conv2D(self.F1*self.D,self.F1*self.D,(1,16),padding=&quot;SAME&quot;,groups=self.F1*self.D)
+        self.conv3_2 = Conv2D(self.F1*self.D,self.F2,(1,1))
+        self.bn3 = BatchNorm(self.F2)
+        self.pool3 = Pool2D(pool_size=(1,8),pool_stride=(1,8),pool_type=&#39;avg&#39;)
 
-6 8 5 6 9
+        self.fc = fluid.dygraph.Linear(input_dim=self.fcin, output_dim=class_dim, act=&#39;softmax&#39;) #max norm 0.25
 
-7 4 5 6 1
+    def forward(self, x):
+        &quot;&quot;&quot;前向计算&quot;&quot;&quot;
+        # 第一层
+        x=self.conv1(x)
+        x=self.bn1(x)
+        # x=fluid.layers.dropout(x,0.25)
+        # x=fluid.layers.transpose(x,[0,3,1,2])
 
-的其中一个2*3的子矩阵是
+        #第二层
+        x=self.conv2(x)
+        x=self.bn2(x)
+        x=fluid.layers.elu(x)
+        x=self.pool2(x)
+        x=fluid.layers.dropout(x,self.p)
 
-4 7 4
+        #第三层
+        x=self.conv3_2(self.conv3_1(x))
+        x=self.bn3(x)
+        x=fluid.layers.elu(x)
+        x=self.pool3(x)
+        x=fluid.layers.dropout(x,self.p)
 
-8 6 9
+        # 全连接层
 
-相邻的元素：矩阵中的某个元素与其上下左右四个元素（如果存在的话）是相邻的。
-
-矩阵的分值：矩阵中每一对相邻元素之差的绝对值之和。
-
-本题任务：给定一个n行m列的正整数矩阵，请你从这个矩阵中选出一个r行c列的子矩阵，使得这个子矩阵的分值最小，并输出这个分值。
-
-(本题目为2014NOIP普及T4)
-
-输入输出格式
-
-输入格式：
-
-第一行包含用空格隔开的四个整数n，m，r，c，意义如问题描述中所述，每两个整数之间用一个空格隔开。
-
-接下来的n行，每行包含m个用空格隔开的整数，用来表示问题描述中那个n行m列的矩阵。
-
-输出格式：
-
-输出共1行，包含1个整数，表示满足题目描述的子矩阵的最小分值。
-
-【数据说明】
-
-对于50%的数据，1 ≤ n ≤ 12，1 ≤ m ≤ 12，矩阵中的每个元素1 ≤ a[i][j] ≤ 20；
-
-对于100%的数据，1 ≤ n ≤ 16，1 ≤ m ≤ 16，矩阵中的每个元素1 ≤ a[i][j] ≤ 1,000，
-
-1 ≤ r ≤ n，1 ≤ c ≤ m。</code></pre><p>对于以上的数据范围，我一开始想到的是直接搜索，然后我就估算了一下搜索的代价，最差的情况是，有16行16列，选8行8列，直接枚举的话，有</p>
-<p><img src="http://latex.codecogs.com/gif.latex?(C_%7B16%7D%5E%7B8%7D%20)%5E%7B2%7D*%7Bn%7D%5E2" alt=" "><br>的运算次数，结果是超过100亿的运算次数显然不能再规定时间内完成。</p>
-<p>看到这类矩阵 ，我也能想到是dp，但是对于这种选择分开的dp感觉无从下手。</p>
-<p>后来想到，将dp与搜索结合起来使用，先搜索确定是那几行，然后题目就变成了</p>
-<p>从m列里选择c列 ，找出最小的分值，这样就可以进行dp了,dp的复杂度是16^3。</p>
-<p>最差的情况也只是5000多万次运算。</p>
-<p>首先确定状态，状态为dp[i][j]</p>
-<p>i表示选择的最后一个列，j表示已经选择的列数。</p>
-<p>显然j&lt;=i</p>
-<p>状态转移方程也显而易见</p>
-<p>dp[i][j]=min(dp[k][j-1]+col[i]+cha[k][i]),k&lt;=i;</p>
-<p>其中col[i]表示i列内部之间的分值，cha[k][i]表示第k列与第i列相邻时，他们列之间相差的分值。这两个数组可以在确定行之后预处理出来，预处理的时间是O(n^2)相对于dp的O(n^3）显然可以忽略不计。</p>
-<p>下面附上代码。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;string.h></span></span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">,</span>r<span class="token punctuation">,</span>c<span class="token punctuation">;</span>
-<span class="token keyword">int</span> mp<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> chose<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> dp<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> res<span class="token operator">=</span><span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
-<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">myabs</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">return</span> a<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">?</span>a<span class="token operator">:</span><span class="token operator">-</span>a<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">mymax</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">return</span> a<span class="token operator">></span>b<span class="token operator">?</span>a<span class="token operator">:</span>b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">mymin</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">return</span> a<span class="token operator">&lt;</span>b<span class="token operator">?</span>a<span class="token operator">:</span>b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>dp<span class="token punctuation">,</span><span class="token number">0x3f</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>dp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> f<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>r<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token operator">=</span><span class="token function">myabs</span><span class="token punctuation">(</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> col<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>r<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span><span class="token operator">=</span><span class="token function">myabs</span><span class="token punctuation">(</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">int</span> minc<span class="token operator">=</span>i<span class="token operator">&lt;</span>c<span class="token operator">?</span>i<span class="token operator">:</span>c<span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>minc<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>j<span class="token number">-1</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>i<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">mymin</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">+</span>col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>c<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        res<span class="token operator">=</span><span class="token function">mymin</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> now<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">==</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>r<span class="token operator">-</span>x<span class="token operator">></span>n<span class="token operator">-</span>now<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>now<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        chose<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>x<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span> 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">,</span><span class="token operator">&amp;</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>r<span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>mp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span> </code></pre>
+        out = fluid.layers.reshape(x, [-1, self.fcin])
+        out = self.fc(out)
+        return out</code></pre><p>对于tensorflow实现的版本，EEGNet论文作者早已给出，也不需要我来给了。这边我用paddlepaddle复现了一下EEGNet，并且在百度的AIStudio上也有公开的项目供大家参考，如果有什么错误的地方也欢迎指出。<br><a href="https://aistudio.baidu.com/aistudio/projectdetail/1153529" target="_blank" rel="noopener external nofollow noreferrer">项目地址</a></p>
 
             </div>
             <hr/>
@@ -570,7 +588,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zhkgo.github.io/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/">https://zhkgo.github.io/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/</a>
+                    <a href="https://zhkgo.github.io/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">https://zhkgo.github.io/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -608,12 +626,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                    <span class="chip bg-color">动态规划</span>
+                                <a href="/tags/paddlepaddle/">
+                                    <span class="chip bg-color">paddlepaddle</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                                    <span class="chip bg-color">脑电信号</span>
                                 </a>
                             
                         </div>
@@ -781,76 +803,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/">
+                <a href="/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">
                     <div class="card-image">
                         
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/7604477-973ee37916aff7cf.jpg" class="responsive-img" alt="python文件拷贝">
+                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119100354.png" class="responsive-img" alt="EEGNET网络结构解析与复现">
                         
-                        <span class="card-title">python文件拷贝</span>
+                        <span class="card-title">EEGNET网络结构解析与复现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            背景&#160;&#160;&#160;&#160;&#160;&#160;&#160;前段时间准备六级的时候，拿到了一个光盘，里面有很多听力，但是听力分为很多文件夹，还有很多听力的字幕（.lrc）,就想要把里面的听力都拷贝出来全部放到我的
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2018-06-18
-                        </span>
-                        <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            章杭奎
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/python/">
-                        <span class="chip bg-color">python</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/">
-                    <div class="card-image">
-                        
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20200910170835.jpeg" class="responsive-img" alt="子矩阵">
-                        
-                        <span class="card-title">子矩阵</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            题目描述链接如下https://www.luogu.org/problemnew/show/P2258
-给出如下定义：
-
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
-
-例
+脑机接口(BCI)使用神经活动作为控制信号，实现与计算机的直接通信。这种神经信号通常是从各种研究透彻的脑电图(EEG)信号中挑选出来的。卷积神经网络(CNN)主要用来自动特征提取和分类，其在计算机视觉和语音识别领域中的使用已经很广泛。CN
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-03-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-19
                             </span>
                         <span class="publish-author">
                             
@@ -864,12 +839,75 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/paddlepaddle/">
+                        <span class="chip bg-color">paddlepaddle</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                        <span class="chip bg-color">脑电信号</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/10/rsvp20200910/">
+                    <div class="card-image">
+                        
+                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/Snipaste_2020-09-10_15-41-09.jpg" class="responsive-img" alt="用支持向量机处理快速序列视觉呈现的脑电信号">
+                        
+                        <span class="card-title">用支持向量机处理快速序列视觉呈现的脑电信号</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+RSVP(Rapid Serial Visual Presentation,快速序列视觉呈现)是一种基于视觉图像序列刺激的实验范式,本文在处理脑机合作进行目标检测过程中的脑电信号,判断每段脑电信号中是否存在事件相关电位P300。
+
+基本信
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            章杭奎
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                        <span class="chip bg-color">脑电信号</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BF%AB%E9%80%9F%E5%BA%8F%E5%88%97%E8%A7%86%E8%A7%89%E5%91%88%E7%8E%B0/">
+                        <span class="chip bg-color">快速序列视觉呈现</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">
+                        <span class="chip bg-color">支持向量机</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%8B%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%94%B5%E4%BD%8D/">
+                        <span class="chip bg-color">事件相关电位</span>
                     </a>
                     
                 </div>
