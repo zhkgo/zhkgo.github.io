@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="python文件拷贝, 青椒的博客">
+    <meta name="keywords" content="利用python进行论文绘图系列之一, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>python文件拷贝 | 青椒的博客</title>
+    <title>利用python进行论文绘图系列之一 | 青椒的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://blog-1252419034.cos.ap-beijing.myqcloud.com/7604477-973ee37916aff7cf.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">python文件拷贝</h1>
+                    <h1 class="description center-align post-title">利用python进行论文绘图系列之一</h1>
                 </div>
             </div>
         </div>
@@ -369,6 +369,10 @@
                                 <span class="chip bg-color">python</span>
                             </a>
                         
+                            <a href="/tags/%E7%BB%98%E5%9B%BE/">
+                                <span class="chip bg-color">绘图</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -381,7 +385,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-06-18
+                    2020-11-25
                 </div>
                 
 
@@ -390,7 +394,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    623
+                    745
                 </div>
                 
 
@@ -407,59 +411,64 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a><strong>背景</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;前段时间准备六级的时候，拿到了一个光盘，里面有很多听力，但是听力分为很多文件夹，还有很多听力的字幕（.lrc）,就想要把里面的听力都拷贝出来全部放到我的手机某个文件夹里，但是一个个文件夹打开，全选，拷贝，粘贴，这一系列操作显得效率不高，因此我想到了使用python来实现这一系列功能。</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a><strong>实现</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;制作出了一个可以实现<strong>筛选该程序所在目录下的所有文件</strong>，通过关键词进行筛选，然后复制到目标文件夹里，高效得实现了文件的整理。还可以用到一些资料的整理上，比如想整理所有关于毕业设计的资料，我就把毕业设计作为关键词，（当然平常命名的时候还得要规范一点），然后把我的程序放到磁盘根目录下运行，就能筛选出当前磁盘下的全部含关键词的文件了。代码如下</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
-<span class="token triple-quoted-string string">"""
-Created on Fri May 18 13:50:09 2018
+                <blockquote>
+<p>为了便于自己查找以前的一些绘图代码，对绘图代码进行了整理，放到自己的博客上来。</p>
+</blockquote>
+<h2 id="通用的头文件引入与设置"><a href="#通用的头文件引入与设置" class="headerlink" title="通用的头文件引入与设置"></a>通用的头文件引入与设置</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'axes.unicode_minus'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span> <span class="token comment" spellcheck="true">#减号</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'font.sans-serif'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'SimHei'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">#中文字体</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'savefig.dpi'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">300</span> <span class="token comment" spellcheck="true">#图片像素</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'figure.dpi'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">300</span> <span class="token comment" spellcheck="true">#分辨率</span></code></pre>
+<h2 id="盒图绘制"><a href="#盒图绘制" class="headerlink" title="盒图绘制"></a>盒图绘制</h2><p>最常用的是seaborn结合dataframe的绘图方式。<br>dataFrame的样式如下<br><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201122191132.png" alt="数据格式"><br>可以通过x来设置类别，y来设置所要展示的值的分布。</p>
+<pre class=" language-python"><code class="language-python">sns<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">"被试"</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token string">"准确率"</span><span class="token punctuation">,</span>data<span class="token operator">=</span>df<span class="token punctuation">,</span> linewidth<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201122191408.png" alt="各被试准确率分布盒图"></p>
+<p>当然我们也可以尝试一个能从更高维度看数据分布的盒图。在这里面,通过sharex与sharey来实现了共享纵轴和横轴。<br>其中models[i]表示模型i,peoples[j]表示第j个被试。通过这两个维度来确定某个数值的分布。从而轻易的看到，什么模型在哪个人身上的表现良好。</p>
+<pre class=" language-python"><code class="language-python">fig<span class="token punctuation">,</span>ax<span class="token operator">=</span>plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>sharex<span class="token operator">=</span><span class="token string">"col"</span><span class="token punctuation">,</span>sharey<span class="token operator">=</span><span class="token string">"row"</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        people<span class="token operator">=</span>peoples<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+        axt<span class="token operator">=</span>ax<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j<span class="token punctuation">]</span>
+        data<span class="token operator">=</span>models<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>models<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"被试"</span><span class="token punctuation">]</span><span class="token operator">==</span>people<span class="token punctuation">]</span>
+        axt<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">"F1Score"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>values<span class="token punctuation">,</span>boxprops<span class="token operator">=</span>dict<span class="token punctuation">(</span>color<span class="token operator">=</span><span class="token string">"blue"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>capprops<span class="token operator">=</span>dict<span class="token punctuation">(</span>color<span class="token operator">=</span><span class="token string">"blue"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>whiskerprops<span class="token operator">=</span>dict<span class="token punctuation">(</span>color<span class="token operator">=</span><span class="token string">"blue"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201122191649.png" alt="高维盒图"></p>
+<h2 id="混淆矩阵的绘制（实质是热力图）"><a href="#混淆矩阵的绘制（实质是热力图）" class="headerlink" title="混淆矩阵的绘制（实质是热力图）"></a>混淆矩阵的绘制（实质是热力图）</h2><p>一般做多分类任务的时候会用到混淆矩阵，帮我们看看哪些类容易错分到哪些类。</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#演示数据的生成</span>
+test_label<span class="token operator">=</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+y_pred<span class="token operator">=</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#部分标签相同 表示预测正确</span>
+y_pred<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">400</span><span class="token punctuation">]</span><span class="token operator">=</span>test_label<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">400</span><span class="token punctuation">]</span>
+names<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"猫"</span><span class="token punctuation">,</span><span class="token string">"狗"</span><span class="token punctuation">,</span><span class="token string">"鸟"</span><span class="token punctuation">,</span><span class="token string">"猪"</span><span class="token punctuation">,</span><span class="token string">"牛"</span><span class="token punctuation">]</span>
 
-@author: zhkgo
-"""</span>
-
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> re
-<span class="token keyword">import</span> shutil
-<span class="token keyword">def</span> <span class="token function">findmykey</span><span class="token punctuation">(</span>keyword<span class="token punctuation">,</span>head<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    dirs<span class="token operator">=</span>set<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    files<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
-    pattern<span class="token operator">=</span><span class="token string">'.*'</span><span class="token operator">+</span>keyword<span class="token operator">+</span><span class="token string">'.*'</span>
-    dirs<span class="token punctuation">.</span>add<span class="token punctuation">(</span>head<span class="token punctuation">)</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>dirs<span class="token punctuation">)</span><span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        mydir<span class="token operator">=</span>dirs<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> x <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>mydir<span class="token punctuation">)</span><span class="token punctuation">:</span>
-          <span class="token comment" spellcheck="true">#  print(x)</span>
-            absp<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>mydir<span class="token punctuation">,</span>x<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isdir<span class="token punctuation">(</span>absp<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                dirs<span class="token punctuation">.</span>add<span class="token punctuation">(</span>absp<span class="token punctuation">)</span>           
-            <span class="token keyword">elif</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span>absp<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true">#    print(pattern+' '+keyword)</span>
-             <span class="token comment" spellcheck="true">#   print("isfile")    </span>
-                <span class="token keyword">if</span> re<span class="token punctuation">.</span>match<span class="token punctuation">(</span>pattern<span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    files<span class="token punctuation">.</span>append<span class="token punctuation">(</span>absp<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> files
-
-
-
-<span class="token comment" spellcheck="true">#shutil.copyfile(r'F:\华研外语\2.六级2套预测\Model Test 2.lrc','F:\\fas\\'+'madel.lrc')</span>
-goal<span class="token operator">=</span><span class="token string">""</span> 
-goal<span class="token operator">=</span>input<span class="token punctuation">(</span><span class="token string">'复制到哪里？ (例如 F:\\文档)\n'</span><span class="token punctuation">)</span>
-<span class="token keyword">while</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>goal<span class="token punctuation">)</span><span class="token punctuation">:</span>  
-   <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"文件夹不存在！"</span><span class="token punctuation">)</span>         
-   goal<span class="token operator">=</span>input<span class="token punctuation">(</span><span class="token string">'复制到哪里？ (例如 F:\\文档)\n'</span><span class="token punctuation">)</span>
-keyword<span class="token operator">=</span>input<span class="token punctuation">(</span><span class="token string">'输入关键词(例如 jpg)\n'</span><span class="token punctuation">)</span>
-ret<span class="token operator">=</span>findmykey<span class="token punctuation">(</span>keyword<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#print(ret)</span>
-
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    <span class="token keyword">for</span> x <span class="token keyword">in</span> ret<span class="token punctuation">:</span>
-        pa<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>goal<span class="token punctuation">,</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>split<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>    
-   <span class="token comment" spellcheck="true"># print(pa)</span>
-        shutil<span class="token punctuation">.</span>copyfile<span class="token punctuation">(</span>x<span class="token punctuation">,</span>pa<span class="token punctuation">)</span>
-<span class="token keyword">except</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"复制失败"</span><span class="token punctuation">)</span>
-<span class="token keyword">else</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'复制完成'</span><span class="token punctuation">)</span></code></pre>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h3><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;代码肯定是不完善的，没有考虑很多情况，目前这个代码实现的时候 ，对于重复的文件，后面进入的会覆盖已经存在的文件。<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;这个还可以加入输入正则表达式来进行匹配文件名，这样就不是单纯的文件名匹配了，还可以加入运算符，如 “与”，“或”等来进行匹配。就写到这里吧，有错误希望能够指正。</p>
+<span class="token comment" spellcheck="true">#计算混淆矩阵</span>
+C2<span class="token operator">=</span> confusion_matrix<span class="token punctuation">(</span>test_label<span class="token punctuation">,</span>y_pred<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#化成dataframe并且行列命名</span>
+df<span class="token operator">=</span>pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>C2<span class="token punctuation">,</span>index<span class="token operator">=</span>names<span class="token punctuation">,</span>columns<span class="token operator">=</span>names<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#fmt='g'是指关闭科学计数法</span>
+sns<span class="token punctuation">.</span>heatmap<span class="token punctuation">(</span>df<span class="token punctuation">,</span>annot<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>fmt<span class="token operator">=</span><span class="token string">'g'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">"预测结果"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">"实际结果"</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201122193752.png" alt="混淆矩阵"></p>
+<h2 id="多分类中的散点图"><a href="#多分类中的散点图" class="headerlink" title="多分类中的散点图"></a>多分类中的散点图</h2><p>这里面的x和y分别表示需要画的图的x坐标和y坐标,legend自动产生了图例并放到最好的位置。</p>
+<pre class=" language-python"><code class="language-python">plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>yellow_x<span class="token punctuation">,</span> yellow_y<span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token string">'b'</span><span class="token punctuation">,</span> marker<span class="token operator">=</span><span class="token string">'D'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'清醒期'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>black_x<span class="token punctuation">,</span> black_y<span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token string">'gray'</span><span class="token punctuation">,</span> marker<span class="token operator">=</span><span class="token string">'s'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'快速眼动期'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>blue_x<span class="token punctuation">,</span> blue_y<span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token string">'black'</span><span class="token punctuation">,</span> marker<span class="token operator">=</span><span class="token string">'v'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'睡眠II期'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>green_x<span class="token punctuation">,</span> green_y<span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token string">'g'</span><span class="token punctuation">,</span> marker<span class="token operator">=</span><span class="token string">'.'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'睡眠I期'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>red_x<span class="token punctuation">,</span> red_y<span class="token punctuation">,</span> c<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">,</span> marker<span class="token operator">=</span><span class="token string">'x'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'深睡眠期'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span>loc<span class="token operator">=</span><span class="token string">'best'</span><span class="token punctuation">,</span>prop <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'size'</span><span class="token punctuation">:</span><span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201122194623.png" alt="睡眠分期图"></p>
+<h2 id="通过点的大小来表示因变量在不同条件下的动态变化"><a href="#通过点的大小来表示因变量在不同条件下的动态变化" class="headerlink" title="通过点的大小来表示因变量在不同条件下的动态变化"></a>通过点的大小来表示因变量在不同条件下的动态变化</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#trans表示一个转换函数，将所需要的值映射到一个合理的范围，使得点的大小能区分出因变量大小的变化。</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>s<span class="token operator">=</span> trans<span class="token punctuation">(</span>sine<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">20</span><span class="token punctuation">,</span>c<span class="token operator">=</span><span class="token string">'y'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">1</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>s<span class="token operator">=</span>trans<span class="token punctuation">(</span>gaussian<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">20</span><span class="token punctuation">,</span>c<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">2</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>s<span class="token operator">=</span>trans<span class="token punctuation">(</span>tribas<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">20</span> <span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>s<span class="token operator">=</span> trans<span class="token punctuation">(</span>softlim<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">20</span><span class="token punctuation">,</span>c<span class="token operator">=</span><span class="token string">'y'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">4</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>s<span class="token operator">=</span>trans<span class="token punctuation">(</span>hardlim<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">20</span><span class="token punctuation">,</span>c<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>yticks<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>labels<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"sine"</span><span class="token punctuation">,</span><span class="token string">"gaussian"</span><span class="token punctuation">,</span><span class="token string">"tribas"</span><span class="token punctuation">,</span><span class="token string">"softlim"</span><span class="token punctuation">,</span><span class="token string">"hardlim"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">"激活函数"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">"神经元个数"</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201122195824.png" alt="行散点图"></p>
 
             </div>
             <hr/>
@@ -485,7 +494,7 @@ ret<span class="token operator">=</span>findmykey<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zhkgo.github.io/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/">https://zhkgo.github.io/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/</a>
+                    <a href="https://zhkgo.github.io/2020/11/25/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E8%AE%BA%E6%96%87%E7%BB%98%E5%9B%BE/">https://zhkgo.github.io/2020/11/25/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E8%AE%BA%E6%96%87%E7%BB%98%E5%9B%BE/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -525,6 +534,10 @@ ret<span class="token operator">=</span>findmykey<span class="token punctuation"
                             
                                 <a href="/tags/python/">
                                     <span class="chip bg-color">python</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BB%98%E5%9B%BE/">
+                                    <span class="chip bg-color">绘图</span>
                                 </a>
                             
                         </div>
@@ -692,30 +705,35 @@ ret<span class="token operator">=</span>findmykey<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2018/12/17/%E6%B5%99%E6%B1%9F%E6%B0%B4%E5%88%A9%E6%96%B0%E9%97%BB%E5%88%86%E6%9E%90/">
+                <a href="/2020/11/25/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E8%AE%BA%E6%96%87%E7%BB%98%E5%9B%BE/">
                     <div class="card-image">
                         
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/output_43_0.png" class="responsive-img" alt="浙江水利新闻分析">
                         
-                        <span class="card-title">浙江水利新闻分析</span>
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="利用python进行论文绘图系列之一">
+                        
+                        <span class="card-title">利用python进行论文绘图系列之一</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            2013年至今水利新闻标题中的关键词
-文章内容中的关键词可以看出防汛防台工作一直是水利行业的重要组成部分
-哪些地区在水利方面做的很好 频繁出现在水利厅新闻上可以看出地级市中绍兴市，温州市在这方面做的很棒，而县级地区中兰溪、海宁、萧山都做的很
+                            
+为了便于自己查找以前的一些绘图代码，对绘图代码进行了整理，放到自己的博客上来。
+
+通用的头文件引入与设置import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot 
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2018-12-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -724,11 +742,16 @@ ret<span class="token operator">=</span>findmykey<span class="token punctuation"
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">数据分析</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BB%98%E5%9B%BE/">
+                        <span class="chip bg-color">绘图</span>
                     </a>
                     
                 </div>
@@ -742,28 +765,24 @@ ret<span class="token operator">=</span>findmykey<span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/">
+                <a href="/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">
                     <div class="card-image">
                         
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20200910170835.jpeg" class="responsive-img" alt="子矩阵">
+                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201119100354.png" class="responsive-img" alt="EEGNET网络结构解析与复现">
                         
-                        <span class="card-title">子矩阵</span>
+                        <span class="card-title">EEGNET网络结构解析与复现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目描述链接如下https://www.luogu.org/problemnew/show/P2258
-给出如下定义：
-
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
-
-例
+                            
+脑机接口(BCI)使用神经活动作为控制信号，实现与计算机的直接通信。这种神经信号通常是从各种研究透彻的脑电图(EEG)信号中挑选出来的。卷积神经网络(CNN)主要用来自动特征提取和分类，其在计算机视觉和语音识别领域中的使用已经很广泛。CN
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-03-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-19
                             </span>
                         <span class="publish-author">
                             
@@ -776,12 +795,16 @@ ret<span class="token operator">=</span>findmykey<span class="token punctuation"
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="/tags/paddlepaddle/">
+                        <span class="chip bg-color">paddlepaddle</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                        <span class="chip bg-color">脑电信号</span>
                     </a>
                     
                 </div>
