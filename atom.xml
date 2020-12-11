@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2020-11-22T11:59:15.927Z</updated>
+  <updated>2020-12-11T05:50:40.461Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用mne进行脑电信号分析</title>
+    <link href="https://zhkgo.github.io/2020/12/11/overview/"/>
+    <id>https://zhkgo.github.io/2020/12/11/overview/</id>
+    <published>2020-12-11T05:01:39.000Z</published>
+    <updated>2020-12-11T05:50:40.461Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;先加载一些必要的头文件&lt;/p&gt;
+&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; os
+&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="脑电信号" scheme="https://zhkgo.github.io/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/"/>
+    
+    <category term="mne" scheme="https://zhkgo.github.io/tags/mne/"/>
+    
+  </entry>
   
   <entry>
     <title>利用python进行论文绘图系列之一</title>
