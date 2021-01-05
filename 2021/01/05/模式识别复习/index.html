@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="guestbook, 青椒的博客">
+    <meta name="keywords" content="模式识别复习押题, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>guestbook | 青椒的博客</title>
+    <title>模式识别复习押题 | 青椒的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">guestbook</h1>
+                    <h1 class="description center-align post-title">模式识别复习押题</h1>
                 </div>
             </div>
         </div>
@@ -363,9 +363,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%A4%8D%E4%B9%A0/">
+                                <span class="chip bg-color">复习</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB/">
+                                <span class="chip bg-color">模式识别</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -377,7 +385,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-12
+                    2021-01-05
                 </div>
                 
 
@@ -386,7 +394,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    579
                 </div>
                 
 
@@ -403,7 +411,63 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="人工智能与模式识别"><a href="#人工智能与模式识别" class="headerlink" title="人工智能与模式识别"></a>人工智能与模式识别</h1><ol>
+<li>简答题 共5小题，每小题10分</li>
+<li>计算题（包括公式推导）,共四小题，每小题10分</li>
+<li>论述题 共1小题，10分</li>
+</ol>
+<h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><ol>
+<li><p>在机器学习中，样本是指什么？类或者类别又指什么？简述机器学习的核心思想及其学习过程。</p>
+</li>
+<li><p>简述正态分布概率模型下的最小错误率贝叶斯决策过程。（马氏距离）</p>
+<ul>
+<li>$g_i(x)=\gamma^2=(x-\mu_i)^T\Sigma^{-1}(x-\mu_i)$</li>
+</ul>
+</li>
+<li><p>如何判断估计的好坏标准。</p>
+<ul>
+<li>无偏性，即估计量的数学期望等于真实的参数，即$E(\hat{\sigma})=\sigma$</li>
+<li>有效性，存在两个估计量，方差更小的估计量更有效</li>
+<li>一致性，保证了样本数量无穷多时，每一次估计量都将在概率意义上任意地接近其真实值。</li>
+</ul>
+</li>
+<li><p>神经元感知器的特点及其学习规则。</p>
+<ul>
+<li>特点。多输入、加法器(带偏置）、单输出。</li>
+<li>学习规则。hebb规则，a表示实际输出，p表示输入，t表示目标输出</li>
+<li>$\Delta w_i=\eta ap_i$</li>
+<li>$w_i^{(n + 1)} = w_i^{(n)} + \eta a{p_i}$</li>
+<li>hebb学习规则引出误差修正学习规则</li>
+<li>$$ e_k = t_k - a_k$$</li>
+<li>$$\Delta {w_{kj}} = \eta {e_k}{p_j}$$</li>
+<li>$$\Delta {\bf{w_k}} = \eta e_k{\bf{p}^T}$$</li>
+<li>$$\Delta {\bf{W}} = \eta {e}{\bf{p}^T}$$</li>
+</ul>
+</li>
+<li><p>简述遗传算法的过程，并且解释其陷入局部极值时怎么处理？</p>
+<ul>
+<li>改变学习步长</li>
+<li>添加扰动</li>
+<li>模拟退火算法</li>
+<li><h2 id="计算题"><a href="#计算题" class="headerlink" title="计算题"></a>计算题</h2></li>
+</ul>
+</li>
+<li><p>最小错误率（风险）贝叶斯决策。</p>
+</li>
+<li><p>最大似然估计法以数据样本估计一元正态分布函数的$\mu$和$\sigma$。</p>
+</li>
+<li><p>广义线性判别函数(PPT的题)。$g(x)=C_0+C_1X+C_2X^2$<img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20210105104847.png" alt=""></p>
+</li>
+<li><p>fish判别的目标函数(准则)是什么?并用拉格朗日乘子计算满足其准则的最佳投影向量$w^*$</p>
+<ul>
+<li>能够给定样本（从图中获得），计算类内离散度矩阵、总体协方差矩阵、类间离散度矩阵公式即可。<h2 id="论述题"><a href="#论述题" class="headerlink" title="论述题"></a>论述题</h2></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>为什么要学习模式识别和人工智能，结合人工智能与模式识别发展史，辩证地看待人工智能发展现状，根据人工智能模式识别的发展趋势，结合自我发展规划，分析当前的挑战和机遇。</li>
+</ul>
+
             </div>
             <hr/>
 
@@ -428,7 +492,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zhkgo.github.io/guestbook/index.html">https://zhkgo.github.io/guestbook/index.html</a>
+                    <a href="https://zhkgo.github.io/2021/01/05/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E5%A4%8D%E4%B9%A0/">https://zhkgo.github.io/2021/01/05/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E5%A4%8D%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -465,7 +529,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%A4%8D%E4%B9%A0/">
+                                    <span class="chip bg-color">复习</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB/">
+                                    <span class="chip bg-color">模式识别</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -636,24 +708,32 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/guestbook/index.html">
+                <a href="/2021/01/05/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E5%A4%8D%E4%B9%A0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="guestbook">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="模式识别复习押题">
                         
-                        <span class="card-title">guestbook</span>
+                        <span class="card-title">模式识别复习押题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            人工智能与模式识别
+简答题 共5小题，每小题10分
+计算题（包括公式推导）,共四小题，每小题10分
+论述题 共1小题，10分
+
+简答题
+在机器学习中，样本是指什么？类或者类别又指什么？简述机器学习的核心思想及其学习过程。
+
+简述正态分布概率
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-05
                             </span>
                         <span class="publish-author">
                             
@@ -665,33 +745,49 @@
                 </div>
 
                 
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%8D%E4%B9%A0/">
+                        <span class="chip bg-color">复习</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB/">
+                        <span class="chip bg-color">模式识别</span>
+                    </a>
+                    
+                </div>
+                
             </div>
         </div>
         
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/guestbook/index.html">
+                <a href="/2020/12/11/overview/">
                     <div class="card-image">
                         
+                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20201211135856.jpg" class="responsive-img" alt="使用mne进行脑电信号分析">
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="guestbook">
-                        
-                        <span class="card-title">guestbook</span>
+                        <span class="card-title">使用mne进行脑电信号分析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            先加载一些必要的头文件
+import os
+import numpy as np
+import mne
+import matplotlib.pyplot as plt
+plt.rcParams['axes.unicode_minus'] =
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
                             </span>
                         <span class="publish-author">
                             
@@ -701,7 +797,18 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                        <span class="chip bg-color">脑电信号</span>
+                    </a>
+                    
+                    <a href="/tags/mne/">
+                        <span class="chip bg-color">mne</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -836,6 +943,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
