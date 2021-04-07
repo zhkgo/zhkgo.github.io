@@ -887,35 +887,33 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
 
-    
-        <link rel="stylesheet" href="/libs/gitment/gitment-default.css">
-<link rel="stylesheet" href="/css/gitment.css">
-<!-- <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-<script src="https://jjeejj.github.io/js/gitment.js"></script> -->
-
-<div class="gitment-card card" data-aos="fade-up">
+<div class="card gitalk-card" data-aos="fade-up">
     <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
         <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
         <span>评论</span>
     </div>
-    <div id="gitment-content" class="card-content"></div>
+    <div id="gitalk-container" class="card-content"></div>
 </div>
 
-<script src="/libs/gitment/gitment.js"></script>
+<script src="/libs/gitalk/gitalk.min.js"></script>
 <script>
-var gitment = new Gitment({
-    id: 'Tue Sep 01 2020 21:42:16 GMT+0800',
-    owner: 'zhkgo',
-    repo: 'zhkgo.github.io',
-    oauth: {
-        client_id: '87432944480aba7f601a',
-        client_secret: 'ffd217e7c95d80b8c08f36f7f3a6bed957727a62'
-    }
-});
+    let gitalk = new Gitalk({
+        clientID: '87432944480aba7f601a',
+        clientSecret: 'ffd217e7c95d80b8c08f36f7f3a6bed957727a62',
+        repo: 'zhkgo.github.io',
+        owner: 'zhkgo',
+        admin: ["zhkgo"],
+        id: '2020-09-01T21-42-16',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
 
-gitment.render('gitment-content');
+    gitalk.render('gitalk-container');
 </script>
+
+    
 
     
 
