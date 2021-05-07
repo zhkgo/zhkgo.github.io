@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2021-01-05T06:48:05.374Z</updated>
+  <updated>2021-05-04T04:43:52.307Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数学建模心得</title>
+    <link href="https://zhkgo.github.io/2021/05/04/gmcm/"/>
+    <id>https://zhkgo.github.io/2021/05/04/gmcm/</id>
+    <published>2021-05-04T03:48:54.000Z</published>
+    <updated>2021-05-04T04:43:52.307Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;参加过很多次数学建模比赛，拿过美赛M奖，研赛一等奖。也算有了一点经验，在这边分享一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;数学建模是什么？&quot;&gt;&lt;a href=&quot;#数学建模是什么？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="数学建模" scheme="https://zhkgo.github.io/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>模式识别复习押题</title>

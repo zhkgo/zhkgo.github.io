@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="子矩阵, 青椒的博客">
+    <meta name="keywords" content="数学建模心得, 青椒的博客">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>子矩阵 | 青椒的博客</title>
+    <title>数学建模心得 | 青椒的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -243,12 +243,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20200910170835.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">子矩阵</h1>
+                    <h1 class="description center-align post-title">数学建模心得</h1>
                 </div>
             </div>
         </div>
@@ -365,12 +365,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                <span class="chip bg-color">动态规划</span>
+                            <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                <span class="chip bg-color">数学建模</span>
                             </a>
                         
                     </div>
@@ -385,7 +381,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-03-08
+                    2021-05-04
                 </div>
                 
 
@@ -394,7 +390,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
@@ -411,140 +407,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>题目描述<br>链接如下<br><a href="https://www.luogu.org/problemnew/show/P2258" target="_blank" rel="noopener external nofollow noreferrer">https://www.luogu.org/problemnew/show/P2258</a></p>
-<pre><code>给出如下定义：
-
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
-
-例如，下面左图中选取第2、4行和第2、4、5列交叉位置的元素得到一个2*3的子矩阵如右图所示。
-
-9 3 3 3 9
-
-9 4 8 7 4
-
-1 7 4 6 6
-
-6 8 5 6 9
-
-7 4 5 6 1
-
-的其中一个2*3的子矩阵是
-
-4 7 4
-
-8 6 9
-
-相邻的元素：矩阵中的某个元素与其上下左右四个元素（如果存在的话）是相邻的。
-
-矩阵的分值：矩阵中每一对相邻元素之差的绝对值之和。
-
-本题任务：给定一个n行m列的正整数矩阵，请你从这个矩阵中选出一个r行c列的子矩阵，使得这个子矩阵的分值最小，并输出这个分值。
-
-(本题目为2014NOIP普及T4)
-
-输入输出格式
-
-输入格式：
-
-第一行包含用空格隔开的四个整数n，m，r，c，意义如问题描述中所述，每两个整数之间用一个空格隔开。
-
-接下来的n行，每行包含m个用空格隔开的整数，用来表示问题描述中那个n行m列的矩阵。
-
-输出格式：
-
-输出共1行，包含1个整数，表示满足题目描述的子矩阵的最小分值。
-
-【数据说明】
-
-对于50%的数据，1 ≤ n ≤ 12，1 ≤ m ≤ 12，矩阵中的每个元素1 ≤ a[i][j] ≤ 20；
-
-对于100%的数据，1 ≤ n ≤ 16，1 ≤ m ≤ 16，矩阵中的每个元素1 ≤ a[i][j] ≤ 1,000，
-
-1 ≤ r ≤ n，1 ≤ c ≤ m。</code></pre><p>对于以上的数据范围，我一开始想到的是直接搜索，然后我就估算了一下搜索的代价，最差的情况是，有16行16列，选8行8列，直接枚举的话，有</p>
-<p><img src="http://latex.codecogs.com/gif.latex?(C_%7B16%7D%5E%7B8%7D%20)%5E%7B2%7D*%7Bn%7D%5E2" alt=" "><br>的运算次数，结果是超过100亿的运算次数显然不能再规定时间内完成。</p>
-<p>看到这类矩阵 ，我也能想到是dp，但是对于这种选择分开的dp感觉无从下手。</p>
-<p>后来想到，将dp与搜索结合起来使用，先搜索确定是那几行，然后题目就变成了</p>
-<p>从m列里选择c列 ，找出最小的分值，这样就可以进行dp了,dp的复杂度是16^3。</p>
-<p>最差的情况也只是5000多万次运算。</p>
-<p>首先确定状态，状态为dp[i][j]</p>
-<p>i表示选择的最后一个列，j表示已经选择的列数。</p>
-<p>显然j&lt;=i</p>
-<p>状态转移方程也显而易见</p>
-<p>dp[i][j]=min(dp[k][j-1]+col[i]+cha[k][i]),k&lt;=i;</p>
-<p>其中col[i]表示i列内部之间的分值，cha[k][i]表示第k列与第i列相邻时，他们列之间相差的分值。这两个数组可以在确定行之后预处理出来，预处理的时间是O(n^2)相对于dp的O(n^3）显然可以忽略不计。</p>
-<p>下面附上代码。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;string.h></span></span>
-<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">,</span>r<span class="token punctuation">,</span>c<span class="token punctuation">;</span>
-<span class="token keyword">int</span> mp<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> chose<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> dp<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> res<span class="token operator">=</span><span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
-<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">myabs</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">return</span> a<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">?</span>a<span class="token operator">:</span><span class="token operator">-</span>a<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">mymax</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">return</span> a<span class="token operator">></span>b<span class="token operator">?</span>a<span class="token operator">:</span>b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">mymin</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">return</span> a<span class="token operator">&lt;</span>b<span class="token operator">?</span>a<span class="token operator">:</span>b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>dp<span class="token punctuation">,</span><span class="token number">0x3f</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>dp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> f<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>r<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token operator">=</span><span class="token function">myabs</span><span class="token punctuation">(</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> col<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>r<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span><span class="token operator">=</span><span class="token function">myabs</span><span class="token punctuation">(</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>mp<span class="token punctuation">[</span>chose<span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">int</span> minc<span class="token operator">=</span>i<span class="token operator">&lt;</span>c<span class="token operator">?</span>i<span class="token operator">:</span>c<span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>minc<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>j<span class="token number">-1</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>i<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">mymin</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">+</span>col<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>f<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>c<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        res<span class="token operator">=</span><span class="token function">mymin</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> now<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">==</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>r<span class="token operator">-</span>x<span class="token operator">></span>n<span class="token operator">-</span>now<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span>now<span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        chose<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>x<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span> 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">,</span><span class="token operator">&amp;</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>r<span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span>mp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span> </code></pre>
+                <blockquote>
+<p>参加过很多次数学建模比赛，拿过美赛M奖，研赛一等奖。也算有了一点经验，在这边分享一下。</p>
+</blockquote>
+<h2 id="数学建模是什么？"><a href="#数学建模是什么？" class="headerlink" title="数学建模是什么？"></a>数学建模是什么？</h2><p>这点不必我多说，但是还是和大家简单介绍一下。其本质就是把遇到的实际问题，通过建模抽象成数学公式并求解的过程。</p>
+<h2 id="为什么参加？"><a href="#为什么参加？" class="headerlink" title="为什么参加？"></a>为什么参加？</h2><p>对于我来说，主要发现了以下几点收益。</p>
+<ol>
+<li>物质奖励。在杭电的政策下，参加数学建模的物质奖励还挺丰厚，在其他学校通常也有对应的政策。</li>
+<li>知识收获。参加比赛前，学校都会组织培训，教你一些常见的模型，以及科技论文写作知识，如果你能学到，即便是不拿奖也算有收获。</li>
+<li>拓展视野。比赛的赛题背景通常不是你的专业知识，可以让你接触一些不同领域的东西，比如:脑机接口、金融、热力学等等。如果你参加多了，就会对不同领域有一定的了解，对自己所在专业也会有一定的启发。</li>
+<li>好伙伴。<strong>数模是检验毅力的试金石之一</strong>，如果和你一起比赛的队友能够在建模这几天里坚持不懈，面对困难也不放弃，就可以发现这是一个值得结交的朋友。<h2 id="如何准备？"><a href="#如何准备？" class="headerlink" title="如何准备？"></a>如何准备？</h2>这个我简单说一下。现在缺的不是资料，而是好好学习资料的人。因为学校的培训流程已经十分完善，个人基本只要能够完成数模组布置的各个任务就很不错了。不过也是有重要的事情。</li>
+<li>寻找队友。找一个好的队友很重要，因为建模那几天确实比较煎熬，如果队友忽然撂挑子不干（或者帮不上忙），那你个人能力再强也会有点崩溃。关键是你不干活的队友还会和你一起分享你的成果，想想就很崩溃吧。所以一般<strong>不要和不熟悉的队友直接参加正式比赛</strong>，在正式比赛之前做道练习题和队友磨合一下还是很重要的，遇到不合适的队友及早换掉。再提一句，就是队伍里一定要有一个会编程解决问题的人，如果那个人参加过类似于<strong>ACM这类程序设计竞赛</strong>的人，那再好不过了。</li>
+<li>学会一些基本的检索。主要是在中国知网、谷歌学术、github上进行检索。github上有许多开源代码，有时候一个问题在你进行抽象归纳之后，往往能够使用对应的开源代码直接解决。</li>
+<li>学会一些版本控制工具。版本控制工具现在有很多，最经典的莫过于git，但这对于多数人来说使用不太方便，还有较大的学习成本。所以对于Latex使用者，我建议使用<strong>overleaf</strong>。overleaf有现成的web版本，直接访问overleaf.com即可。其优点在于可以和队友一起同时编辑一个文档，无需配置本地环境，访问网页就可以直接使用。并且可以看到文档的历史修改记录。用官方布置的在线版有个缺陷，就是想要完整的历史版本需要付费，并且相对来说保存在别人的服务器上的论文没自己保存那么放心(一般问题也不大)。我自己用的是自己部署在实验室服务器上的overleaf，因为overleaf是个开源项目，并且它在github上有对应的docker可以下载，部署还是很方便的。自己部署完之后可以查看完整历史记录，并且也不用担心被别人盗用。对于word使用者，我推荐使用一些<strong>文件夹同步工具，如坚果云、百度网盘等等</strong>。可以把一个文件夹直接同步到的队友的文件夹里面，这样给队友传输文件就像本地复制粘贴一样那么轻松，像坚果云在同步修改的过程中也会保留历史版本并且可以看到历史版本和现在版本的对比区别。</li>
+</ol>
+<h2 id="比赛要注意的点。"><a href="#比赛要注意的点。" class="headerlink" title="比赛要注意的点。"></a>比赛要注意的点。</h2><p>比赛的时候会很忙，但是一些点一定要注意。</p>
+<ol>
+<li>注重摘要。一般评委不会仔细看完你的全文，你是否获奖很大程度上取决于你摘要的编写，语言一定要凝练，不要口语化。</li>
+<li>正文部分。只需要记住，图&gt;表&gt;文字，能用图就不要用表，能用表就不要用文字。</li>
+<li></li>
+</ol>
 
             </div>
             <hr/>
@@ -570,7 +452,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zhkgo.github.io/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/">https://zhkgo.github.io/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/</a>
+                    <a href="https://zhkgo.github.io/2021/05/04/gmcm/">https://zhkgo.github.io/2021/05/04/gmcm/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -608,12 +490,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                    <span class="chip bg-color">动态规划</span>
+                                <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                    <span class="chip bg-color">数学建模</span>
                                 </a>
                             
                         </div>
@@ -781,76 +659,33 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2018/06/18/python%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D/">
+                <a href="/2021/05/04/gmcm/">
                     <div class="card-image">
                         
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/7604477-973ee37916aff7cf.jpg" class="responsive-img" alt="python文件拷贝">
                         
-                        <span class="card-title">python文件拷贝</span>
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="数学建模心得">
+                        
+                        <span class="card-title">数学建模心得</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            背景&#160;&#160;&#160;&#160;&#160;&#160;&#160;前段时间准备六级的时候，拿到了一个光盘，里面有很多听力，但是听力分为很多文件夹，还有很多听力的字幕（.lrc）,就想要把里面的听力都拷贝出来全部放到我的
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2018-06-18
-                        </span>
-                        <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            章杭奎
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/python/">
-                        <span class="chip bg-color">python</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2018/03/08/%E5%AD%90%E7%9F%A9%E9%98%B5/">
-                    <div class="card-image">
-                        
-                        <img src="https://blog-1252419034.cos.ap-beijing.myqcloud.com/img/20200910170835.jpeg" class="responsive-img" alt="子矩阵">
-                        
-                        <span class="card-title">子矩阵</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            题目描述链接如下https://www.luogu.org/problemnew/show/P2258
-给出如下定义：
+参加过很多次数学建模比赛，拿过美赛M奖，研赛一等奖。也算有了一点经验，在这边分享一下。
 
-子矩阵：从一个矩阵当中选取某些行和某些列交叉位置所组成的新矩阵（保持行与列的相对顺序）被称为原矩阵的一个子矩阵。
-
-例
+数学建模是什么？这点不必我多说，但是还是和大家简单介绍一下。其本质就是把遇到的实际问题，通过建模抽象成数学公式并求解的过程。
+为什么参加？对于我来说
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-03-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-04
                             </span>
                         <span class="publish-author">
                             
@@ -864,12 +699,65 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                        <span class="chip bg-color">数学建模</span>
                     </a>
                     
-                    <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="chip bg-color">动态规划</span>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/01/05/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E5%A4%8D%E4%B9%A0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="模式识别复习押题">
+                        
+                        <span class="card-title">模式识别复习押题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            人工智能与模式识别
+简答题 共5小题，每小题10分
+计算题（包括公式推导）,共四小题，每小题10分
+论述题 共1小题，10分
+
+简答题
+在机器学习中，样本是指什么？类或者类别又指什么？简述机器学习的核心思想及其学习过程。
+
+简述正态分布概率
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            章杭奎
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%8D%E4%B9%A0/">
+                        <span class="chip bg-color">复习</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB/">
+                        <span class="chip bg-color">模式识别</span>
                     </a>
                     
                 </div>
