@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2021-05-07T13:29:16.139Z</updated>
+  <updated>2021-05-18T13:39:29.910Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>paperImage</title>
+    <link href="https://zhkgo.github.io/2021/05/18/paperImage/"/>
+    <id>https://zhkgo.github.io/2021/05/18/paperImage/</id>
+    <published>2021-05-18T13:27:57.000Z</published>
+    <updated>2021-05-18T13:39:29.910Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;最近和一位上交直博的同学交流，看了一下他发的顶会论文，发现了一些绘图的小tricks。有感而发。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一般会发现比较好的期刊上的图中，文字都是能选中的，而且非常清晰。这些不是纯粹图片格式，这种一般都是矢量图。我</summary>
+        
+      
+    
+    
+    
+    
+    <category term="python" scheme="https://zhkgo.github.io/tags/python/"/>
+    
+    <category term="绘图" scheme="https://zhkgo.github.io/tags/%E7%BB%98%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数学建模心得</title>
     <link href="https://zhkgo.github.io/2021/05/04/gmcm/"/>
     <id>https://zhkgo.github.io/2021/05/04/gmcm/</id>
     <published>2021-05-04T03:48:54.000Z</published>
-    <updated>2021-05-07T13:29:16.139Z</updated>
+    <updated>2021-05-18T13:40:03.262Z</updated>
     
     
       
