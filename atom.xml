@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>青椒的博客</title>
+  <title>青椒的学习笔记</title>
   
   <subtitle>路在前方</subtitle>
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://zhkgo.github.io/</id>
   
   <author>
-    <name>章杭奎</name>
+    <name>青椒</name>
     
   </author>
   
