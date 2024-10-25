@@ -240,19 +240,6 @@
 </header>
 
     
-<script src="/libs/cryptojs/crypto-js.min.js"></script>
-<script>
-    (function() {
-        let pwd = 'c6b29e5dd3730baaf26c9da44658d386e7d41f0cc0a3cc1039381e4168babf1e';
-        if (pwd && pwd.length > 0) {
-            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
-                alert('密码错误，将返回主页！');
-                location.href = '/';
-            }
-        }
-    })();
-</script>
-
 
 
 
@@ -403,7 +390,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    779
+                    12
                 </div>
                 
 
@@ -420,15 +407,18 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>最近感觉压力很大，一方面是所谓的互联网寒冬，让我从去年对就业的乐观到现在的悲观。另一方面则是源自自己对自己的要求，总是还想要做出点什么，却又感觉有另外对我来说更重要的事(就业)，反而什么都做不好了。</p>
-</blockquote>
-<p>对于最近行为最值得反思的一点是没有合理安排好时间。虽然早上8点不到起床、吃饭、出发到实验室，晚上10点多离开实验室，但是学到的东西、做的东西并没有我想要的那么多。 </p>
-<p>每天早上到实验室第一件事就是打开力扣，做思维健身操。但是这个健身操做多了，也有点麻痹自己的感觉。有些算法题，某种程度上已经进入了我的舒适区，对我来说思考起来不是特别费力。而挑战更难的，自己觉得时机还不成熟。一方面需要花费更多的时间，另一方面已经超过我目前所需要的范围了，就不是特别愿意去挑战。要解决这一点问题，需要控制每天刷算法题的时间，尽量控制在1-2小时以内(周末有周赛除外)。</p>
-<p>第二点就是需要注意休息，从早上8点到晚上10点,总共有14个小时，而我吃饭速度比较快，午饭晚饭加起来也就40分钟以内解决。在没有午休的情况下，下午的学习状态就会比较恍惚。中午只是趴在桌上睡觉也并不能很好的缓解疲劳（而且也比较难睡着）。而这个午后的疲劳会一直延续到我回寝室。一疲劳就容易不愿意做费力的事情，会更倾向于做舒适区内的事情，比如上知乎等平台看看各类帖子、视频什么的。 需要解决这一点问题，就是需要在中午切实保障好自己的睡眠状况，通过听书什么的来促进睡眠（我听东西容易睡着）。</p>
-<p>第三点是发现自己有时候有些自负。目前虽无造成什么关系紧张、不友好等后果。但仍然应该警惕，管好自己的行为，不过多的去评价别人的言行，无论对错。每个人应该为自己的言行负责，无论结果如何，不能把自己的观点强加于别人。虽然我自认为我说的多数时候是对的，但我说的不一定是对的。如果觉得他人现在的言行不太符合自己的价值观，可以象征性的表达疑问，但是不能够冷嘲热讽，这是对人的基本尊重。应该去努力发现别人优秀的一面，发自内心的去赞美，去学习。按鲁迅的话来说就是，取其精华，去其糟粕。</p>
-<p>也希望自己能勇往直前、不负韶华吧。</p>
-
+                <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ad2efbd3426e693b5b3238a43232ce9b29c1cd48f3cbd92c424c757e73d0900b">d537e15114ce275fe9b181c229b1c2703d0c3f1fd3e0274ec14908080da764705c1b45cf6826f0ac4f3ba44b4ce9ce52fc48d7eed94329a4c5815fd8f62c4d6273794d3e22bccb8c1d6600ccad2663a77f4bcca7606df918b4685ad1987cf59ac9047994a2b39afab01617bdaaa6264945ed02750a0786434b6d456d2aee536bd409ec00e784c59b1d95b7d2689bd2c89b95f51d21f85ea817741293508670215c77e17ae4dc24b10ef1f278a4407f9765cc68d85b7a70f181101089d2686435b684a90ccdcae8db7c754555c3874c61243751068f9af3013fc5012fbf2bf2cfdccf4cf200955d485679221825d5e7104eceed7c49f09d1c0fe74562fee9343247825552942e6c81a2738fa063f59e0156286a5c9cd7ef8f95c59228be1b7f05963153098a756a00f334a6b2f6007c0f06f9b37f8fb254c18f3e61b34a7d8f54e9e0581deab5a72cb8f759c11db32d19d95449c2051549433ea6e7ca04c1fec830952955f039571901ff356e70609928106ac37cbb45d85ea1ee48d7763edf8f640cafcfcb48b3694f7fe287df6328ef6a4a19873fb665438435a1a312e0795611cbae8dd63c62094c27b0880b692dc56664b3168d5c6d6e7d7ef76b03973e46f8c1a00269c20df13a409199b31321dff5e9430fb41148cadffe89dd9fa48ed4923f9e82263827e98945131fbbab0ac4da8466a88b1c568c5ab64e940f64bb9bd07abae5e4cc1f38fafa08fd9e71b6f8e558c940cedc6ee806e5433dd13f8e5c01e0899c220e567a5e0b58cad6845f2834aaf5c36dfba3f891d502840b1b5e770a15eaec1d3f1bd96b414ff35d6a1cef77dfdb29b6a0b26bb8a1ba6c150ddb51e4e20f3701d8748b172d6cf94cbf6734ad89198378eb4de0adb377ade8fb9ee365316e8cebaa1b5d34371740f269b70fa159d81bb5d1d65a17fa57315835e68ad19629374902f3b211db38cd4cecb5c3be5d0518f8044e303df97593607ffe91773bc4193992119f460ee6b5ed993bdb5b8a8aae7b53d0e508b7d8866655794662c3dcce0dd896c7c23b051541fdc2f5900402a73ab91a49e6a3c1adbf0c143c6c38ff6b3f927d8a695a8c69469dce51b93d94e069eae20174b2e33437bcbf09af8450dee90825ab68a8c9c3ec6852dbb556ba64f3b244370892a22a35adbcc9ca318c228b335c41d993cf3489ced09f651e9d80acdba2f3a28845376ed0279322e0feb3a4600f9d497e9873a68f96399552d0f289f0a4c41f9fa128a2208e954f51428d6aa779814523d9ef1aa99de0906f3525018be64f9093a08af6e613f12b81aeb839c010726281f3b03172c2462e4756ca2fd164b646150280ed787cdb99ccb79d0264ba34afb9313a015bbf7e093ebcc2fba9289fe8b2ba9b2f752bab662b954b136872990ce1509298563fb8db1d06c45ca314b392d57958a0aa318f34b21716cd7426a94e6e7b0fbc4e3d9cf696bf8a93db5be61f48b2b4f5db91f89e769e3ded69aa2e47eced8246663b0c91929f755457d6444ada443d6c8026056abd7982db7ec4f70815067e1376860207035ab6843c5396d16c6e3ff29f0197b2a60e3b5fafee77ee426dc1228870ad608b3e99d6f5d2e303259ae88ce6462d23d7a02e259a7d04db4a93c0d8bf883c2f2f8385dc0b7f3b3d8d51ce47135378d4c2321b61a143f7b7c0ea953c69dc06fa5677f6bf5f04c556449c8519c53f6d63a855afd772c21f73ff2f2b3541d37aea67c2b8bd48690f69c5b934d83bc2f7f56c5b65a53b4b6417c9de05a859e7e98e03b7c7fa7ad98d46b011dfee2cb6de7e5f4ecd5d46472fa0b425222ceb48ed3d4b40263ccd5d7b474bd6de1b264ec1d16ffdeec60436db9e582b56326fbc4a8df8ee0f30ac0c6463a2150dfab878ae1b42da3ecb5491485273036654ca271e739e37f57a374943ba5158969fffc2c86c2b4688b12f2adf76dc30435eaadc2b6f74b5edbdfe4a13ea7a465240d00ca46e8da9ae30ba5bac0e4b72f7bfcd1c880aa7727bc12484bbd04a2cc5e9fee9d0a2d479c09af9ab3f42c2a7c6d8a0ed2253f7beae4c7ffd5de527cdb2f17780a7a3262b073f739655defab638cd52daae631ce0bc131ef8dd76a92f8c3a426f1c6e5e54ed61995abb6b0e0cb10210baaa359b736e146f2db2cc5c2453ff4125547085a4ead604ee44b7034a4c3adfecc40e5a053703213e43ffd6239e8260e833e6ab9e9bd4bb4c8b452389aa7bb96a546220bfec937b3f09b5e07f69d1b959dd985a75730ffe22d8f4873a8ddc1d4c7311166e76e245e46bf725c03af4374034da893c9b1fa6360a98668ebf04a0cc67212244701e61376b897bab4eb6530fb6ed277bae61e426b75ade493ab59cfab8841378bef5c90b496d5532ed0d7ffcaf10c1717b4124eaae7ef352969e22726ce1616ddb5725682720c0e071443951bc94b2509449372c07fcd838a451785ea57aca4f5bb41568de6a527f7d123cb96c10177867676d6c54836bec9a4515d285c27e833445fae7d2ca5281ba59642918896d5b7f6ff6598f5828d0cfdfa8aecf8689de7fc3e1f97c7359665efda4e7729a01de7368e99d1aab9c9e8d17990d37048df95f510623b5f57050939e8ed91a043018c3ecee6097e4d378cec9ec310dab121ee2b6a5e136c99eab4d5fd8db9ede7d0dcaafbc7ecf1b3eef6ab59d9cd2f411e00afbf6d88eae365151eb1a5e24a8f1dfdd975b68aaee622293b8d8dea7a44078b408166ca7980022d1c8dc9ab9889c3629edf1effa3c2fdba41db4dc4bae74bc3925a3eb03961cd5d6beed6cf0631086bb08f7886f8452986b1a55c268a3a1fb9ced974f4df8621898b657bc06aa1579e620178c1f4f5d9fd7ef0f294c3f90bac6b53603ee06c97f7af96eadcff07aa0c69ff411ba0043fb0ff3c0ecc4792ecbcaae7f0d2955c9fdb7bd994cc8ef868bfff2c4d7d2d5975e2e79a2d7fa30e2fffb878b943b5b5123e85fb31f29c4fccc35c5bc13ec7c48661765fb73d135f916e9d4fc11ed8dc35c2d1ac20e39320e1ebf0f7c1981f7e22657dc92cc463c44e830f1481f13d86aa4e47d4984b382bf5a65a8b45465428a68737fa6eacee86a11052839aeda38a0fea70291e8808d663161c5f73a11d2d31f297dd2f58cddac1016796fe7f436289b35f3d4495631b95bdfb4971dbf022ef65589ff539e067ea82a6762c67e72a54553b03a82cf69036efb26e03fc7a909b7339229237fe321a4ebdcf5836e0a428790a40fd0362f802111c997633fc089af7faaef0d5532ff9efb7a8fef2a6c3d80cce41e0a4903a85dee9878436d7e9c48ec365b373594ec37c6f72e011de687dff7d36a350c0b9f6b39493dc10756e0b0c69e54c52fcbdb559b7263730e0a42eea021058569a90fb20d0a7fb46b55b5de007fffbebd5c91b110a2f8250e8bd3782d3ca4854016e593f88705b867ae7287dfdf4478ed3eb7dfd66b7d82152580bf23c35e10471f4bf1f3123c4c91f28932742d397dd6b34c5d8c0e36c1f6fc413e5252f298eea19a772b8094b6f8a402d023a490de8c787382538badd3511184ec330d9c9a2254fc4850e10ce65b0c77fa8dd1f30702532981527714d4ea84fbf7e397c796a23d4b19293e565d977a75eb90ce422e0d86a163ee6ee63ebee5a4f806339c68439eb9c540f8b71f4b036083b5347e7a8fe914009a2a96a43a56764245749d0c2fb00f3252a25f7704f0ca77569eae11cfcb605462947ba4a9e1da852421f8f50d</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">密码输入框上描述性内容</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
             </div>
             <hr/>
 
@@ -826,7 +816,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">53.3k</span>&nbsp;字
+                class="white-color">52.6k</span>&nbsp;字
             
             
             
