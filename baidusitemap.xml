@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhkgo.github.io/2022/04/01/reflection20220401/</loc>
+    <lastmod>2024-10-25</lastmod>
+  </url>
+  <url>
     <loc>https://zhkgo.github.io/2024/04/30/snsData/</loc>
     <lastmod>2024-05-13</lastmod>
   </url>
@@ -123,10 +127,6 @@
   <url>
     <loc>https://zhkgo.github.io/2022/04/09/interviewCheck/</loc>
     <lastmod>2022-04-10</lastmod>
-  </url>
-  <url>
-    <loc>https://zhkgo.github.io/2022/04/01/reflection20220401/</loc>
-    <lastmod>2022-04-01</lastmod>
   </url>
   <url>
     <loc>https://zhkgo.github.io/2022/03/30/leetcoderecord/</loc>

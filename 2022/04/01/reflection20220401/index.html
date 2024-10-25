@@ -240,6 +240,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = 'c6b29e5dd3730baaf26c9da44658d386e7d41f0cc0a3cc1039381e4168babf1e';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -834,10 +847,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             <br>
-            
-            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
-                <a href="https://beian.miit.gov.cn/" rel="external nofollow noreferrer" target="_blank">浙ICP备17034622号-1</a>
-            </span>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
