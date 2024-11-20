@@ -6,7 +6,7 @@
   <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhkgo.github.io/"/>
-  <updated>2024-05-13T13:13:41.499Z</updated>
+  <updated>2024-11-20T14:51:24.451Z</updated>
   <id>https://zhkgo.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>菜鸟的祖玛通关之路</title>
+    <link href="https://zhkgo.github.io/2024/11/20/passzuma/"/>
+    <id>https://zhkgo.github.io/2024/11/20/passzuma/</id>
+    <published>2024-11-20T14:12:00.000Z</published>
+    <updated>2024-11-20T14:51:24.451Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;最近忽然想体验一下老游戏，正好看到了一个绝版游戏保护工程里面有个祖玛游戏，想回忆一下童年就玩了一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;游戏规则&quot;&gt;&lt;a href=&quot;#游戏规则&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="https://zhkgo.github.io/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="祖玛" scheme="https://zhkgo.github.io/tags/%E7%A5%96%E7%8E%9B/"/>
+    
+  </entry>
   
   <entry>
     <title>SpaceSniffer导出sns文件存储格式分析</title>
@@ -517,32 +545,6 @@
     <category term="绘图" scheme="https://zhkgo.github.io/tags/%E7%BB%98%E5%9B%BE/"/>
     
     <category term="python" scheme="https://zhkgo.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数学建模心得</title>
-    <link href="https://zhkgo.github.io/2021/05/04/gmcm/"/>
-    <id>https://zhkgo.github.io/2021/05/04/gmcm/</id>
-    <published>2021-05-04T03:48:54.000Z</published>
-    <updated>2022-05-29T14:18:29.212Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;参加过很多次数学建模比赛，拿过美赛M奖，研赛一等奖。也算有了一点经验，在这边分享一下。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;数学建模是什么&quot;&gt;&lt;a href=&quot;#数学建模是什么&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="数学建模" scheme="https://zhkgo.github.io/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
     
   </entry>
   
