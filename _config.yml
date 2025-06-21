@@ -99,7 +99,7 @@ theme: hexo-theme-matery
 deploy:
   type: git
   repo: git@github.com:zhkgo/zhkgo.github.io.git
-  branch: master
+  branch: gh-pages
 feed:
   type: atom
   path: atom.xml
