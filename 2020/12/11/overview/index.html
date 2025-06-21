@@ -1,0 +1,1309 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="使用mne进行脑电信号分析, 青椒的学习笔记">
+    <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>使用mne进行脑电信号分析 | 青椒的学习笔记</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="青椒的学习笔记" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">青椒的学习笔记</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">青椒的学习笔记</div>
+        <div class="logo-desc">
+            
+            俗人一个。贪财有道,好色有品,博学有识,读书有瘾
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zhkgo/zhkgo.github.io" rel="external nofollow noreferrer" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zhkgo/zhkgo.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/20201211135856.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">使用mne进行脑电信号分析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                                <span class="chip bg-color">脑电信号</span>
+                            </a>
+                        
+                            <a href="/tags/mne/">
+                                <span class="chip bg-color">mne</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-11
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.7k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="已投稿到-脑机接口社区-版权所有。转载自脑机接口社区。禁止其他网站转载"><a href="#已投稿到-脑机接口社区-版权所有。转载自脑机接口社区。禁止其他网站转载" class="headerlink" title="已投稿到 脑机接口社区 版权所有。转载自脑机接口社区。禁止其他网站转载"></a>已投稿到 <a href="https://mp.weixin.qq.com/s/gLp0Pt6MtSYeiKX3R-8KMA" target="_blank" rel="noopener external nofollow noreferrer">脑机接口社区</a> 版权所有。转载自脑机接口社区。禁止其他网站转载</h3><p>先加载一些必要的头文件</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> mne
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'axes.unicode_minus'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span> <span class="token comment" spellcheck="true">#减号</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'font.sans-serif'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'SimHei'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">#中文字体</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'savefig.dpi'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">300</span> <span class="token comment" spellcheck="true">#图片像素</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'figure.dpi'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">300</span> <span class="token comment" spellcheck="true">#分辨率</span>
+</code></pre>
+<h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><p>MNE-Python 的数据结构是基于来自Neuromag(脑磁图系统）的FIF文件格式,但是也内置了大量对于其他格式数据的读取函数。MNE-Python 也有各种各样关于公开可获得的数据集接口，来帮助你下载和管理这些数据。</p>
+<p>我们将会通过一个加载数据集的例子来开始教程，这个数据集包含来自一个关于听觉和视觉实验的EEG和MEG的数据,数据是通过对被试进行结构化的MRI（磁共振成像）扫描获得的。<a href="https://mne.tools/dev/generated/mne.datasets.sample.data_path.html#mne.datasets.sample.data_path" target="_blank" rel="noopener external nofollow noreferrer">mne.datasets.sample.data_path</a>函数在数据集没有在指定位置被找到的情况下会自动下载数据集，并且返回目录路径。注意到为了使得教程能够流畅的跑通，我们采用了滤波和降采样后版本的数据，但是样本数据集中也包含了没有滤波的数据，你可以在本地运行的时候进行替换。</p>
+<pre class=" language-python"><code class="language-python">sample_data_folder <span class="token operator">=</span> mne<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>sample<span class="token punctuation">.</span>data_path<span class="token punctuation">(</span><span class="token punctuation">)</span>
+sample_data_raw_file <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>sample_data_folder<span class="token punctuation">,</span> <span class="token string">'MEG'</span><span class="token punctuation">,</span> <span class="token string">'sample'</span><span class="token punctuation">,</span>
+                                    <span class="token string">'sample_audvis_filt-0-40_raw.fif'</span><span class="token punctuation">)</span>
+raw <span class="token operator">=</span> mne<span class="token punctuation">.</span>io<span class="token punctuation">.</span>read_raw_fif<span class="token punctuation">(</span>sample_data_raw_file<span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Opening raw data file /home/zhkgo/mne_data/MNE-sample-data/MEG/sample/sample_audvis_filt-0-40_raw.fif...
+    Read a total of 4 projection items:
+        PCA-v1 (1 x 102)  idle
+        PCA-v2 (1 x 102)  idle
+        PCA-v3 (1 x 102)  idle
+        Average EEG reference (1 x 60)  idle
+    Range : 6450 ... 48149 =     42.956 ...   320.665 secs
+Ready.
+</code></pre>
+<p>默认情况下，read_raw_fif函数会打印一些关于它加载的数据集的信息。例如，这次它告诉我们数据集中有四个“投影项”以及记录的数据，时长等信息。这些是SSP投影计算得到的，用于去除来自MEG信号的环境噪声，并且增加了一个平均参考通道。除了在加载数据集时显示信息外，还可以通过打印原始对象来查看数据集基本一些信息，通过打印该对象的info属性可以获取更多信息。info的数据结构中包含了通道位置，已经采用过的滤波器，投影等等信息。</p>
+<p>值得注意的是chs条目，它表示MNE-Python 检测到了不同的传感器类型(也就是输入数据包含了来自多种传感器的数据)，要注意对这些数据进行适当的处理。如果想要知道更多信息，可以看<a href="https://mne.tools/dev/generated/mne.Info.html#mne.Info" target="_blank" rel="noopener external nofollow noreferrer">Info</a>的类定义。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>raw<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>raw<span class="token punctuation">.</span>info<span class="token punctuation">)</span>
+</code></pre>
+<pre><code>&lt;Raw | sample_audvis_filt-0-40_raw.fif, 376 x 41700 (277.7 s), ~3.7 MB, data not loaded&gt;
+&lt;Info | 15 non-empty values
+ bads: 2 items (MEG 2443, EEG 053)
+ ch_names: MEG 0113, MEG 0112, MEG 0111, MEG 0122, MEG 0123, MEG 0121, MEG ...
+ chs: 204 GRAD, 102 MAG, 9 STIM, 60 EEG, 1 EOG
+ custom_ref_applied: False
+ dev_head_t: MEG device -&gt; head transform
+ dig: 146 items (3 Cardinal, 4 HPI, 61 EEG, 78 Extra)
+ file_id: 4 items (dict)
+ highpass: 0.1 Hz
+ hpi_meas: 1 item (list)
+ hpi_results: 1 item (list)
+ lowpass: 40.0 Hz
+ meas_date: 2002-12-03 19:01:10 UTC
+ meas_id: 4 items (dict)
+ nchan: 376
+ projs: PCA-v1: off, PCA-v2: off, PCA-v3: off, Average EEG reference: off
+ sfreq: 150.2 Hz
+&gt;
+</code></pre>
+<p><a href="https://mne.tools/dev/generated/mne.io.Raw.html#mne.io.Raw" target="_blank" rel="noopener external nofollow noreferrer">Raw</a>对象有内置的画图函数。在这里，我们通过plot_psd这个函数展示了来自不同传感器数据的功率谱密度图，并且采用plot函数画出了脑电数据的轨迹。在PSD图中，我们只画了50HZ以下的频率（因为我们的数据时已经经过了40HZ的低通滤波）。在交互式Python绘画中（就是能弹出绘图窗口的），绘图是交互式的，并且允许滚动，缩放，标记不良的通道，以及注释等等。</p>
+<pre class=" language-python"><code class="language-python">raw<span class="token punctuation">.</span>plot_psd<span class="token punctuation">(</span>fmax<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span>
+_<span class="token operator">=</span>raw<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>duration<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> n_channels<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Effective window size : 13.639 (s)
+Effective window size : 13.639 (s)
+Effective window size : 13.639 (s)
+
+
+findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+</code></pre>
+<p><img src="/images/20201211134429.png" alt="png"></p>
+<pre><code>findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+</code></pre>
+<p><img src="/images/20201211134430.png" alt="png"></p>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>MNE-Python 支持多种多样的预处理方法和技术（麦克斯韦滤波，信号空间投影（SSP），独立成分分析，滤波，降采样等）；具体可以看<a href="https://mne.tools/dev/python_reference.html#module-mne.preprocessing" target="_blank" rel="noopener external nofollow noreferrer">mne.preprocessing</a>和<a href="https://mne.tools/dev/python_reference.html#module-mne.filter" target="_blank" rel="noopener external nofollow noreferrer">mne.filter</a>子模块中功能的完整列表。在这里我们将通过独立成分分析（ICA）来清理数据；为了能够简便期间，我们跳过一些步骤。<a href="https://mne.tools/dev/auto_tutorials/preprocessing/plot_40_artifact_correction_ica.html#tut-artifact-ica" target="_blank" rel="noopener external nofollow noreferrer">这里可以看一些跳过的步骤</a></p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># set up and fit the ICA</span>
+ica <span class="token operator">=</span> mne<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>ICA<span class="token punctuation">(</span>n_components<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> random_state<span class="token operator">=</span><span class="token number">97</span><span class="token punctuation">,</span> max_iter<span class="token operator">=</span><span class="token number">800</span><span class="token punctuation">)</span>
+ica<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>raw<span class="token punctuation">)</span>
+ica<span class="token punctuation">.</span>exclude <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#这边就是跳过的步骤，关于为什么选择1,2两个成分</span>
+ica<span class="token punctuation">.</span>plot_properties<span class="token punctuation">(</span>raw<span class="token punctuation">,</span> picks<span class="token operator">=</span>ica<span class="token punctuation">.</span>exclude<span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Fitting ICA to data using 364 channels (please be patient, this may take a while)
+Inferring max_pca_components from picks
+Selecting by number: 20 components
+Fitting ICA took 2.3s.
+    Using multitaper spectrum estimation with 7 DPSS windows
+Not setting metadata
+Not setting metadata
+138 matching events found
+No baseline correction applied
+0 projection items activated
+0 bad epochs dropped
+Not setting metadata
+Not setting metadata
+138 matching events found
+No baseline correction applied
+0 projection items activated
+0 bad epochs dropped
+
+
+findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+</code></pre>
+<p><img src="/images/20201211134431.png" alt="png"></p>
+<p><img src="/images/20201211134432.png" alt="png"></p>
+<pre><code>[&lt;Figure size 2100x1800 with 6 Axes&gt;, &lt;Figure size 2100x1800 with 6 Axes&gt;]
+</code></pre>
+<p>在确定要删除哪些成分后，我们将它们作为exclude参数传递，然后将ICA应用于原始信号。 apply方法要求将原始数据加载到内存中（默认情况下，仅根据需要从磁盘读取数据），因此我们使用load_data读取数据之后复制Raw对象，以便我们可以并行比较去除伪迹之前和之后的信号：</p>
+<pre class=" language-python"><code class="language-python">orig_raw <span class="token operator">=</span> raw<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+raw<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+ica<span class="token punctuation">.</span>apply<span class="token punctuation">(</span>raw<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># show some frontal channels to clearly illustrate the artifact removal</span>
+chs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'MEG 0111'</span><span class="token punctuation">,</span> <span class="token string">'MEG 0121'</span><span class="token punctuation">,</span> <span class="token string">'MEG 0131'</span><span class="token punctuation">,</span> <span class="token string">'MEG 0211'</span><span class="token punctuation">,</span> <span class="token string">'MEG 0221'</span><span class="token punctuation">,</span> <span class="token string">'MEG 0231'</span><span class="token punctuation">,</span>
+       <span class="token string">'MEG 0311'</span><span class="token punctuation">,</span> <span class="token string">'MEG 0321'</span><span class="token punctuation">,</span> <span class="token string">'MEG 0331'</span><span class="token punctuation">,</span> <span class="token string">'MEG 1511'</span><span class="token punctuation">,</span> <span class="token string">'MEG 1521'</span><span class="token punctuation">,</span> <span class="token string">'MEG 1531'</span><span class="token punctuation">,</span>
+       <span class="token string">'EEG 001'</span><span class="token punctuation">,</span> <span class="token string">'EEG 002'</span><span class="token punctuation">,</span> <span class="token string">'EEG 003'</span><span class="token punctuation">,</span> <span class="token string">'EEG 004'</span><span class="token punctuation">,</span> <span class="token string">'EEG 005'</span><span class="token punctuation">,</span> <span class="token string">'EEG 006'</span><span class="token punctuation">,</span>
+       <span class="token string">'EEG 007'</span><span class="token punctuation">,</span> <span class="token string">'EEG 008'</span><span class="token punctuation">]</span>
+chan_idxs <span class="token operator">=</span> <span class="token punctuation">[</span>raw<span class="token punctuation">.</span>ch_names<span class="token punctuation">.</span>index<span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token keyword">for</span> ch <span class="token keyword">in</span> chs<span class="token punctuation">]</span>
+orig_raw<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>order<span class="token operator">=</span>chan_idxs<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">,</span> duration<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span>
+_<span class="token operator">=</span>raw<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>order<span class="token operator">=</span>chan_idxs<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">,</span> duration<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Reading 0 ... 41699  =      0.000 ...   277.709 secs...
+Transforming to ICA space (20 components)
+Zeroing out 2 ICA components
+</code></pre>
+<p><img src="/images/20201211134433.png" alt="png"></p>
+<p><img src="/images/20201211134434.png" alt="png"></p>
+<h2 id="检测标签"><a href="#检测标签" class="headerlink" title="检测标签"></a>检测标签</h2><p>样本数据集包括几个STIM通道，这些通道记录了从刺激传递计算机发送的电信号（短暂的DC移位/方波脉冲）。这些脉冲（通常称为“触发”）在此数据集中用于标记实验事件：刺激发作，刺激类型和参与者反应（按下按钮）。各个STIM通道被组合到单个通道中，以使该通道上的电压电平可以明确地解码为特定事件类型。 在较旧的Neuromag系统（例如用于记录样本数据的系统）上，得到的求和通道称为STI 014，因此我们可以将该通道名称传递给mne.find_events函数，以恢复刺激事件的时间和类型。</p>
+<pre class=" language-python"><code class="language-python">events <span class="token operator">=</span> mne<span class="token punctuation">.</span>find_events<span class="token punctuation">(</span>raw<span class="token punctuation">,</span> stim_channel<span class="token operator">=</span><span class="token string">'STI 014'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>events<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 显示前五个事件</span>
+</code></pre>
+<pre><code>319 events found
+Event IDs: [ 1  2  3  4  5 32]
+[[6994    0    2]
+ [7086    0    3]
+ [7192    0    1]
+ [7304    0    4]
+ [7413    0    2]]
+</code></pre>
+<p>events事件数组是一个普通的3列NumPy数组，第一列为样本编号，最后一列为事件ID； 通常忽略中间列。事件ID通常有对应的事件，在这个样例中其对应关系如下。</p>
+<table>
+<thead>
+<tr>
+<th>Event ID</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>auditory stimulus (tone) to the left ear</td>
+</tr>
+<tr>
+<td>2</td>
+<td>auditory stimulus (tone) to the right ear</td>
+</tr>
+<tr>
+<td>3</td>
+<td>visual stimulus (checkerboard) to the left visual field</td>
+</tr>
+<tr>
+<td>4</td>
+<td>visual stimulus (checkerboard) to the right visual field</td>
+</tr>
+<tr>
+<td>5</td>
+<td>smiley face (catch trial)</td>
+</tr>
+<tr>
+<td>32</td>
+<td>subject button press</td>
+</tr>
+</tbody></table>
+<pre class=" language-python"><code class="language-python">event_dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'auditory/left'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'auditory/right'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'visual/left'</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+              <span class="token string">'visual/right'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'smiley'</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token string">'buttonpress'</span><span class="token punctuation">:</span> <span class="token number">32</span><span class="token punctuation">}</span>
+</code></pre>
+<p>从连续数据中提取epochs时，会使用此类事件字典。字典键中的’/‘ 字符允许通过请求部分条件描述符来跨条件合并（即，请求<code>听觉</code>将选择事件ID为1和2的所有时期;请求<code>向左</code>将选择事件ID为1和3的所有时期）。 下面显示了一个示例。 还有一个方便的plot_events函数，用于可视化记录持续时间内的事件分布（以确保事件检测按预期方式工作）。 在这里，我们还将利用Info属性来获取记录的采样频率（因此，我们的x轴将以秒为单位，而不是采样数）。</p>
+<pre class=" language-python"><code class="language-python">fig <span class="token operator">=</span> mne<span class="token punctuation">.</span>viz<span class="token punctuation">.</span>plot_events<span class="token punctuation">(</span>events<span class="token punctuation">,</span> event_id<span class="token operator">=</span>event_dict<span class="token punctuation">,</span> sfreq<span class="token operator">=</span>raw<span class="token punctuation">.</span>info<span class="token punctuation">[</span><span class="token string">'sfreq'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                          first_samp<span class="token operator">=</span>raw<span class="token punctuation">.</span>first_samp<span class="token punctuation">)</span>
+</code></pre>
+<pre><code>findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+</code></pre>
+<p><img src="/images/20201211134435.png" alt="png"></p>
+<p>对于与事件无关的范例（例如，对静止状态数据的分析），可以通过使用<a href="https://mne.tools/dev/generated/mne.make_fixed_length_events.html#mne.make_fixed_length_events" target="_blank" rel="noopener external nofollow noreferrer">mne.make_fixed_length_events</a>创建事件。</p>
+<h2 id="从连续数据到Epochs-时间段"><a href="#从连续数据到Epochs-时间段" class="headerlink" title="从连续数据到Epochs(时间段)"></a>从连续数据到Epochs(时间段)</h2><p>Raw对象和events数组是创建Epochs对象所需的基本要求，该对象是我们使用Epochs类构造函数创建的。 在这里，我们还将指定一些数据质量限制：我们将拒绝峰峰值信号幅度超出该通道类型合理限制的任何时期。 这是通过拒绝字典完成的； 您可以为数据中存在的任何渠道类型添加或忽略阈值。 此处给出的值对于此特定数据集是合理的，但可能需要针对不同的硬件或记录条件进行调整。 想要使用更自动化的方法，请考虑使用autoreject软件包。</p>
+<pre class=" language-python"><code class="language-python">reject_criteria <span class="token operator">=</span> dict<span class="token punctuation">(</span>mag<span class="token operator">=</span><span class="token number">4000e</span><span class="token operator">-</span><span class="token number">15</span><span class="token punctuation">,</span>     <span class="token comment" spellcheck="true"># 4000 fT</span>
+                       grad<span class="token operator">=</span><span class="token number">4000e</span><span class="token operator">-</span><span class="token number">13</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true"># 4000 fT/cm</span>
+                       eeg<span class="token operator">=</span><span class="token number">150e</span><span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">,</span>       <span class="token comment" spellcheck="true"># 150 µV</span>
+                       eog<span class="token operator">=</span><span class="token number">250e</span><span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">)</span>       <span class="token comment" spellcheck="true"># 250 µV</span>
+</code></pre>
+<p>我们还将事件字典作为event_id参数传递（因此我们可以使用易于合并的事件标签，而不是整数事件ID），并指定tmin和tmax（相对于每个事件开始的时间和结束）。 如上所述，默认情况下，并没有将Raw和Epochs数据加载到内存中（仅在需要时才从磁盘访问它们），但是在这里，我们将使用preload = True参数强制将其加载到内存中，以便我们可以看到结果所使用的拒绝标准：</p>
+<pre class=" language-python"><code class="language-python">epochs <span class="token operator">=</span> mne<span class="token punctuation">.</span>Epochs<span class="token punctuation">(</span>raw<span class="token punctuation">,</span> events<span class="token punctuation">,</span> event_id<span class="token operator">=</span>event_dict<span class="token punctuation">,</span> tmin<span class="token operator">=</span><span class="token operator">-</span><span class="token number">0.2</span><span class="token punctuation">,</span> tmax<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span>
+                    reject<span class="token operator">=</span>reject_criteria<span class="token punctuation">,</span> preload<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Not setting metadata
+Not setting metadata
+319 matching events found
+Applying baseline correction (mode: mean)
+Created an SSP operator (subspace dimension = 4)
+4 projection items activated
+Loading data for 319 events and 106 original time points ...
+    Rejecting  epoch based on EOG : [&#39;EOG 061&#39;]
+    Rejecting  epoch based on EOG : [&#39;EOG 061&#39;]
+    Rejecting  epoch based on MAG : [&#39;MEG 1711&#39;]
+    Rejecting  epoch based on EOG : [&#39;EOG 061&#39;]
+    Rejecting  epoch based on EOG : [&#39;EOG 061&#39;]
+    Rejecting  epoch based on MAG : [&#39;MEG 1711&#39;]
+    Rejecting  epoch based on EEG : [&#39;EEG 008&#39;]
+    Rejecting  epoch based on EOG : [&#39;EOG 061&#39;]
+    Rejecting  epoch based on EOG : [&#39;EOG 061&#39;]
+    Rejecting  epoch based on EOG : [&#39;EOG 061&#39;]
+10 bad epochs dropped
+</code></pre>
+<p>接下来，我们将在左右刺激演示中进行汇总，以便我们可以比较听觉和视觉反应。 为避免信号向左或向右偏移，我们将首先使用equalize_event_counts从每个条件中随机采样时间段，以匹配条件中出现的具有最少良好时间段的时间段数。</p>
+<pre class=" language-python"><code class="language-python">conds_we_care_about <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'auditory/left'</span><span class="token punctuation">,</span> <span class="token string">'auditory/right'</span><span class="token punctuation">,</span>
+                       <span class="token string">'visual/left'</span><span class="token punctuation">,</span> <span class="token string">'visual/right'</span><span class="token punctuation">]</span>
+epochs<span class="token punctuation">.</span>equalize_event_counts<span class="token punctuation">(</span>conds_we_care_about<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># this operates in-place</span>
+aud_epochs <span class="token operator">=</span> epochs<span class="token punctuation">[</span><span class="token string">'auditory'</span><span class="token punctuation">]</span>
+vis_epochs <span class="token operator">=</span> epochs<span class="token punctuation">[</span><span class="token string">'visual'</span><span class="token punctuation">]</span>
+<span class="token keyword">del</span> raw<span class="token punctuation">,</span> epochs  <span class="token comment" spellcheck="true"># free up memory</span>
+</code></pre>
+<pre><code>Dropped 7 epochs: 121, 195, 258, 271, 273, 274, 275
+</code></pre>
+<p>与原始对象一样，Epochs对象也有许多内置的打印方法。一种是plot_image，它将每个epochs显示为图像地图的一行，颜色代表信号大小；图像下方显示了平均诱发响应和传感器位置.</p>
+<pre class=" language-python"><code class="language-python">aud_epochs<span class="token punctuation">.</span>plot_image<span class="token punctuation">(</span>picks<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'MEG 1332'</span><span class="token punctuation">,</span> <span class="token string">'EEG 021'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Not setting metadata
+Not setting metadata
+136 matching events found
+No baseline correction applied
+0 projection items activated
+0 bad epochs dropped
+Not setting metadata
+Not setting metadata
+136 matching events found
+No baseline correction applied
+0 projection items activated
+0 bad epochs dropped
+</code></pre>
+<p><img src="/images/20201211134436.png" alt="png"></p>
+<p><img src="/images/20201211134437.png" alt="png"></p>
+<pre><code>[&lt;Figure size 1800x1200 with 4 Axes&gt;, &lt;Figure size 1800x1200 with 4 Axes&gt;]
+</code></pre>
+<blockquote>
+<p>注意 Raw和Epochs对象都具有get_data方法，这些方法将基础数据作为NumPy数组返回。 两种方法都有一个picks参数，用于选择要返回的通道。raw.get_data（）具有用于限制时域的其他参数。 所得矩阵的原始尺寸为（n_channels，n_times），Epochs为（n_epochs，n_channels，n_times）。</p>
+</blockquote>
+<h2 id="时频分析"><a href="#时频分析" class="headerlink" title="时频分析"></a>时频分析</h2><p>mne.time_frequency子模块提供了几种算法的实现，以计算时频表示，功率谱密度和互谱密度。 例如，在这里，我们将使用Morlet小波为听觉时期计算不同频率和时间的感应功率。 在此数据集上，结果并不是特别有用（它仅显示诱发的“听觉N100”响应）； 有关具有更丰富频率内容的数据集的更多扩展示例，请参见<a href="https://mne.tools/dev/auto_tutorials/time-freq/plot_sensors_time_frequency.html#inter-trial-coherence" target="_blank" rel="noopener external nofollow noreferrer">此处</a>。</p>
+<pre class=" language-python"><code class="language-python">frequencies <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+power <span class="token operator">=</span> mne<span class="token punctuation">.</span>time_frequency<span class="token punctuation">.</span>tfr_morlet<span class="token punctuation">(</span>aud_epochs<span class="token punctuation">,</span> n_cycles<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> return_itc<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+                                      freqs<span class="token operator">=</span>frequencies<span class="token punctuation">,</span> decim<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+_<span class="token operator">=</span>power<span class="token punctuation">.</span>plot<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'MEG 1332'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Removing projector &lt;Projection | PCA-v1, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v2, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v3, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | Average EEG reference, active : True, n_channels : 60&gt;
+Removing projector &lt;Projection | PCA-v1, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v2, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v3, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | Average EEG reference, active : True, n_channels : 60&gt;
+No baseline correction applied
+</code></pre>
+<p><img src="/images/20201211134438.png" alt="png"></p>
+<h2 id="诱发反应"><a href="#诱发反应" class="headerlink" title="诱发反应"></a>诱发反应</h2><p>现在，我们已经把ud_epochs和vis_epochs区分开了。可以通过将每个条件下的epochs平均在一起，来估计对听觉与视觉刺激的诱发反应。这就像在Epochs对象上调用average方法，然后使用mne.viz模块中的函数来比较两个Evoked对象的每种传感器类型的全局场功率一样简单.</p>
+<pre class=" language-python"><code class="language-python">aud_evoked <span class="token operator">=</span> aud_epochs<span class="token punctuation">.</span>average<span class="token punctuation">(</span><span class="token punctuation">)</span>
+vis_evoked <span class="token operator">=</span> vis_epochs<span class="token punctuation">.</span>average<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+mne<span class="token punctuation">.</span>viz<span class="token punctuation">.</span>plot_compare_evokeds<span class="token punctuation">(</span>dict<span class="token punctuation">(</span>auditory<span class="token operator">=</span>aud_evoked<span class="token punctuation">,</span> visual<span class="token operator">=</span>vis_evoked<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                             legend<span class="token operator">=</span><span class="token string">'upper left'</span><span class="token punctuation">,</span> show_sensors<span class="token operator">=</span><span class="token string">'upper right'</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Multiple channel types selected, returning one figure per type.
+combining channels using &quot;gfp&quot;
+combining channels using &quot;gfp&quot;
+</code></pre>
+<p><img src="/images/20201211134439.png" alt="png"></p>
+<pre><code>combining channels using &quot;gfp&quot;
+combining channels using &quot;gfp&quot;
+</code></pre>
+<p><img src="/images/20201211134440.png" alt="png"></p>
+<pre><code>combining channels using &quot;gfp&quot;
+combining channels using &quot;gfp&quot;
+</code></pre>
+<p><img src="/images/20201211134441.png" alt="png"></p>
+<pre><code>[&lt;Figure size 2400x1800 with 2 Axes&gt;,
+ &lt;Figure size 2400x1800 with 2 Axes&gt;,
+ &lt;Figure size 2400x1800 with 2 Axes&gt;]
+</code></pre>
+<p>我们还可以使用诸如plot_joint或plot_topomap之类的其他绘图方法来获得每个被唤起对象的更详细视图。 在这里，我们将仅检查EEG通道，并在背侧额电极上看到经典的听觉诱发N100-P200模式，然后在任意其他时间绘制脑地形图。</p>
+<pre class=" language-python"><code class="language-python">aud_evoked<span class="token punctuation">.</span>plot_joint<span class="token punctuation">(</span>picks<span class="token operator">=</span><span class="token string">'eeg'</span><span class="token punctuation">)</span>
+_<span class="token operator">=</span>aud_evoked<span class="token punctuation">.</span>plot_topomap<span class="token punctuation">(</span>times<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">0.08</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">0.12</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ch_type<span class="token operator">=</span><span class="token string">'eeg'</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Projections have already been applied. Setting proj attribute to True.
+Removing projector &lt;Projection | PCA-v1, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v2, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v3, active : True, n_channels : 102&gt;
+</code></pre>
+<p><img src="/images/20201211134442.png" alt="png"></p>
+<pre><code>Removing projector &lt;Projection | PCA-v1, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v2, active : True, n_channels : 102&gt;
+Removing projector &lt;Projection | PCA-v3, active : True, n_channels : 102&gt;
+
+
+findfont: Font family [&#39;sans-serif&#39;] not found. Falling back to DejaVu Sans.
+</code></pre>
+<p><img src="/images/20201211134443.png" alt="png"></p>
+<p>使用mne.combine_evoked函数，还可以将evokes对象组合在一起以显示条件之间的对比。 通过传递权重= [1，-1]可以产生一个简单的差异。 然后，我们使用plot_topo在每个传感器上绘制差异波：</p>
+<pre class=" language-python"><code class="language-python">evoked_diff <span class="token operator">=</span> mne<span class="token punctuation">.</span>combine_evoked<span class="token punctuation">(</span><span class="token punctuation">[</span>aud_evoked<span class="token punctuation">,</span> vis_evoked<span class="token punctuation">]</span><span class="token punctuation">,</span> weights<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+_<span class="token operator">=</span>evoked_diff<span class="token punctuation">.</span>pick_types<span class="token punctuation">(</span>meg<span class="token operator">=</span><span class="token string">'mag'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>plot_topo<span class="token punctuation">(</span>color<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">,</span> legend<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+</code></pre>
+<pre><code>Removing projector &lt;Projection | Average EEG reference, active : True, n_channels : 60&gt;
+</code></pre>
+<p><img src="/images/20201211134444.png" alt="png"></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">青椒</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zhkgo.github.io/2020/12/11/overview/">https://zhkgo.github.io/2020/12/11/overview/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本笔记所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">青椒</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                                    <span class="chip bg-color">脑电信号</span>
+                                </a>
+                            
+                                <a href="/tags/mne/">
+                                    <span class="chip bg-color">mne</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/01/05/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E5%A4%8D%E4%B9%A0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="模式识别复习押题">
+                        
+                        <span class="card-title">模式识别复习押题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            人工智能与模式识别
+简答题 共5小题，每小题10分
+计算题（包括公式推导）,共四小题，每小题10分
+论述题 共1小题，10分
+
+简答题
+在机器学习中，样本是指什么？类或者类别又指什么？简述机器学习的核心思想及其学习过程。
+
+简述正态分布概率
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%A4%8D%E4%B9%A0/">
+                        <span class="chip bg-color">复习</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB/">
+                        <span class="chip bg-color">模式识别</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/11/25/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E8%AE%BA%E6%96%87%E7%BB%98%E5%9B%BE/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="利用python进行论文绘图系列之一">
+                        
+                        <span class="card-title">利用python进行论文绘图系列之一</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+为了便于自己查找以前的一些绘图代码，对绘图代码进行了整理，放到自己的博客上来。
+
+通用的头文件引入与设置import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BB%98%E5%9B%BE/">
+                        <span class="chip bg-color">绘图</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 青椒的学习笔记<br />'
+            + '文章作者: 青椒<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归zhanghangkui所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="1986979130"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='1'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">青椒</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" rel="external nofollow noreferrer" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" rel="external nofollow noreferrer" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">53.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zhkgo" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:896378080@qq.com" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=896378080" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 896378080" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

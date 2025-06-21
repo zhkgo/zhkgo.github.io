@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>青椒的学习笔记</title>
+  
+  <subtitle>路在前方</subtitle>
+  <link href="https://zhkgo.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://zhkgo.github.io/"/>
+  <updated>2025-06-21T16:30:27.717Z</updated>
+  <id>https://zhkgo.github.io/</id>
+  
+  <author>
+    <name>青椒</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>菜鸟的祖玛通关之路</title>
+    <link href="https://zhkgo.github.io/2024/11/20/passzuma/"/>
+    <id>https://zhkgo.github.io/2024/11/20/passzuma/</id>
+    <published>2024-11-20T14:12:00.000Z</published>
+    <updated>2025-06-21T16:30:27.717Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;最近忽然想体验一下老游戏，正好看到了一个绝版游戏保护工程里面有个祖玛游戏，想回忆一下童年就玩了一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;游戏规则&quot;&gt;&lt;a href=&quot;#游戏规则&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="游戏" scheme="https://zhkgo.github.io/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+    <category term="祖玛" scheme="https://zhkgo.github.io/tags/%E7%A5%96%E7%8E%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpaceSniffer导出sns文件存储格式分析</title>
+    <link href="https://zhkgo.github.io/2024/04/30/snsData/"/>
+    <id>https://zhkgo.github.io/2024/04/30/snsData/</id>
+    <published>2024-04-29T16:00:00.000Z</published>
+    <updated>2025-06-21T16:30:27.721Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在处理大型软件系统时，我们经常需要分析系统运行时的内存分布，了解哪些数据结构占用了大量内存。虽然可以通过数值进行观察，但这并不直观。这时，我想到了SpaceSniffer这款软件。SpaceSniffer主要用于磁盘空间的管理和可视化，它使用tre</summary>
+        
+      
+    
+    
+    
+    
+    <category term="逆向工程" scheme="https://zhkgo.github.io/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+    <category term="spaceSniffer" scheme="https://zhkgo.github.io/tags/spaceSniffer/"/>
+    
+    <category term="内存可视化" scheme="https://zhkgo.github.io/tags/%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>war3小助手</title>
+    <link href="https://zhkgo.github.io/2024/01/17/war3helper/"/>
+    <id>https://zhkgo.github.io/2024/01/17/war3helper/</id>
+    <published>2024-01-17T13:27:57.000Z</published>
+    <updated>2025-06-21T16:30:27.724Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前段时间在09平台打dota</summary>
+        
+      
+    
+    
+    
+    
+    <category term="war3" scheme="https://zhkgo.github.io/tags/war3/"/>
+    
+    <category term="cheatEngine" scheme="https://zhkgo.github.io/tags/cheatEngine/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的服务器居然变巨慢？</title>
+    <link href="https://zhkgo.github.io/2023/03/11/serversoslow/"/>
+    <id>https://zhkgo.github.io/2023/03/11/serversoslow/</id>
+    <published>2023-03-11T14:48:20.000Z</published>
+    <updated>2025-06-21T16:30:27.720Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;今天在使用自己的网页时，忽然发现自己的服务器访问网页资源变得极其之慢，以致于不能正常使用。于是便开始排查原因。结果就是多数时候遇到的“就这？”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;首先，我需要确定是网络问题还是CPU负载问题，于是我通过netstat和top命令进行了确</summary>
+        
+      
+    
+    
+    
+    
+    <category term="linux" scheme="https://zhkgo.github.io/tags/linux/"/>
+    
+    <category term="网络安全" scheme="https://zhkgo.github.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅探C++返回局部对象的过程</title>
+    <link href="https://zhkgo.github.io/2022/09/15/cppreturn/"/>
+    <id>https://zhkgo.github.io/2022/09/15/cppreturn/</id>
+    <published>2022-09-15T02:01:59.000Z</published>
+    <updated>2022-09-15T03:24:50.584Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;之前学习到过在返回值的时候,c++会在返回局部对象的时候进行返回值优化，现在想通过实践来一谈究竟。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;右值引用-第一层&quot;&gt;&lt;a href=&quot;#右值引用-第一层&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="cpp" scheme="https://zhkgo.github.io/tags/cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>再战脑控机器人大赛</title>
+    <link href="https://zhkgo.github.io/2022/09/02/bcicontest2/"/>
+    <id>https://zhkgo.github.io/2022/09/02/bcicontest2/</id>
+    <published>2022-09-02T11:48:42.000Z</published>
+    <updated>2025-06-21T16:30:27.705Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;第二年也是我最后一年参加这个比赛了，感谢实验室每年都对我们参加比赛给予精神和经费上的大力支持。去年收获优秀算法经验，今年收获脑机图灵测试赛题冠军，综合并列第三名，也和其他赛队交流了更多算法。</summary>
+        
+      
+    
+    
+    
+    
+    <category term="世界机器人大赛" scheme="https://zhkgo.github.io/tags/%E4%B8%96%E7%95%8C%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9B/"/>
+    
+    <category term="脑控机器人" scheme="https://zhkgo.github.io/tags/%E8%84%91%E6%8E%A7%E6%9C%BA%E5%99%A8%E4%BA%BA/"/>
+    
+    <category term="腾讯云杯" scheme="https://zhkgo.github.io/tags/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9D%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>链表中是否有环？</title>
+    <link href="https://zhkgo.github.io/2022/08/27/loopinlinklist/"/>
+    <id>https://zhkgo.github.io/2022/08/27/loopinlinklist/</id>
+    <published>2022-08-27T14:03:08.000Z</published>
+    <updated>2022-08-27T15:30:07.100Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;怎么做？&quot;&gt;&lt;a href=&quot;#怎么做？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="链表" scheme="https://zhkgo.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+    <category term="判环" scheme="https://zhkgo.github.io/tags/%E5%88%A4%E7%8E%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简易Shell实现</title>
+    <link href="https://zhkgo.github.io/2022/05/30/easyshell/"/>
+    <id>https://zhkgo.github.io/2022/05/30/easyshell/</id>
+    <published>2022-05-30T11:53:57.000Z</published>
+    <updated>2025-06-15T11:16:59.977Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h2&gt;&lt;p&gt;np&lt;br&gt;实现了一个简单的shell,  主要通过C语言来实现。&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="cpp" scheme="https://zhkgo.github.io/tags/cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>魔兽世界之开战-代码实现</title>
+    <link href="https://zhkgo.github.io/2022/05/05/worldofwarcraft3/"/>
+    <id>https://zhkgo.github.io/2022/05/05/worldofwarcraft3/</id>
+    <published>2022-05-05T14:03:50.000Z</published>
+    <updated>2025-06-15T16:08:12.449Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;回忆起之前上过北大郭炜老师的课程，里面有个大作业借用了魔兽世界的一些IP,设计了一个类似红蓝双方对战的场景,正好自己写C++算法多，但是做项目少，就再次写一下这个作业，并且把每个模块抽离出来制作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="cpp" scheme="https://zhkgo.github.io/tags/cpp/"/>
+    
+    <category term="魔兽世界" scheme="https://zhkgo.github.io/tags/%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>总结三场笔试</title>
+    <link href="https://zhkgo.github.io/2022/04/17/programTest/"/>
+    <id>https://zhkgo.github.io/2022/04/17/programTest/</id>
+    <published>2022-04-17T12:14:44.000Z</published>
+    <updated>2022-05-29T14:23:16.612Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;蚂蚁笔试&quot;&gt;&lt;a href=&quot;#蚂蚁笔试&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="cpp" scheme="https://zhkgo.github.io/tags/cpp/"/>
+    
+    <category term="求职" scheme="https://zhkgo.github.io/tags/%E6%B1%82%E8%81%8C/"/>
+    
+    <category term="hide" scheme="https://zhkgo.github.io/tags/hide/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>查漏补缺之C++11</title>
+    <link href="https://zhkgo.github.io/2022/04/09/interviewCheck/"/>
+    <id>https://zhkgo.github.io/2022/04/09/interviewCheck/</id>
+    <published>2022-04-09T12:46:02.000Z</published>
+    <updated>2022-04-10T13:52:58.932Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;面试杭州某互联网大厂的时候被问了一些C++11的问题，发现还有一些不熟悉的名词和特性，在这边就补充一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;std-atomic&quot;&gt;&lt;a href=&quot;#std-atomic&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="cpp" scheme="https://zhkgo.github.io/tags/cpp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>章的碎碎念</title>
+    <link href="https://zhkgo.github.io/2022/04/01/reflection20220401/"/>
+    <id>https://zhkgo.github.io/2022/04/01/reflection20220401/</id>
+    <published>2022-04-01T11:52:49.000Z</published>
+    <updated>2025-06-15T11:17:08.327Z</updated>
+    
+    
+    <summary type="html">Welcome to my blog, enter password to read.</summary>
+    
+    
+    
+    
+    <category term="碎碎念" scheme="https://zhkgo.github.io/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>力扣刷题纪念</title>
+    <link href="https://zhkgo.github.io/2022/03/30/leetcoderecord/"/>
+    <id>https://zhkgo.github.io/2022/03/30/leetcoderecord/</id>
+    <published>2022-03-30T12:19:35.000Z</published>
+    <updated>2025-06-21T16:30:27.711Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;之前大一的时候就感觉到纯粹刷题的乐趣，后来因为各种各样的因素，学校对各类程序设计竞赛的支持力度也不是特别大，就放弃了。后来在研究生继续找回了这个乐趣。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;说起在力扣刷题也有一段时间了，一开始觉得题目不会特别难</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法题" scheme="https://zhkgo.github.io/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++系统编程复习</title>
+    <link href="https://zhkgo.github.io/2022/01/29/cpplearnConclusion/"/>
+    <id>https://zhkgo.github.io/2022/01/29/cpplearnConclusion/</id>
+    <published>2022-01-29T06:57:14.000Z</published>
+    <updated>2022-05-29T14:24:32.896Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;Q1-C-静态库和动态库的区别&quot;&gt;&lt;a href=&quot;#Q1-C-静态库和动态库的区别&quot; class=&quot;headerlink&quot; title=&quot;Q1 C++静态库和动态库的区别?&quot;&gt;&lt;/a&gt;Q1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="cpp" scheme="https://zhkgo.github.io/tags/cpp/"/>
+    
+    <category term="Linux系统编程" scheme="https://zhkgo.github.io/tags/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>金发姑娘和N头牛</title>
+    <link href="https://zhkgo.github.io/2022/01/13/ac1952/"/>
+    <id>https://zhkgo.github.io/2022/01/13/ac1952/</id>
+    <published>2022-01-13T13:18:00.000Z</published>
+    <updated>2025-06-15T10:36:00.979Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;原题链接&quot;&gt;&lt;a href=&quot;#原题链接&quot; class=&quot;headerlink&quot; title=&quot;原题链接&quot;&gt;&lt;/a&gt;原题链接&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://www.acwing.com/problem/content/1954/&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法" scheme="https://zhkgo.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="差分" scheme="https://zhkgo.github.io/tags/%E5%B7%AE%E5%88%86/"/>
+    
+    <category term="离散化" scheme="https://zhkgo.github.io/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>欧式空间对齐的迁移学习[论文复现]</title>
+    <link href="https://zhkgo.github.io/2021/09/28/eafuxian/"/>
+    <id>https://zhkgo.github.io/2021/09/28/eafuxian/</id>
+    <published>2021-09-28T06:37:17.000Z</published>
+    <updated>2025-06-21T16:30:27.707Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前段时间发现华科的迁移学习有点东西，就找了他们的论文来复现一下。&lt;br&gt;《Transfer Learning for Brain-Computer Interfaces: A Euclidean Space Data Alignment</summary>
+        
+      
+    
+    
+    
+    
+    <category term="迁移学习" scheme="https://zhkgo.github.io/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="论文复现" scheme="https://zhkgo.github.io/tags/%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/"/>
+    
+    <category term="RSVP" scheme="https://zhkgo.github.io/tags/RSVP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>世界机器人大赛——脑控机器人参赛感想</title>
+    <link href="https://zhkgo.github.io/2021/09/16/bcicontest/"/>
+    <id>https://zhkgo.github.io/2021/09/16/bcicontest/</id>
+    <published>2021-09-16T06:11:20.000Z</published>
+    <updated>2025-06-21T16:30:27.695Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;经历了两个月的初赛和延期的决赛，最终结果虽然不是特别满意，但也算人生的一个经历。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;初赛&quot;&gt;&lt;a href=&quot;#初赛&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="世界机器人大赛" scheme="https://zhkgo.github.io/tags/%E4%B8%96%E7%95%8C%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9B/"/>
+    
+    <category term="脑控机器人" scheme="https://zhkgo.github.io/tags/%E8%84%91%E6%8E%A7%E6%9C%BA%E5%99%A8%E4%BA%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>双脑协同RSVP目标检测</title>
+    <link href="https://zhkgo.github.io/2021/09/16/paper/"/>
+    <id>https://zhkgo.github.io/2021/09/16/paper/</id>
+    <published>2021-09-16T01:45:18.000Z</published>
+    <updated>2025-06-21T16:30:27.715Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;如今计算机视觉的目标检测发展的如火如荼，但是相比于人脑的强大认知能力依旧不容忽视。与计算机视觉相比，人的视觉可以理解图像的高级语义，从光照、姿态以及背景变化很大的场景中识别目标的物体。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="RSVP" scheme="https://zhkgo.github.io/tags/RSVP/"/>
+    
+    <category term="双脑" scheme="https://zhkgo.github.io/tags/%E5%8F%8C%E8%84%91/"/>
+    
+    <category term="事件相关电位" scheme="https://zhkgo.github.io/tags/%E4%BA%8B%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%94%B5%E4%BD%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记录第一次SCI投稿</title>
+    <link href="https://zhkgo.github.io/2021/09/04/journalsubmit/"/>
+    <id>https://zhkgo.github.io/2021/09/04/journalsubmit/</id>
+    <published>2021-09-04T13:03:06.000Z</published>
+    <updated>2021-09-05T06:13:46.104Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;记录一下第一篇一作SCI从20年12月写好开始的经历…&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;12月初稿完成。&lt;/li&gt;
+&lt;li&gt;12月根据导师意见修改若干次。&lt;/li&gt;
+&lt;li&gt;1月自行修改若干次。&lt;/li&gt;
+&lt;li&gt;2月根据导师</summary>
+        
+      
+    
+    
+    
+    
+    <category term="期刊论文" scheme="https://zhkgo.github.io/tags/%E6%9C%9F%E5%88%8A%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文图片</title>
+    <link href="https://zhkgo.github.io/2021/05/18/paperImage/"/>
+    <id>https://zhkgo.github.io/2021/05/18/paperImage/</id>
+    <published>2021-05-18T13:27:57.000Z</published>
+    <updated>2024-01-17T12:50:47.629Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;最近和W博交流，看了一下他发的顶会论文，发现了一些绘图的小tricks。有感而发。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一般会发现比较好的期刊上的图中，文字都是能选中的，而且非常清晰。这些不是纯粹图片格式，这种一般都是矢量图。我之前虽然知道这</summary>
+        
+      
+    
+    
+    
+    
+    <category term="绘图" scheme="https://zhkgo.github.io/tags/%E7%BB%98%E5%9B%BE/"/>
+    
+    <category term="python" scheme="https://zhkgo.github.io/tags/python/"/>
+    
+  </entry>
+  
+</feed>

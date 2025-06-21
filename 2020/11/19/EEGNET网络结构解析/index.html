@@ -1,0 +1,1161 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="EEGNET网络结构解析与复现, 青椒的学习笔记">
+    <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>EEGNET网络结构解析与复现 | 青椒的学习笔记</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="青椒的学习笔记" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">青椒的学习笔记</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">青椒的学习笔记</div>
+        <div class="logo-desc">
+            
+            俗人一个。贪财有道,好色有品,博学有识,读书有瘾
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zhkgo/zhkgo.github.io" rel="external nofollow noreferrer" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zhkgo/zhkgo.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/20201119100354.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">EEGNET网络结构解析与复现</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                                <span class="chip bg-color">脑电信号</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
+                            </a>
+                        
+                            <a href="/tags/paddlepaddle/">
+                                <span class="chip bg-color">paddlepaddle</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-11-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>脑机接口(BCI)使用神经活动作为控制信号，实现与计算机的直接通信。这种神经信号通常是从各种研究透彻的脑电图(EEG)信号中挑选出来的。卷积神经网络(CNN)主要用来自动特征提取和分类，其在计算机视觉和语音识别领域中的使用已经很广泛。CNN已成功应用于基于EEG的BCI；但是，CNN主要应用于单个BCI范式，在其他范式中的使用比较少，论文作者提出是否可以设计一个CNN架构来准确分类来自不同BCI范式的EEG信号，同时尽可能地紧凑(定义为模型中的参数数量)。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在后面的讲述中以单个脑电图为例，追寻单个脑电图在EEGNet中的变化。C表示channel即通道数，T表示times,准确的说是对应样本的采样点数量。</p>
+<h2 id="第一部分-时间卷积"><a href="#第一部分-时间卷积" class="headerlink" title="第一部分 时间卷积"></a>第一部分 时间卷积</h2><p><img src="/images/20201119100544.png" alt="时间卷积模块"><br>这一部分主要用了F1个(1,64)的卷积核，对时间层面进行了卷积，其填充方式为’same’故最终时间维度的长度没有变。其张量变换如下。</p>
+<ul>
+<li>输入张量(1,C,T)</li>
+<li>卷积核形状(1,64)</li>
+<li>卷积核数量F1</li>
+<li>卷积核参数F1*64</li>
+<li>输出张量(F1,C,T)</li>
+<li>BatchNorm</li>
+</ul>
+<p>这一层对时间上的信息进行了融合，提取了F1种时间维度上的信息。</p>
+<h2 id="第二部分-空间卷积"><a href="#第二部分-空间卷积" class="headerlink" title="第二部分 空间卷积"></a>第二部分 空间卷积</h2><p><img src="/images/20201119101441.png" alt="空间卷积"><br>这一部分有一个非常有意思的东西，叫做深度卷积(Depthwise Convolution)，在接触EEGNet之前我对深度卷积也是只闻其声不见其人。深入了解了它后面的产物深度可分离卷积，再次感叹前人的智慧无穷，还得多看论文。它卷积核的形状是(C,1)负责对各个空间(不同位置电极的输入)的信息进行整合，填充方式选择了”valid”。其张量变换如下。</p>
+<ul>
+<li>输入张量(F1,C,T)</li>
+<li>卷积核形状(C,1)</li>
+<li>卷积核数量 D*F1</li>
+<li>卷积核的参数 C<em>D</em>F1</li>
+<li>输出张量(D*F1,1,T)</li>
+<li>BatchNorm</li>
+</ul>
+<p>这边有个相较于普通卷积不同的地方，普通卷积从F1个核变化到D<em>F1个核需要 F1</em>D <em>F1个卷积核。而深度卷积只用了D</em>F1个卷积核。其区别在哪里呢？得到的信息又会有什么不同呢？下面就来带大家看看二者的区别。</p>
+<h3 id="普通卷积"><a href="#普通卷积" class="headerlink" title="普通卷积"></a>普通卷积</h3><p><img src="/images/20201119102527.png" alt="普通卷积图"></p>
+<p>从图中可以看到，普通卷积的每个通道都要经过一个不一样的卷积核卷积，然后对得到的所有得到的数据进行相加得到一个新的通道。也就是说普通卷积得到新一层的每个通道都整合了上一层网络中所有通道的信息。<br>对于每个输出的通道都需要一组与原通道数量相同的卷积核来进行卷积。</p>
+<h3 id="深度卷积"><a href="#深度卷积" class="headerlink" title="深度卷积"></a>深度卷积</h3><p><img src="/images/20201119103151.png" alt="深度卷积图"></p>
+<p>从图中可以看出，深度卷积的每个通道在经过卷积核之后，没有相加的操作，也就是说一个输出的通道对应一个输入的通道，当然也可以多个输出的通道对应一个输入的通道，在EEGNet里面就有体现，深度卷积里面D就是说D个输出的通道对应一个输入的通道。换句话说，我们对同一个通道进行了D次信息提取。</p>
+<h3 id="在EEGNet的实例中对比"><a href="#在EEGNet的实例中对比" class="headerlink" title="在EEGNet的实例中对比"></a>在EEGNet的实例中对比</h3><p><img src="/images/20201119104216.png" alt="深度卷积与普通卷积的区别，图来我自己的内部交流PPT"></p>
+<h3 id="激活函数与平均池化"><a href="#激活函数与平均池化" class="headerlink" title="激活函数与平均池化"></a>激活函数与平均池化</h3><p>经过激活函数ELU并且平均池化。<br><img src="/images/20201119104620.png" alt="激活函数ELU"><br>张量变换如下</p>
+<ul>
+<li>输入张量(D*F1,1,T)</li>
+<li>池化形状(1,4)</li>
+<li>池化步长(1,4)</li>
+<li>Dropout p=0.25,p=0.5</li>
+<li>输出张量(D*F1,1,T//4)</li>
+</ul>
+<h2 id="第三部分-深度可分离卷积"><a href="#第三部分-深度可分离卷积" class="headerlink" title="第三部分 深度可分离卷积"></a>第三部分 深度可分离卷积</h2><p>EEGNet论文中结构如下。<br><img src="/images/20201119105150.png" alt="可分离卷积概览"></p>
+<p>假设我们现在的目标是从三个通道转换到四个通道。</p>
+<h3 id="普通卷积-1"><a href="#普通卷积-1" class="headerlink" title="普通卷积"></a>普通卷积</h3><p>普通卷积的操作是下面这样的。<br><img src="/images/20201119105317.png" alt="普通卷积"><br>前面有提到，每个输出通道对应一组卷积核，总共需要4<em>3个共12个3</em>3卷积核。</p>
+<h3 id="深度可分离卷积"><a href="#深度可分离卷积" class="headerlink" title="深度可分离卷积"></a>深度可分离卷积</h3><p>这个卷积分成两步。第一步就是前面提到的深度卷积，第二步就是带有1*1卷积核的普通卷积。<br><img src="/images/20201119103151.png" alt="第一步 深度卷积"><br>如果仅仅只走第一步，那么存在两个问题。首先，输出通道的数量不对，我们的目标是要4个通道，但是它只有3个通道；其次，输出通道只包含了对应输入通道的信息，没有包含所有输入通道的信息，没有起到信息整合的作用。所以第二步就显得尤为重要。</p>
+<p><img src="/images/20201119110040.png" alt="第二步 1*1卷积"><br>引入了1*1卷积核的普通卷积，对通道的数量进行转换的同时整合了输入通道的信息。</p>
+<h3 id="在EEGNet的实例中对比-1"><a href="#在EEGNet的实例中对比-1" class="headerlink" title="在EEGNet的实例中对比"></a>在EEGNet的实例中对比</h3><p>同样是需要将输入的张量从(D*F1,1,T//4) 转换到(F2,1,T//4)。</p>
+<p>普通卷积所需参数计算如下。</p>
+<ul>
+<li>(1，16)形状卷积核</li>
+<li>F2组卷积核每组D*F1个</li>
+<li>输出张量（F2，1，T//4）</li>
+<li>所需参数F2<em>D</em> F1*16</li>
+</ul>
+<p>深度可分离卷积所需的参数计算如下：</p>
+<ul>
+<li>第一步卷积：</li>
+<li>(1，16)形状卷积核</li>
+<li>D*F1组 每组1个</li>
+<li>输出张量(D*F1，1，T//4)</li>
+<li>所需参数D<em>F1</em>16</li>
+<li>第二步卷积：</li>
+<li>使用（1,1）形状卷积核进行卷积</li>
+<li>F2组卷积核 每组D*F1个</li>
+<li>输出张量（F2，1，T//4）</li>
+<li>所需参数F2<em>D</em> F1<em>1</em>1</li>
+<li>共需参数D<em>F1</em> 16+F2<em>D</em> F1</li>
+</ul>
+<p>把一个乘法变成了加法，从而减少了所需的参数数量。</p>
+<h2 id="剩余部分"><a href="#剩余部分" class="headerlink" title="剩余部分"></a>剩余部分</h2><p>剩下的部分简单说一下，大家也都会。<br>将前面得到的张量归一化，并使用ELU激活函数激活</p>
+<h3 id="池化部分"><a href="#池化部分" class="headerlink" title="池化部分"></a>池化部分</h3><ul>
+<li>输入张量(F2,1,T//4)</li>
+<li>池化形状(1,8)</li>
+<li>池化步长(1,8)</li>
+<li>Dropout p=0.25 or p=0.5</li>
+<li>输出张量(F2,1,T//32)</li>
+</ul>
+<h3 id="全连接层-不含Bias"><a href="#全连接层-不含Bias" class="headerlink" title="全连接层(不含Bias)"></a>全连接层(不含Bias)</h3><ul>
+<li>输入张量(F2,1,T//32)</li>
+<li>Reshape To(F2*(T//32))</li>
+<li>输出张量N（class_num）</li>
+<li>所需参数数量N<em>F2</em>(T//32)</li>
+<li>激活函数Softmax</li>
+</ul>
+<h2 id="复现EEGNet"><a href="#复现EEGNet" class="headerlink" title="复现EEGNet"></a>复现EEGNet</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> paddle<span class="token punctuation">.</span>fluid <span class="token keyword">as</span> fluid
+
+<span class="token keyword">import</span> paddle
+<span class="token keyword">import</span> paddle<span class="token punctuation">.</span>fluid <span class="token keyword">as</span> fluid
+<span class="token keyword">from</span> paddle<span class="token punctuation">.</span>fluid<span class="token punctuation">.</span>dygraph <span class="token keyword">import</span> Pool2D<span class="token punctuation">,</span> Linear<span class="token punctuation">,</span> Dropout<span class="token punctuation">,</span> BatchNorm
+<span class="token keyword">from</span> paddle<span class="token punctuation">.</span>nn <span class="token keyword">import</span> Conv2D
+<span class="token keyword">class</span> <span class="token class-name">EEGNet</span><span class="token punctuation">(</span>fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>Layer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    EEGNet 暂未加入weight正则化 max norm 1 and 0.25
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name_scope<span class="token punctuation">,</span>ch_nums<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span>T<span class="token operator">=</span><span class="token number">250</span><span class="token punctuation">,</span>class_dim<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        构造函数
+        """</span>
+        super<span class="token punctuation">(</span>EEGNet<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>name_scope<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>F1 <span class="token operator">=</span> <span class="token number">16</span>
+        self<span class="token punctuation">.</span>D <span class="token operator">=</span> <span class="token number">2</span>
+        self<span class="token punctuation">.</span>kern <span class="token operator">=</span> <span class="token number">25</span>
+        self<span class="token punctuation">.</span>p <span class="token operator">=</span> <span class="token number">0.25</span> 
+        self<span class="token punctuation">.</span>F2 <span class="token operator">=</span> <span class="token number">16</span><span class="token operator">*</span><span class="token number">2</span> <span class="token comment" spellcheck="true">#self.F1*self.D #可自定义</span>
+        self<span class="token punctuation">.</span>fcin <span class="token operator">=</span>  self<span class="token punctuation">.</span>F2<span class="token operator">*</span><span class="token punctuation">(</span>T<span class="token operator">//</span><span class="token number">32</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true">#第一层 时间卷积</span>
+        self<span class="token punctuation">.</span>conv1 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>F1<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>self<span class="token punctuation">.</span>kern<span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token string">"SAME"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>bn1 <span class="token operator">=</span> BatchNorm<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">)</span>
+        
+        <span class="token comment" spellcheck="true">#第二层 空间卷积</span>
+        self<span class="token punctuation">.</span>conv2 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">,</span>self<span class="token punctuation">.</span>D<span class="token operator">*</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">,</span><span class="token punctuation">(</span>ch_nums<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>padding<span class="token operator">=</span><span class="token string">"VALID"</span><span class="token punctuation">,</span>groups<span class="token operator">=</span>self<span class="token punctuation">.</span>F1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#max norm 1</span>
+        self<span class="token punctuation">.</span>bn2 <span class="token operator">=</span> BatchNorm<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pool2 <span class="token operator">=</span> Pool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_type<span class="token operator">=</span><span class="token string">'avg'</span><span class="token punctuation">)</span>
+        
+        <span class="token comment" spellcheck="true"># clip = fluid.clip.GradientClipByNorm(clip_norm=1.0)</span>
+
+        <span class="token comment" spellcheck="true">#第三层 可分离卷积</span>
+        self<span class="token punctuation">.</span>conv3_1 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">,</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>padding<span class="token operator">=</span><span class="token string">"SAME"</span><span class="token punctuation">,</span>groups<span class="token operator">=</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>conv3_2 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F1<span class="token operator">*</span>self<span class="token punctuation">.</span>D<span class="token punctuation">,</span>self<span class="token punctuation">.</span>F2<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>bn3 <span class="token operator">=</span> BatchNorm<span class="token punctuation">(</span>self<span class="token punctuation">.</span>F2<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pool3 <span class="token operator">=</span> Pool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>pool_type<span class="token operator">=</span><span class="token string">'avg'</span><span class="token punctuation">)</span>
+        
+        self<span class="token punctuation">.</span>fc <span class="token operator">=</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>input_dim<span class="token operator">=</span>self<span class="token punctuation">.</span>fcin<span class="token punctuation">,</span> output_dim<span class="token operator">=</span>class_dim<span class="token punctuation">,</span> act<span class="token operator">=</span><span class="token string">'softmax'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#max norm 0.25</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""前向计算"""</span>
+        <span class="token comment" spellcheck="true"># 第一层</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>bn1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># x=fluid.layers.dropout(x,0.25)</span>
+        <span class="token comment" spellcheck="true"># x=fluid.layers.transpose(x,[0,3,1,2])</span>
+        
+        <span class="token comment" spellcheck="true">#第二层</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>conv2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>bn2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>elu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>pool2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>dropout<span class="token punctuation">(</span>x<span class="token punctuation">,</span>self<span class="token punctuation">.</span>p<span class="token punctuation">)</span>
+        
+        <span class="token comment" spellcheck="true">#第三层</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>conv3_2<span class="token punctuation">(</span>self<span class="token punctuation">.</span>conv3_1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>bn3<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>elu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>self<span class="token punctuation">.</span>pool3<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x<span class="token operator">=</span>fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>dropout<span class="token punctuation">(</span>x<span class="token punctuation">,</span>self<span class="token punctuation">.</span>p<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># 全连接层</span>
+
+        out <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>fcin<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>fc<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> out
+</code></pre>
+<p>对于tensorflow实现的版本，EEGNet论文作者早已给出，也不需要我来给了。这边我用paddlepaddle复现了一下EEGNet，并且在百度的AIStudio上也有公开的项目供大家参考，如果有什么错误的地方也欢迎指出。<br><a href="https://aistudio.baidu.com/aistudio/projectdetail/1153529" target="_blank" rel="noopener external nofollow noreferrer">项目地址</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">青椒</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zhkgo.github.io/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">https://zhkgo.github.io/2020/11/19/EEGNET%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本笔记所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">青椒</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                                    <span class="chip bg-color">脑电信号</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
+                                </a>
+                            
+                                <a href="/tags/paddlepaddle/">
+                                    <span class="chip bg-color">paddlepaddle</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/11/25/%E5%88%A9%E7%94%A8python%E8%BF%9B%E8%A1%8C%E8%AE%BA%E6%96%87%E7%BB%98%E5%9B%BE/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="利用python进行论文绘图系列之一">
+                        
+                        <span class="card-title">利用python进行论文绘图系列之一</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+为了便于自己查找以前的一些绘图代码，对绘图代码进行了整理，放到自己的博客上来。
+
+通用的头文件引入与设置import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BB%98%E5%9B%BE/">
+                        <span class="chip bg-color">绘图</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/10/rsvp20200910/">
+                    <div class="card-image">
+                        
+                        <img src="/images/Snipaste_2020-09-10_15-41-09.jpg" class="responsive-img" alt="用支持向量机处理快速序列视觉呈现的脑电信号">
+                        
+                        <span class="card-title">用支持向量机处理快速序列视觉呈现的脑电信号</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+RSVP(Rapid Serial Visual Presentation,快速序列视觉呈现)是一种基于视觉图像序列刺激的实验范式,本文在处理脑机合作进行目标检测过程中的脑电信号,判断每段脑电信号中是否存在事件相关电位P300。
+
+基本信
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RSVP/">
+                        <span class="chip bg-color">RSVP</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%84%91%E7%94%B5%E4%BF%A1%E5%8F%B7/">
+                        <span class="chip bg-color">脑电信号</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%8B%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%94%B5%E4%BD%8D/">
+                        <span class="chip bg-color">事件相关电位</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 青椒的学习笔记<br />'
+            + '文章作者: 青椒<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归zhanghangkui所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="1986979130"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='1'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">青椒</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" rel="external nofollow noreferrer" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" rel="external nofollow noreferrer" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">53.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zhkgo" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:896378080@qq.com" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=896378080" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 896378080" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

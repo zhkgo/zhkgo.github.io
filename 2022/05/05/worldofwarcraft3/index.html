@@ -1,0 +1,1514 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="魔兽世界之开战-代码实现, 青椒的学习笔记">
+    <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>魔兽世界之开战-代码实现 | 青椒的学习笔记</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="青椒的学习笔记" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">青椒的学习笔记</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">青椒的学习笔记</div>
+        <div class="logo-desc">
+            
+            俗人一个。贪财有道,好色有品,博学有识,读书有瘾
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zhkgo/zhkgo.github.io" rel="external nofollow noreferrer" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zhkgo/zhkgo.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/img20220506152352.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">魔兽世界之开战-代码实现</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/cpp/">
+                                <span class="chip bg-color">cpp</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C/">
+                                <span class="chip bg-color">魔兽世界</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-05-05
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.6k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>回忆起之前上过北大郭炜老师的课程，里面有个大作业借用了魔兽世界的一些IP,设计了一个类似红蓝双方对战的场景,正好自己写C++算法多，但是做项目少，就再次写一下这个作业，并且把每个模块抽离出来制作。</p>
+</blockquote>
+<p><a href="https://github.com/zhkgo/codeTemplate/tree/main/gameMoudle/World_of_Warcraft_3" target="_blank" rel="noopener external nofollow noreferrer">项目地址</a></p>
+<h2 id="具体场景"><a href="#具体场景" class="headerlink" title="具体场景"></a>具体场景</h2><p><strong>描述</strong></p>
+<p>魔兽世界的西面是红魔军的司令部，东面是蓝魔军的司令部。两个司令部之间是依次排列的若干城市，城市从西向东依次编号为1,2,3 …. N ( N &lt;= 20)。红魔军的司令部算作编号为0的城市，蓝魔军的司令部算作编号为N+1的城市。司令部有生命元，用于制造武士。</p>
+<p>两军的司令部都会制造武士。武士一共有dragon 、ninja、iceman、lion、wolf 五种。每种武士都有编号、生命值、攻击力这三种属性。</p>
+<p>双方的武士编号都是从1开始计算。红方制造出来的第n 个武士，编号就是n。同样，蓝方制造出来的第n 个武士，编号也是n。</p>
+<p>武士在刚降生的时候有一个初始的生命值，生命值在战斗中会发生变化，如果生命值减少到0（生命值变为负数时应当做变为0处理），则武士死亡（消失）。</p>
+<p>武士可以拥有武器。武器有三种，sword, bomb,和arrow，编号分别为0,1,2。</p>
+<p>sword的攻击力是使用者当前攻击力的20%(去尾取整)。</p>
+<p>bomb的攻击力是使用者当前攻击力的40%(去尾取整)，但是也会导致使用者受到攻击，对使用者的攻击力是对敌人取整后的攻击力的1/2(去尾取整)。Bomb一旦使用就没了。</p>
+<p>arrow的攻击力是使用者当前攻击力的30%(去尾取整)。一个arrow用两次就没了。</p>
+<p>武士降生后就朝对方司令部走，在经过的城市如果遇到敌人（同一时刻每个城市最多只可能有1个蓝武士和一个红武士），就会发生战斗。战斗的规则是：</p>
+<ol>
+<li>在奇数编号城市，红武士先发起攻击</li>
+<li>在偶数编号城市，蓝武士先发起攻击</li>
+<li>战斗开始前，双方先对自己的武器排好使用顺序，然后再一件一件地按顺序使用。编号小的武器，排在前面。若有多支arrow，用过的排在前面。排好序后，攻击者按此排序依次对敌人一件一件地使用武器。如果一种武器有多件，那就都要用上。每使用一件武器，被攻击者生命值要减去武器攻击力。如果任何一方生命值减为0或小于0即为死去。有一方死去，则战斗结束。</li>
+<li>双方轮流使用武器，甲用过一件，就轮到乙用。某一方把自己所有的武器都用过一轮后，就从头开始再用一轮。如果某一方没有武器了，那就挨打直到死去或敌人武器用完。武器排序只在战斗前进行，战斗中不会重新排序。</li>
+<li>如果双方武器都用完且都还活着，则战斗以平局结束。如果双方都死了，也算平局。</li>
+<li>有可能由于武士自身攻击力太低，而导致武器攻击力为0。攻击力为0的武器也要使用。如果战斗中双方的生命值和武器的状态都不再发生变化，则战斗结束，算平局。</li>
+<li>战斗的胜方获得对方手里的武器。武士手里武器总数不超过10件。缴获武器时，按照武器种类编号从小到大缴获。如果有多件arrow，优先缴获没用过的。</li>
+<li>如果战斗开始前双方都没有武器，则战斗视为平局。如果先攻击方没有武器，则由后攻击方攻击。</li>
+</ol>
+<p>不同的武士有不同的特点。</p>
+<p>编号为n的dragon降生时即获得编号为n%3 的武器。dragon在战斗结束后，如果还没有战死，就会欢呼。</p>
+<p>编号为n的ninjia降生时即获得编号为n%3 和(n+1)%3的武器。ninja 使用bomb不会让自己受伤。</p>
+<p>编号为n的iceman降生时即获得编号为n%3 的武器。iceman每前进一步，生命值减少10%(减少的量要去尾取整)。</p>
+<p>编号为n的lion降生时即获得编号为n%3 的武器。lion 有“忠诚度”这个属性，其初始值等于它降生之后其司令部剩余生命元的数目。每前进一步忠诚度就降低K。忠诚度降至0或0以下，则该lion逃离战场,永远消失。但是已经到达敌人司令部的lion不会逃跑。lion在己方司令部可能逃跑。</p>
+<p>wolf降生时没有武器，但是在战斗开始前会抢到敌人编号最小的那种武器。如果敌人有多件这样的武器，则全部抢来。Wolf手里武器也不能超过10件。如果敌人arrow太多没法都抢来，那就先抢没用过的。如果敌人也是wolf，则不抢武器。</p>
+<p><strong>以下是不同时间会发生的不同事件：</strong></p>
+<p>在每个整点，即每个小时的第0分， 双方的司令部中各有一个武士降生。</p>
+<p>红方司令部按照iceman、lion、wolf、ninja、dragon 的顺序制造武士。</p>
+<p>蓝方司令部按照lion、dragon、ninja、iceman、wolf 的顺序制造武士。</p>
+<p>制造武士需要生命元。</p>
+<p>制造一个初始生命值为m 的武士，司令部中的生命元就要减少m 个。</p>
+<p>如果司令部中的生命元不足以制造某本该造的武士，那就从此停止制造武士。</p>
+<p>在每个小时的第5分，该逃跑的lion就在这一时刻逃跑了。</p>
+<p>在每个小时的第10分：所有的武士朝敌人司令部方向前进一步。即从己方司令部走到相邻城市，或从一个城市走到下一个城市。或从和敌军司令部相邻的城市到达敌军司令部。</p>
+<p>在每个小时的第35分：在有wolf及其敌人的城市，wolf要抢夺对方的武器。</p>
+<p>在每个小时的第40分：在有两个武士的城市，会发生战斗。</p>
+<p>在每个小时的第50分，司令部报告它拥有的生命元数量。</p>
+<p>在每个小时的第55分，每个武士报告其拥有的武器情况。</p>
+<p>武士到达对方司令部后就算完成任务了，从此就呆在那里无所事事。</p>
+<p>任何一方的司令部里若是出现了敌人，则认为该司令部已被敌人占领。</p>
+<p>任何一方的司令部被敌人占领，则战争结束。战争结束之后就不会发生任何事情了。</p>
+<p><strong>给定一个时间，要求你将从0点0分开始到此时间为止的所有事件按顺序输出。事件及其对应的输出样例如下：</strong></p>
+<ol>
+<li>武士降生</li>
+</ol>
+<p>输出样例：000:00 blue dragon 1 born</p>
+<p>表示在0点0分，编号为1的蓝魔dragon武士降生</p>
+<p>如果造出的是lion，那么还要多输出一行，例:</p>
+<p>000:00 blue lion 1 born</p>
+<p>Its loyalty is 24</p>
+<p>表示该lion降生时的忠诚度是24</p>
+<ol start="2">
+<li>lion逃跑</li>
+</ol>
+<p>输出样例：000:05 blue lion 1 ran away</p>
+<p>表示在0点5分，编号为1的蓝魔lion武士逃走</p>
+<ol start="3">
+<li>武士前进到某一城市</li>
+</ol>
+<p>输出样例：</p>
+<p>000:10 red iceman 1 marched to city 1 with 20 elements and force 30</p>
+<p>表示在0点10分，红魔1号武士iceman前进到1号城市，此时他生命值为20,攻击力为30</p>
+<p>对于iceman,输出的生命值应该是变化后的数值</p>
+<ol start="4">
+<li>wolf抢敌人的武器</li>
+</ol>
+<p>000:35 blue wolf 2 took 3 bomb from red dragon 2 in city 4</p>
+<p>表示在0点35分，4号城市中，红魔1号武士wolf 抢走蓝魔2号武士dragon 3个bomb。为简单起见，武器不写复数形式</p>
+<ol start="5">
+<li>报告战斗情况</li>
+</ol>
+<p>战斗只有3种可能的输出结果：</p>
+<p>000:40 red iceman 1 killed blue lion 12 in city 2 remaining 20 elements</p>
+<p>表示在0点40分，1号城市中，红魔1号武士iceman 杀死蓝魔12号武士lion后，剩下生命值20</p>
+<p>000:40 both red iceman 1 and blue lion 12 died in city 2</p>
+<p>注意，把红武士写前面</p>
+<p>000:40 both red iceman 1 and blue lion 12 were alive in city 2</p>
+<p>注意，把红武士写前面</p>
+<ol start="6">
+<li>武士欢呼</li>
+</ol>
+<p>输出样例：003:40 blue dragon 2 yelled in city 4</p>
+<ol start="7">
+<li>武士抵达敌军司令部</li>
+</ol>
+<p>输出样例：001:10 red iceman 1 reached blue headquarter with 20 elements and force 30</p>
+<p>（此时他生命值为20,攻击力为30）对于iceman,输出的生命值和攻击力应该是变化后的数值</p>
+<ol start="8">
+<li>司令部被占领</li>
+</ol>
+<p>输出样例：003:10 blue headquarter was taken</p>
+<ol start="9">
+<li>司令部报告生命元数量</li>
+</ol>
+<p>000:50 100 elements in red headquarter</p>
+<p>000:50 120 elements in blue headquarter</p>
+<p>表示在0点50分，红方司令部有100个生命元，蓝方有120个</p>
+<ol start="10">
+<li>武士报告情况</li>
+</ol>
+<p>000:55 blue wolf 2 has 2 sword 3 bomb 0 arrow and 7 elements</p>
+<p>为简单起见，武器都不写复数形式。elements一律写复数，哪怕只有1个</p>
+<p>交代武器情况时，次序依次是：sword,bomb, arrow。</p>
+<p><strong>输出事件时：</strong></p>
+<p>首先按时间顺序输出；</p>
+<p>同一时间发生的事件，按发生地点从西向东依次输出. 武士前进的事件, 算是发生在目的地。</p>
+<p>在一次战斗中有可能发生上面的 5 至 6 号事件。这些事件都算同时发生，其时间就是战斗开始时间。一次战斗中的这些事件，序号小的应该先输出。</p>
+<p>两个武士同时抵达同一城市，则先输出红武士的前进事件，后输出蓝武士的。</p>
+<p>对于同一城市，同一时间发生的事情，先输出红方的，后输出蓝方的。</p>
+<p>显然，8号事件发生之前的一瞬间一定发生了7号事件。输出时，这两件事算同一时间发生，但是应先输出7号事件</p>
+<p>虽然任何一方的司令部被占领之后，就不会有任何事情发生了。但和司令部被占领同时发生的事件，全都要输出。</p>
+<p><strong>输入</strong></p>
+<p>第一行是t,代表测试数据组数</p>
+<p>每组样例共三行。</p>
+<p>第一行，4个整数 M,N,K, T。其含义为：<br>每个司令部一开始都有M个生命元( 1 &lt;= M &lt;= 100000)<br>两个司令部之间一共有N个城市( 1 &lt;= N &lt;= 20 )<br>lion每前进一步，忠诚度就降低K。(0&lt;=K&lt;=100)<br>要求输出从0时0分开始，到时间T为止(包括T) 的所有事件。T以分钟为单位，0 &lt;= T &lt;= 6000</p>
+<p>第二行：五个整数，依次是 dragon 、ninja、iceman、lion、wolf 的初始生命值。它们都大于0小于等于200</p>
+<p>第三行：五个整数，依次是 dragon 、ninja、iceman、lion、wolf 的攻击力。它们都大于0小于等于200</p>
+<p><strong>输出</strong></p>
+<p>对每组数据，先输出一行：</p>
+<p>Case n:</p>
+<p>如对第一组数据就输出 Case 1:</p>
+<p>然后按恰当的顺序和格式输出到时间T为止发生的所有事件。每个事件都以事件发生的时间开头，时间格式是“时: 分”，“时”有三位，“分”有两位。</p>
+<p><strong>样例输入</strong></p>
+<pre><code>1
+20 1 10 400
+20 20 30 10 20
+5 5 5 5 5
+</code></pre>
+<p><strong>样例输出</strong></p>
+<pre><code>Case 1:
+000:00 blue lion 1 born
+Its loyalty is 10
+000:10 blue lion 1 marched to city 1 with 10 elements and force 5
+000:50 20 elements in red headquarter
+000:50 10 elements in blue headquarter
+000:55 blue lion 1 has 0 sword 1 bomb 0 arrow and 10 elements
+001:05 blue lion 1 ran away
+001:50 20 elements in red headquarter
+001:50 10 elements in blue headquarter
+002:50 20 elements in red headquarter
+002:50 10 elements in blue headquarter
+003:50 20 elements in red headquarter
+003:50 10 elements in blue headquarter
+004:50 20 elements in red headquarter
+004:50 10 elements in blue headquarter
+005:50 20 elements in red headquarter
+005:50 10 elements in blue headquarter
+</code></pre>
+<p><strong>提示</strong></p>
+<p>请注意浮点数精度误差问题。OJ上的编译器编译出来的可执行程序，在这方面和你电脑上执行的程序很可能会不一致。5 <em>0.3 的结果，有的机器上可能是 15.00000001，去尾取整得到15,有的机器上可能是14.9999999，去尾取整后就变成14。因此,本题不要写 5</em> 0.3，要写 5 * 3 / 10。</p>
+<p><strong>来源</strong></p>
+<p>Guo Wei</p>
+<h2 id="部分代码实现"><a href="#部分代码实现" class="headerlink" title="部分代码实现"></a>部分代码实现</h2><p>完整的代码可以去<a href="https://github.com/zhkgo/codeTemplate/tree/main/gameMoudle/World_of_Warcraft_3" target="_blank" rel="noopener external nofollow noreferrer">github</a>看,这边只给出了一些类的声明。</p>
+<p>城市类声明</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">ifndef</span> CITY_H</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> CITY_H</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"warriors.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"arm.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"world.h"</span></span>
+<span class="token keyword">class</span> <span class="token class-name">Warrior</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">City</span><span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token keyword">int</span> c_id<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//城市编号</span>
+ list<span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span> red_warriors<span class="token punctuation">,</span>blue_warriors<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//红蓝阵营的武士</span>
+ <span class="token function">City</span><span class="token punctuation">(</span><span class="token keyword">int</span> c_id<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">c_id</span><span class="token punctuation">(</span>c_id<span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">addWarrior</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士进入该城市</span>
+ <span class="token keyword">void</span> <span class="token function">removeWarrior</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士离开该城市</span>
+ list<span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span> <span class="token function">battle</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> w1<span class="token punctuation">,</span>Warrior<span class="token operator">*</span> w2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//两个武士在该城市展开战斗，返回存活的武士</span>
+ <span class="token keyword">void</span> <span class="token function">judge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//判断该城市是否有战斗发生，如果有则展开战斗</span>
+ <span class="token keyword">void</span> <span class="token function">wolfPlunder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//如果该城市有wolf，则他可以开始抢夺武器</span>
+ <span class="token keyword">void</span> <span class="token function">report</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//该城市报告有哪些武士到达了此城市</span>
+ <span class="token keyword">void</span> <span class="token function">warriorReport</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//在该城市的武士报告自己的武器持有情况</span>
+ <span class="token keyword">void</span> <span class="token function">lionRun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//在该城市的lion若忠诚度不够，则可以逃跑了！</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+</code></pre>
+<p>世界类声明</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">ifndef</span> World_H</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> World_H</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;vector></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;string></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;list></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> MESSAGE_LENGTH 300</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"city.h"</span></span>
+<span class="token keyword">class</span> <span class="token class-name">Headquarter</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">City</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//世界类</span>
+<span class="token keyword">class</span> <span class="token class-name">World</span><span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token keyword">int</span> now<span class="token punctuation">;</span>
+ Headquarter <span class="token operator">*</span>h1<span class="token punctuation">,</span><span class="token operator">*</span>h2<span class="token punctuation">;</span>
+ vector<span class="token operator">&lt;</span>City<span class="token operator">></span> citys<span class="token punctuation">;</span>
+ <span class="token function">World</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">reset</span><span class="token punctuation">(</span>Headquarter<span class="token operator">*</span> _h1<span class="token punctuation">,</span>Headquarter <span class="token operator">*</span>_h2<span class="token punctuation">,</span><span class="token keyword">int</span> N<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//重启世界，h1为红阵营，h2为蓝阵营，N为中间城市数量</span>
+ <span class="token keyword">void</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>message<span class="token punctuation">,</span><span class="token keyword">bool</span> timer<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//世界日志</span>
+ <span class="token keyword">bool</span> <span class="token function">addTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//时间流逝 返回true代表有总部被占领</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> World mlog<span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+</code></pre>
+<p>武士类声明</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">ifndef</span> WARRIORS_H</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> WARRIORS_H</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"world.h"</span> </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"arm.h"</span> </span>
+<span class="token keyword">extern</span> <span class="token keyword">const</span> string names<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//武士类</span>
+<span class="token keyword">class</span> <span class="token class-name">Warrior</span><span class="token punctuation">{</span> 
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token keyword">static</span> <span class="token keyword">int</span> MAX_ARMS<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士最多持有武器数量</span>
+ <span class="token keyword">int</span> id<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士编号</span>
+ string name<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士类型 </span>
+ <span class="token keyword">int</span> health<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士生命值</span>
+ <span class="token keyword">int</span> ack<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士攻击力</span>
+ list<span class="token operator">&lt;</span>Arm<span class="token operator">*</span><span class="token operator">></span> arms<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士持有的武器</span>
+ <span class="token keyword">int</span> pos<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士所在位置</span>
+ string headq<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//所属司令部</span>
+ <span class="token keyword">decltype</span><span class="token punctuation">(</span>arms<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> curArm<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士下一个要使用的武器 </span>
+ <span class="token function">Warrior</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">,</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>name<span class="token punctuation">,</span><span class="token keyword">int</span> health<span class="token punctuation">,</span><span class="token keyword">int</span> ack<span class="token punctuation">,</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> headq<span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">void</span> <span class="token function">place</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//放置武士</span>
+  pos<span class="token operator">=</span>x<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">virtual</span> <span class="token keyword">bool</span> <span class="token function">goAhead</span><span class="token punctuation">(</span><span class="token keyword">int</span> dir<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//前进</span>
+ <span class="token keyword">void</span> <span class="token function">prepare</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//准备战斗</span>
+ <span class="token keyword">bool</span> <span class="token function">isDead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//是否死亡</span>
+  <span class="token keyword">return</span> health<span class="token operator">&lt;=</span><span class="token number">0</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">bool</span> <span class="token function">hasArms</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//是否拥有武器</span>
+  <span class="token keyword">return</span> arms<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">getArmFrom</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> enemy<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//从死亡的敌人那边抢夺武器</span>
+ string <span class="token function">totName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//武士全名 总部+自身类别+编号</span>
+  <span class="token keyword">return</span> headq<span class="token operator">+</span><span class="token string">" "</span><span class="token operator">+</span>name<span class="token operator">+</span><span class="token string">" "</span><span class="token operator">+</span><span class="token function">to_string</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">bool</span> <span class="token function">noMoreChange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//表示武士不会再造成任何伤害，并且武器状态不会变化</span>
+ <span class="token keyword">void</span> <span class="token function">report</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士报告自身武器持有情况</span>
+ <span class="token keyword">virtual</span> <span class="token keyword">bool</span> <span class="token function">attack</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> enemy<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士攻击敌人</span>
+ <span class="token keyword">virtual</span> <span class="token keyword">bool</span> <span class="token function">beAttacked</span><span class="token punctuation">(</span><span class="token keyword">int</span> harm<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士受到伤害</span>
+ <span class="token keyword">virtual</span> <span class="token operator">~</span><span class="token function">Warrior</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>p<span class="token operator">:</span>arms<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">delete</span> p<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">dragon</span><span class="token operator">:</span><span class="token keyword">public</span> Warrior<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token keyword">double</span> morale<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//士气</span>
+ <span class="token function">dragon</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">,</span><span class="token keyword">int</span> health<span class="token punctuation">,</span><span class="token keyword">int</span> ack<span class="token punctuation">,</span><span class="token keyword">double</span> morale<span class="token punctuation">,</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> headq<span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">void</span> <span class="token function">yelled</span><span class="token punctuation">(</span><span class="token keyword">int</span> c_id<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士欢呼</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">ninja</span><span class="token operator">:</span><span class="token keyword">public</span> Warrior<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token function">ninja</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">int</span> health<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token keyword">int</span> ack<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> headq<span class="token operator">=</span><span class="token string">"red"</span><span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+ <span class="token operator">:</span><span class="token function">Warrior</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span><span class="token string">"ninja"</span><span class="token punctuation">,</span>health<span class="token punctuation">,</span>ack<span class="token punctuation">,</span>headq<span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  arms<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>ArmFactory<span class="token operator">::</span><span class="token function">product</span><span class="token punctuation">(</span>id<span class="token operator">%</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  arms<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>ArmFactory<span class="token operator">::</span><span class="token function">product</span><span class="token punctuation">(</span><span class="token punctuation">(</span>id<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">iceman</span><span class="token operator">:</span><span class="token keyword">public</span> Warrior<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token function">iceman</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">int</span> health<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token keyword">int</span> ack<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> headq<span class="token operator">=</span><span class="token string">"red"</span><span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+ <span class="token operator">:</span><span class="token function">Warrior</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span><span class="token string">"iceman"</span><span class="token punctuation">,</span>health<span class="token punctuation">,</span>ack<span class="token punctuation">,</span>headq<span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  arms<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>ArmFactory<span class="token operator">::</span><span class="token function">product</span><span class="token punctuation">(</span>id<span class="token operator">%</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">virtual</span> <span class="token keyword">bool</span> <span class="token function">goAhead</span><span class="token punctuation">(</span><span class="token keyword">int</span> dir<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//iceman前进 减少生命值</span>
+  health <span class="token operator">-</span><span class="token operator">=</span> health<span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> Warrior<span class="token operator">::</span><span class="token function">goAhead</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">lion</span><span class="token operator">:</span><span class="token keyword">public</span> Warrior<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token keyword">int</span> loyalty<span class="token punctuation">;</span>
+ <span class="token keyword">int</span> lionk<span class="token punctuation">;</span>
+ <span class="token function">lion</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">,</span><span class="token keyword">int</span> health<span class="token punctuation">,</span><span class="token keyword">int</span> ack<span class="token punctuation">,</span><span class="token keyword">int</span> loyalty<span class="token punctuation">,</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> headq<span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token punctuation">,</span><span class="token keyword">int</span> lionk<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">virtual</span> <span class="token keyword">bool</span> <span class="token function">goAhead</span><span class="token punctuation">(</span><span class="token keyword">int</span> dir<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//lion前进 减少忠诚度</span>
+ <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">wolf</span><span class="token operator">:</span><span class="token keyword">public</span> Warrior<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token function">wolf</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">,</span><span class="token keyword">int</span> health<span class="token punctuation">,</span><span class="token keyword">int</span> ack<span class="token punctuation">,</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> headq<span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token punctuation">)</span>
+ <span class="token operator">:</span><span class="token function">Warrior</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span><span class="token string">"wolf"</span><span class="token punctuation">,</span>health<span class="token punctuation">,</span>ack<span class="token punctuation">,</span>headq<span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">wolfgetArmFrom</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> enemy<span class="token punctuation">,</span><span class="token keyword">int</span> c_id<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//wolf在某城市抢夺武器</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+</code></pre>
+<p>武器类声明</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">ifndef</span> ARM_H</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> ARM_H</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">extern</span> string armNames<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Warrior</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Arm</span><span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token keyword">int</span> arm_id<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武器编号</span>
+ <span class="token keyword">int</span> ackp<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武器伤害百分比</span>
+ <span class="token keyword">int</span> used<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武器耐久度</span>
+ <span class="token function">Arm</span><span class="token punctuation">(</span><span class="token keyword">int</span> arm_id<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">int</span> ackp<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token keyword">int</span> used<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">arm_id</span><span class="token punctuation">(</span>arm_id<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ackp</span><span class="token punctuation">(</span>ackp<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">used</span><span class="token punctuation">(</span>used<span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token function">arm_cmp_use</span><span class="token punctuation">(</span>Arm<span class="token operator">*</span> a1<span class="token punctuation">,</span>Arm<span class="token operator">*</span> a2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武器使用优先级 优先编号最小的 优先使用耐久度较低的</span>
+ <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token function">arm_cmp_get</span><span class="token punctuation">(</span>Arm<span class="token operator">*</span> a1<span class="token punctuation">,</span>Arm<span class="token operator">*</span> a2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武器抢夺优先级 优先编号最小的 优先抢夺耐久度较高的</span>
+ <span class="token keyword">virtual</span> <span class="token keyword">bool</span> <span class="token function">attack</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> owner<span class="token punctuation">,</span>Warrior<span class="token operator">*</span> enemy<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//使用该武器进攻</span>
+ <span class="token keyword">virtual</span> <span class="token operator">~</span><span class="token function">Arm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//宝剑</span>
+<span class="token keyword">class</span> <span class="token class-name">sword</span><span class="token operator">:</span><span class="token keyword">public</span> Arm<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token function">sword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">Arm</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">10000000</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//炸弹</span>
+<span class="token keyword">class</span> <span class="token class-name">bomb</span><span class="token operator">:</span><span class="token keyword">public</span> Arm<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token function">bomb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">Arm</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//弓箭</span>
+<span class="token keyword">class</span> <span class="token class-name">arrow</span><span class="token operator">:</span><span class="token keyword">public</span> Arm<span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token function">arrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">Arm</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//武器生产工厂</span>
+<span class="token keyword">class</span> <span class="token class-name">ArmFactory</span><span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ <span class="token keyword">static</span> Arm<span class="token operator">*</span> <span class="token function">product</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//生产编号为id的武器</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+</code></pre>
+<p>司令部类声明</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">ifndef</span> HEADQUATER_H</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> HEADQUATER_H</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"arm.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"world.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"warriors.h"</span></span>
+<span class="token keyword">extern</span> <span class="token keyword">int</span> HP<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">int</span> ACK<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Headquarter</span><span class="token punctuation">{</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+ <span class="token keyword">int</span> power<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//司令部生命元</span>
+ vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> order<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士生产顺序</span>
+ vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> count<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士数量</span>
+ <span class="token keyword">int</span> bound<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//ֹͣ停止生成边界，保留使用</span>
+ list<span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span> warriors<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士列表 </span>
+ <span class="token keyword">int</span> w_id<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//下一个生成武士的编号</span>
+ <span class="token keyword">int</span> cur<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//指向武士生产顺序，表示下一个生产的武士所在下标</span>
+ <span class="token keyword">int</span> pos<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//总部所在位置</span>
+ <span class="token keyword">int</span> lionk<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//武士lion每前进一步下降的忠诚度</span>
+ <span class="token keyword">int</span> dir<span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 该总部武士的前进方向</span>
+ list<span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span> enemys<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//到达该总部的敌人，当前最多只有一个，保留为列表</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+ string name<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//总部名称</span>
+ <span class="token keyword">bool</span> stop<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//总部是否停止生产武士</span>
+ <span class="token function">Headquarter</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> order<span class="token punctuation">,</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span>name<span class="token operator">=</span><span class="token string">"headquarter"</span><span class="token punctuation">,</span><span class="token keyword">int</span> power<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token keyword">int</span> pos<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">int</span> lionk<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">int</span> dir<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+ <span class="token operator">:</span><span class="token function">name</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">power</span><span class="token punctuation">(</span>power<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">order</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">w_id</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>order<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">pos</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">lionk</span><span class="token punctuation">(</span>lionk<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">dir</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  bound<span class="token operator">=</span><span class="token number">1e9</span><span class="token operator">+</span><span class="token number">7</span><span class="token punctuation">;</span>
+  stop<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>p<span class="token operator">:</span>order<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   bound<span class="token operator">=</span><span class="token function">min</span><span class="token punctuation">(</span>bound<span class="token punctuation">,</span>HP<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  cur<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">enemysReach</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> wa<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//敌人抵达总部</span>
+  enemys<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>wa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ Warrior<span class="token operator">*</span> <span class="token function">born</span><span class="token punctuation">(</span><span class="token keyword">int</span> hero_id<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//总部生产指定编号的武士</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>power<span class="token operator">>=</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   power<span class="token operator">-</span><span class="token operator">=</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   count<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token operator">+</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+   Warrior<span class="token operator">*</span> hero<span class="token operator">=</span><span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+   <span class="token keyword">switch</span> <span class="token punctuation">(</span>hero_id<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span>
+     hero <span class="token operator">=</span><span class="token keyword">static_cast</span><span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">dragon</span><span class="token punctuation">(</span>w_id<span class="token operator">++</span><span class="token punctuation">,</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>ACK<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">1.0</span><span class="token operator">*</span>power<span class="token operator">/</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>name<span class="token punctuation">,</span>count<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span>
+     hero <span class="token operator">=</span><span class="token keyword">static_cast</span><span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">ninja</span><span class="token punctuation">(</span>w_id<span class="token operator">++</span><span class="token punctuation">,</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>ACK<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>name<span class="token punctuation">,</span>count<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">2</span><span class="token operator">:</span>
+     hero <span class="token operator">=</span><span class="token keyword">static_cast</span><span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">iceman</span><span class="token punctuation">(</span>w_id<span class="token operator">++</span><span class="token punctuation">,</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>ACK<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>name<span class="token punctuation">,</span>count<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">3</span><span class="token operator">:</span>
+     hero <span class="token operator">=</span><span class="token keyword">static_cast</span><span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">lion</span><span class="token punctuation">(</span>w_id<span class="token operator">++</span><span class="token punctuation">,</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>ACK<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>power<span class="token punctuation">,</span>name<span class="token punctuation">,</span>count<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>lionk<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">4</span><span class="token operator">:</span>
+     hero <span class="token operator">=</span><span class="token keyword">static_cast</span><span class="token operator">&lt;</span>Warrior<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">wolf</span><span class="token punctuation">(</span>w_id<span class="token operator">++</span><span class="token punctuation">,</span>HP<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>ACK<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">,</span>name<span class="token punctuation">,</span>count<span class="token punctuation">[</span>hero_id<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">break</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">return</span> hero<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">lionRun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//lion 逃跑，移除指定武士</span>
+  warriors<span class="token punctuation">.</span><span class="token function">remove_if</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> p<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   lion<span class="token operator">*</span> lp<span class="token operator">=</span><span class="token keyword">dynamic_cast</span><span class="token operator">&lt;</span>lion<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span><span class="token punctuation">(</span>lp<span class="token operator">!=</span><span class="token keyword">nullptr</span> <span class="token operator">&amp;&amp;</span> lp<span class="token operator">-</span><span class="token operator">></span>loyalty<span class="token operator">&lt;=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">delete</span> p<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">clearDead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//清理死去的武士</span>
+  warriors<span class="token punctuation">.</span><span class="token function">remove_if</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span>Warrior<span class="token operator">*</span> p<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span><span class="token function">isDead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">delete</span> p<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">goAhead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//所有武士前进一步 </span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>p<span class="token operator">:</span>warriors<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   p<span class="token operator">-</span><span class="token operator">></span><span class="token function">goAhead</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">report</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//报告总部自身生命元情况</span>
+  string message<span class="token operator">=</span><span class="token function">to_string</span><span class="token punctuation">(</span>power<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" elements in "</span><span class="token operator">+</span>name<span class="token operator">+</span><span class="token string">" headquarter"</span><span class="token punctuation">;</span>
+  mlog<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">void</span> <span class="token function">warriorReport</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//该总部的武士报告自身武器情况，（保留使用，原题要求按照城市顺序报告）</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>p<span class="token operator">:</span>warriors<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   p<span class="token operator">-</span><span class="token operator">></span><span class="token function">report</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">bool</span> <span class="token function">enemyReport</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//该总部如果存在敌人则被占领并播报。若被占领则返回true结束此局游戏</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>p<span class="token operator">:</span>enemys<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">char</span> message<span class="token punctuation">[</span>MESSAGE_LENGTH<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token function">sprintf</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span><span class="token string">"%s reached %s headquarter with %d elements and force %d"</span>
+   <span class="token punctuation">,</span>p<span class="token operator">-</span><span class="token operator">></span><span class="token function">totName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>name<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>p<span class="token operator">-</span><span class="token operator">></span>health<span class="token punctuation">,</span>p<span class="token operator">-</span><span class="token operator">></span>ack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   mlog<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>enemys<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   mlog<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name<span class="token operator">+</span><span class="token string">" headquarter was taken"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">bool</span> <span class="token function">bornNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//生产下一个武士</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>stop<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  Warrior<span class="token operator">*</span> war<span class="token punctuation">;</span>
+  war<span class="token operator">=</span><span class="token function">born</span><span class="token punctuation">(</span>order<span class="token punctuation">[</span>cur<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  cur<span class="token operator">=</span><span class="token punctuation">(</span>cur<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span>order<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>war<span class="token operator">==</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   stop<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  war<span class="token operator">-</span><span class="token operator">></span><span class="token function">place</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  warriors<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>war<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token operator">~</span><span class="token function">Headquarter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>wa<span class="token operator">:</span>warriors<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">delete</span> wa<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span> </span>
+</code></pre>
+<h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><h3 id="实践了一些知识"><a href="#实践了一些知识" class="headerlink" title="实践了一些知识"></a>实践了一些知识</h3><ol>
+<li>成员函数的声明和实现分离，很大程度上能解决循环依赖问题。</li>
+<li>成员函数在声明后，不需要在实现部分注明其是否static 是否virtual等等。</li>
+<li>成员函数的默认参数只需要在实现或者声明部分注明即可，只能选其中一个。一般选择在声明部分设置默认参数，这样一来方便修改，二来能够在其他地方调用的时候能够正确匹配到该成员函数。</li>
+<li>一些全局变量在.cpp文件中定义，在.h中extern可以在一定程度上解决变量重复定义问题。</li>
+<li>优雅的系统性设计有助于代码的拓展与修改。</li>
+</ol>
+<h3 id="内存泄露检测工具的初次使用"><a href="#内存泄露检测工具的初次使用" class="headerlink" title="内存泄露检测工具的初次使用"></a>内存泄露检测工具的初次使用</h3><p>内存泄露工具valgrind的第一次使用。对于new出来的每把武器，我都交给战士自身来delete。对于new出来的每个武士，我都交给其所属的司令部来delete，这样可以防止重复delete的问题。写完代码后我突发奇想用内存泄露检测工具来看看我是否存在内存泄露。然后我满怀期待的输入了</p>
+<pre class=" language-bash"><code class="language-bash"> valgrind --leak-check<span class="token operator">=</span>full --show-reachable<span class="token operator">=</span>yes --track-origins<span class="token operator">=</span>yes  -v ./war3 <span class="token operator">&lt;</span>in.txt
+</code></pre>
+<p>然后就返回给了我这个</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">==</span>4067047<span class="token operator">==</span> 168 bytes <span class="token keyword">in</span> 7 blocks are definitely lost <span class="token keyword">in</span> loss record 15 of 15
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    at 0x483BE63: operator new<span class="token punctuation">(</span>unsigned long<span class="token punctuation">)</span> <span class="token punctuation">(</span>in /usrb/x86_64-linux-gnualgrindgpreload_memcheck-amd64-linux.so<span class="token punctuation">)</span>
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    by 0x10B647: ArmFactory::product<span class="token punctuation">(</span>int<span class="token punctuation">)</span> <span class="token punctuation">(</span>in /home/zhkgo/clearn/war/war3<span class="token punctuation">)</span>
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    by 0x1136CA: iceman::iceman<span class="token punctuation">(</span>int, int, int, std::__cxx11::basic_string<span class="token operator">&lt;</span>char, std::char_traits<span class="token operator">&lt;</span>char<span class="token operator">></span>, std::allocator<span class="token operator">&lt;</span>char<span class="token operator">></span> <span class="token operator">></span> const<span class="token operator">&amp;</span>, int<span class="token punctuation">)</span> <span class="token punctuation">(</span>in /home/zhkgo/clearn/war/war3<span class="token punctuation">)</span>
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    by 0x113B73: Headquarter::born<span class="token punctuation">(</span>int<span class="token punctuation">)</span> <span class="token punctuation">(</span>in /home/zhkgo/clearn/war/war3<span class="token punctuation">)</span>
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    by 0x114408: Headquarter::bornNext<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>in /home/zhkgo/clearn/war/war3<span class="token punctuation">)</span>
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    by 0x1130A2: World::addTime<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>in /home/zhkgo/clearn/war/war3<span class="token punctuation">)</span>
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    by 0x10E769: main <span class="token punctuation">(</span>in /home/zhkgo/clearn/war/war3<span class="token punctuation">)</span>
+<span class="token operator">==</span>4067047<span class="token operator">==</span> 
+<span class="token operator">==</span>4067047<span class="token operator">==</span> LEAK SUMMARY:
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    definitely lost: 1,464 bytes <span class="token keyword">in</span> 61 blocks
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    indirectly lost: 0 bytes <span class="token keyword">in</span> 0 blocks
+<span class="token operator">==</span>4067047<span class="token operator">==</span>      possibly lost: 0 bytes <span class="token keyword">in</span> 0 blocks
+<span class="token operator">==</span>4067047<span class="token operator">==</span>    still reachable: 0 bytes <span class="token keyword">in</span> 0 blocks
+<span class="token operator">==</span>4067047<span class="token operator">==</span>         suppressed: 0 bytes <span class="token keyword">in</span> 0 blocks
+<span class="token operator">==</span>4067047<span class="token operator">==</span> 
+<span class="token operator">==</span>4067047<span class="token operator">==</span> ERROR SUMMARY: 15 errors from 15 contexts <span class="token punctuation">(</span>suppressed: 0 from 0<span class="token punctuation">)</span>
+</code></pre>
+<p>虽然没学过valgrind的，但是它的提示确实很好用，很明显可以看到哪里new出来的对象出现了内存泄露。</p>
+<p>这边可以看到调用栈，生产的武器有些没有被销毁，我就回头去看了一下代码。在武器耐久度为0的时候，我直接从武士的成员list中移除了这个武器，并没有delete，这样在武士类被析构的时候，武器也不会出现在list里，就不会被delte，所以就导致了内存泄露。最后通过加上delete自然就解决了这个问题。 其实最好的办法是把移除武器这个操作封装成一个成员函数来使用，默认在移除武器的时候delete这个武器，也可以设置不delete(用于抢夺武器的情况),这样就优雅很多了。</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">青椒</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zhkgo.github.io/2022/05/05/worldofwarcraft3/">https://zhkgo.github.io/2022/05/05/worldofwarcraft3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本笔记所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">青椒</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/cpp/">
+                                    <span class="chip bg-color">cpp</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C/">
+                                    <span class="chip bg-color">魔兽世界</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/05/30/easyshell/">
+                    <div class="card-image">
+                        
+                        <img src="/images/img20220530195308.png" class="responsive-img" alt="简易Shell实现">
+                        
+                        <span class="card-title">简易Shell实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            描述np实现了一个简单的shell,  主要通过C语言来实现。项目地址
+主要有以下功能。
+
+向标准输出打印一个命令提示符
+从标准输入读取一个命令
+判断要执行哪些命令
+
+对内置命令进行了解析，主要包括。
+1）cd
+cd xxx
+
+进入某个目录
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/cpp/">
+                        <span class="chip bg-color">cpp</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/17/programTest/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="总结三场笔试">
+                        
+                        <span class="card-title">总结三场笔试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            蚂蚁笔试
+蚂蚁金服的笔试是我最早参加的，那时候还是第一次参加笔试，没啥经验，挺紧张的。具体题目我不记得了，但是感受还在。最后3个编程题1题满分，其他两题都只拿了部分分数，一直很可惜。
+
+蚂蚁的笔试题还是比较全面的。因为开始编程题之前，有很多
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/cpp/">
+                        <span class="chip bg-color">cpp</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B1%82%E8%81%8C/">
+                        <span class="chip bg-color">求职</span>
+                    </a>
+                    
+                    <a href="/tags/hide/">
+                        <span class="chip bg-color">hide</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 青椒的学习笔记<br />'
+            + '文章作者: 青椒<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归zhanghangkui所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="1986979130"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='1'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">青椒</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" rel="external nofollow noreferrer" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" rel="external nofollow noreferrer" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">53.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zhkgo" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:896378080@qq.com" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=896378080" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 896378080" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

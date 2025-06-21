@@ -1,0 +1,1180 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="SpaceSniffer导出sns文件存储格式分析, 青椒的学习笔记">
+    <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>SpaceSniffer导出sns文件存储格式分析 | 青椒的学习笔记</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="青椒的学习笔记" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">青椒的学习笔记</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">青椒的学习笔记</div>
+        <div class="logo-desc">
+            
+            俗人一个。贪财有道,好色有品,博学有识,读书有瘾
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zhkgo/zhkgo.github.io" rel="external nofollow noreferrer" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zhkgo/zhkgo.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/img202405052255892.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">SpaceSniffer导出sns文件存储格式分析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">
+                                <span class="chip bg-color">逆向工程</span>
+                            </a>
+                        
+                            <a href="/tags/spaceSniffer/">
+                                <span class="chip bg-color">spaceSniffer</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%86%E5%8C%96/">
+                                <span class="chip bg-color">内存可视化</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-04-30
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.8k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>在处理大型软件系统时，我们经常需要分析系统运行时的内存分布，了解哪些数据结构占用了大量内存。虽然可以通过数值进行观察，但这并不直观。这时，我想到了SpaceSniffer这款软件。SpaceSniffer主要用于磁盘空间的管理和可视化，它使用treemap进行可视化，即使面对大量文件也能保持流畅的体验。</p>
+</blockquote>
+<h2 id="思路简介"><a href="#思路简介" class="headerlink" title="思路简介"></a>思路简介</h2><p>我们的主要思路是根据SpaceSniffer导出的sns文件格式来构造内存分布，将其视为文件分布进行观察。由于没有找到任何公开的文档说明如何构造这种格式，我们只能通过观察二进制文件来进行分析。基本的方法是不断改变文件夹内容，导出二进制数据并观察其特征。</p>
+<h2 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h2><h3 id="创建一个以empty为名的空文件夹"><a href="#创建一个以empty为名的空文件夹" class="headerlink" title="创建一个以empty为名的空文件夹"></a>创建一个以empty为名的空文件夹</h3><p><img src="/images/img202405050004926.png" alt="空文件夹"></p>
+<h3 id="创建file-txt"><a href="#创建file-txt" class="headerlink" title="创建file.txt"></a>创建file.txt</h3><p><img src="/images/img202405050007248.png"></p>
+<p>有了以下观察结果和推测。</p>
+<ul>
+<li>两个二进制文件都以0x0203开头，0x0100结尾。</li>
+<li>有一段二进制数据，解码出来是可见字符。</li>
+<li>考虑到此时不变的内容只有文件夹名字，且增加的可见文字是以=号结尾，故猜测他们是base64编码后的文件/文件夹名。</li>
+</ul>
+<p>尝试解码。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> base64
+<span class="token comment" spellcheck="true"># base64解码</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>base64<span class="token punctuation">.</span>b64decode<span class="token punctuation">(</span><span class="token string">'TDpcdG9vbHNcYW5hU25zXGVtcHR5'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># output L:\tools\anaSns\empty</span>
+</code></pre>
+<p>发现输出的确实是扫描的文件夹所在的路径。再解码另一个字符串看看</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>base64<span class="token punctuation">.</span>b64decode<span class="token punctuation">(</span><span class="token string">'ZmlsZS50eHQ='</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># output file.txt</span>
+</code></pre>
+<p>看起来已经找到了文件名所在。</p>
+<h3 id="修改file-txt，向里面写入2个字母"><a href="#修改file-txt，向里面写入2个字母" class="headerlink" title="修改file.txt，向里面写入2个字母"></a>修改file.txt，向里面写入2个字母</h3><p><img src="/images/img202405050008657.png"></p>
+<p>对此有以下观察和推断。</p>
+<ul>
+<li><p>二进制文件的长度没有变化，但在0x58行06列的值从0变为2，推测这可能是表示文件长度的字段。通过修改这个值并重新加载sns文件到SpaceSniffer，验证了这个推测。</p>
+</li>
+<li><p>在0x70行06列开始的位置，发现了一些变化。同样的字段出现了两次，推测这可能是文件的最后修改时间和访问时间。这个推测是通过反复观察SpaceSniffer界面并注意到写入两个字节的数据后，除了文件大小，变化的就只有这两个时间。</p>
+</li>
+<li><p>通过验证，确认这两个8字节的字段确实是文件的最后修改时间和访问时间。</p>
+</li>
+<li><p>在这两个字段之前的8字节没有变化，推测这是文件的创建时间。</p>
+</li>
+</ul>
+<ol start="3">
+<li>empty目录下创建一个新的文件file2.txt，并写入100个字母。</li>
+</ol>
+<p><img src="/images/img202405050008852.png"></p>
+<p>对此有以下观察和推断。</p>
+<ul>
+<li><p>每个文件名或文件夹名前面都有一段长度为4的二进制数据，这段数据的值与文件或文件夹名称的字节数非常接近。这可能是表示文件或文件夹名称长度的字段。</p>
+</li>
+<li><p>在这个字段之前，有一个统一的标记，是0x0203或0x0202，这可能是表示文件或文件夹开头的标记。</p>
+</li>
+<li><p>如果将0x0203或0x0202后面的4个字节看作是文件名称的字节长度，那么在文件名称后面紧跟着的一个数字就可能是表示文件或文件夹所占的空间大小。</p>
+</li>
+</ul>
+<h3 id="empty目录下创建一个名为hahaha的新目录"><a href="#empty目录下创建一个名为hahaha的新目录" class="headerlink" title="empty目录下创建一个名为hahaha的新目录"></a>empty目录下创建一个名为hahaha的新目录</h3><p><img src="/images/img202405050010782.png"></p>
+<p>通过对比该数据和以上数据，发现。</p>
+<ul>
+<li>0x0203表示文件夹开头，0x0202表示文件开头，0x0100表示文件夹或文件结尾。</li>
+</ul>
+<h3 id="在新目录下创建一个文件test-txt并写入10个字母"><a href="#在新目录下创建一个文件test-txt并写入10个字母" class="headerlink" title="在新目录下创建一个文件test.txt并写入10个字母"></a>在新目录下创建一个文件test.txt并写入10个字母</h3><p>再次观察并对比</p>
+<p><img src="/images/img202405050010994.png"></p>
+<h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><p>最后通过若干次对比确认以前的信息。<br>得出sns文件的构成如下：</p>
+<ul>
+<li>文件夹开头：<code>0x0203</code></li>
+<li>文件夹结尾：<code>0x0100</code></li>
+</ul>
+<p>文件或文件夹的结构如下：</p>
+<ul>
+<li>头部（head）：<code>0x0203</code>（文件夹）或<code>0x0202</code>（文件），占用2字节</li>
+<li>名称长度（lenOfName）：无符号32位整数（uint32），占用4字节</li>
+<li>名称（Base64Filename）：Base64编码的文件名，长度可变</li>
+<li>大小1（Size1）：无符号64位整数（uint64），占用8字节, 为节点内存大小</li>
+<li>大小2（Size2）：无符号64位整数（uint64），占用8字节，推测为节点所占磁盘空间大小，对文件夹来说似乎无意义。</li>
+<li>创建时间（CreationTime）：占用8字节</li>
+<li>访问时间（AccessedTime）：占用8字节</li>
+<li>修改时间（ModifiedTime）：占用8字节 时间的存储格式暂未分析</li>
+<li>分隔符（sep）：<code>0x0000</code>，占用2字节</li>
+<li>其他文件/目录（otherfile/directory）：可选</li>
+<li>尾部（tail）：<code>0x1000</code></li>
+</ul>
+<p>对于文件夹，大小1和大小2都等于文件夹的大小。</p>
+<p>对于文件，大小1等于文件的大小，大小2是补偿文件大小。大小1和大小2的和等于文件所占的真实磁盘空间。<br>其中对于文件夹 size1 = size2 = 文件夹大小<br>对于文件来说 size1= 文件大小 size2为补偿文件大小，size1+size2= 文件所占真实磁盘空间。</p>
+<h2 id="生成代码实现"><a href="#生成代码实现" class="headerlink" title="生成代码实现"></a>生成代码实现</h2><p>接下来根据这个格式来尝试递归构建文件夹。<br>写出了如下类， 由于不知道时间，且时间暂时无意义，直接置为0。一开始使用python来写这个代码效率不尽如人意，后面改为使用c++。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+    string name<span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">// 节点名</span>
+    uint64_t size<span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 节点大小</span>
+    uint64_t paddingSize<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// paddingSize = 实际占用空间-size，只针对文件有效，文件夹通常=size</span>
+    <span class="token keyword">bool</span> isFile<span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">// 是否是文件</span>
+    vector<span class="token operator">&lt;</span>Node<span class="token operator">*</span><span class="token operator">></span> childs<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 子节点</span>
+    Node<span class="token operator">*</span> parent<span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">// 父节点</span>
+
+    <span class="token function">Node</span><span class="token punctuation">(</span>string name<span class="token punctuation">,</span> uint64_t size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> uint64_t paddingSize <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">name</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">size</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">isFile</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">parent</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">paddingSize</span><span class="token punctuation">(</span>paddingSize<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token operator">~</span><span class="token function">Node</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Node<span class="token operator">*</span> child <span class="token operator">:</span> <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>childs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">delete</span> child<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">void</span> <span class="token function">addChild</span><span class="token punctuation">(</span>Node<span class="token operator">*</span> child<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>child<span class="token operator">-</span><span class="token operator">></span>parent <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"warning! child has parent\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> child<span class="token operator">-</span><span class="token operator">></span>parent<span class="token operator">-</span><span class="token operator">></span>childs<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>child<span class="token operator">-</span><span class="token operator">></span>parent<span class="token operator">-</span><span class="token operator">></span>childs<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> child<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    child<span class="token operator">-</span><span class="token operator">></span>parent<span class="token operator">-</span><span class="token operator">></span>childs<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>child<span class="token operator">-</span><span class="token operator">></span>parent<span class="token operator">-</span><span class="token operator">></span>childs<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>isFile <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        child<span class="token operator">-</span><span class="token operator">></span>parent <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>childs<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>size <span class="token operator">+</span><span class="token operator">=</span> child<span class="token operator">-</span><span class="token operator">></span>size<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>parent<span class="token operator">-</span><span class="token operator">></span><span class="token function">updateSize</span><span class="token punctuation">(</span>child<span class="token operator">-</span><span class="token operator">></span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">updateSize</span><span class="token punctuation">(</span>uint64_t size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>size <span class="token operator">+</span><span class="token operator">=</span> size<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>parent<span class="token operator">-</span><span class="token operator">></span><span class="token function">updateSize</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">toSns</span><span class="token punctuation">(</span>ofstream<span class="token operator">&amp;</span> f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        string encode_name <span class="token operator">=</span> <span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span><span class="token keyword">const</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>name<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>name<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        uint32_t len <span class="token operator">=</span> encode_name<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 头部</span>
+        f<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">0x02</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>isFile <span class="token operator">?</span> <span class="token number">0x02</span> <span class="token operator">:</span> <span class="token number">0x03</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//文件名长度</span>
+        f<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>len<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 文件名</span>
+        f<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>encode_name<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> encode_name<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 文件/文件夹大小</span>
+        f<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>size<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 8 个字节表示被额外占用的磁盘空间，这边留空 暂时不知道啥用</span>
+        f<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>paddingSize<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>paddingSize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 24 个字节表示文件的创建时间，访问时间，修改时间，这边留空</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            f<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">0x00</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// 2个字节表示分隔符</span>
+        f<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">0x00</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">0x00</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>isFile<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Node<span class="token operator">*</span> child <span class="token operator">:</span> <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>childs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                child<span class="token operator">-</span><span class="token operator">></span><span class="token function">toSns</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 结束符</span>
+        f<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">0x01</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token number">0x00</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="结果验证"><a href="#结果验证" class="headerlink" title="结果验证"></a>结果验证</h2><p> 最后通过以下代码尝试构造sns格式文件,并使用spacesniffer加载。</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">nodeGen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Node<span class="token operator">*</span> root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"root"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Node<span class="token operator">*</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    c<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"d"</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    c<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"e"</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"f"</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"g"</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"h"</span><span class="token punctuation">,</span> <span class="token number">70</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"i"</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">addChild</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token string">"j"</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ofstream <span class="token function">f</span><span class="token punctuation">(</span><span class="token string">"test.sns"</span><span class="token punctuation">,</span> ios<span class="token operator">::</span>binary<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    root<span class="token operator">-</span><span class="token operator">></span><span class="token function">toSns</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/images/img202405050015451.png" alt="test.sns"></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">青椒</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zhkgo.github.io/2024/04/30/snsData/">https://zhkgo.github.io/2024/04/30/snsData/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本笔记所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">青椒</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">
+                                    <span class="chip bg-color">逆向工程</span>
+                                </a>
+                            
+                                <a href="/tags/spaceSniffer/">
+                                    <span class="chip bg-color">spaceSniffer</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%86%E5%8C%96/">
+                                    <span class="chip bg-color">内存可视化</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/11/20/passzuma/">
+                    <div class="card-image">
+                        
+                        <img src="/images/img202411202221278.png" class="responsive-img" alt="菜鸟的祖玛通关之路">
+                        
+                        <span class="card-title">菜鸟的祖玛通关之路</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+最近忽然想体验一下老游戏，正好看到了一个绝版游戏保护工程里面有个祖玛游戏，想回忆一下童年就玩了一下。
+
+游戏规则祖玛是一款由PopCap Games开发的益智游戏，玩家需要通过发射彩色球来匹配相同颜色的球，以消除它们。游戏的目标是消除所有
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B8%B8%E6%88%8F/">
+                        <span class="chip bg-color">游戏</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%A5%96%E7%8E%9B/">
+                        <span class="chip bg-color">祖玛</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/01/17/war3helper/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="war3小助手">
+                        
+                        <span class="card-title">war3小助手</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+前段时间在09平台打dota omg，被平台的匹配机制搞到了。我一个胜率50不到的菜鸡，经常给我在对面匹配几个70+,80+胜率大佬，自己这边又都是50不到。这种局实在不想打了，就想做一个工具来检测这种情况，在进入房间时发现高胜率的时候就
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/war3/">
+                        <span class="chip bg-color">war3</span>
+                    </a>
+                    
+                    <a href="/tags/cheatEngine/">
+                        <span class="chip bg-color">cheatEngine</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 青椒的学习笔记<br />'
+            + '文章作者: 青椒<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归zhanghangkui所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="1986979130"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='1'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">青椒</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" rel="external nofollow noreferrer" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" rel="external nofollow noreferrer" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">53.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zhkgo" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:896378080@qq.com" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=896378080" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 896378080" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

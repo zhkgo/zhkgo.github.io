@@ -1,0 +1,1195 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="利用paddlepaddle手写数字识别, 青椒的学习笔记">
+    <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>利用paddlepaddle手写数字识别 | 青椒的学习笔记</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="青椒的学习笔记" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">青椒的学习笔记</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">青椒的学习笔记</div>
+        <div class="logo-desc">
+            
+            俗人一个。贪财有道,好色有品,博学有识,读书有瘾
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zhkgo/zhkgo.github.io" rel="external nofollow noreferrer" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zhkgo/zhkgo.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/20200910170818.jpeg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">利用paddlepaddle手写数字识别</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
+                            </a>
+                        
+                            <a href="/tags/paddlepaddle/">
+                                <span class="chip bg-color">paddlepaddle</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-08-15
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.8k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>因为百度的AIStudio平台提供了免费的GPU算力,而且帮我配好了运行环境，只不过需要使用paddlepaddle这个框架，我就打算顺便在学习paddlepaddle的同时完成lintcode上面的刷题任务。</p>
+</blockquote>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="https://www.lintcode.com/ai/digit-recognition/overview" target="_blank" rel="noopener external nofollow noreferrer">题目链接</a><br><br><br>MNIST是计算机视觉领域的“hello world”数据集。 自1999年发布以来，这种手写图像的经典数据集已经成为基准分类算法的基础。 随着新的机器学习技术的出现，MNIST仍然是研究人员和学习者的可靠资源。</p>
+<p>这个题目，您的目标是正确识别数以万计的手写图像数据集中的数字。<br>每一张图片，图片里面写了一个数字可能是0-9，然后需要设计算法判断出这个数字是0-9中哪一个数字。 我们鼓励您尝试不同的算法，以便第一手掌握哪些方法或者技术可行。</p>
+<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>对于手写数字识别，简单的网络即可完成这个任务，但是最让人难忘的是<strong>LeNet</strong>在这上面的表现，我这次用的就是LeNet看看最终究竟有多好的效果,优化器采用<strong>Aadm</strong>。<br><br><br>LeNet是最早的卷积神经网络之一。1998年，Yan LeCun第一次将LeNet卷积神经网络应用到图像分类上，在手写数字识别任务中取得了巨大成功。LeNet通过连续使用卷积和池化层的组合提取图像特征，其架构如 <strong>图1</strong> 所示，这里展示的是作者论文中的LeNet-5模型：<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/33bbff96924e4b36b613f0c1c36a89dfb72e3b56b3be464dbbce22f7ce575b0d" width = "800"></center>
+<center><br>图1：LeNet模型网络结构示意图</br></center>
+
+<ul>
+<li><p>第一模块：包含5×5的6通道卷积和2×2的池化。卷积提取图像中包含的特征模式（激活函数使用sigmoid），图像尺寸从32减小到28。经过池化层可以降低输出特征图对空间位置的敏感性，图像尺寸减到14。</p>
+</li>
+<li><p>第二模块：和第一模块尺寸相同，通道数由6增加为16。卷积操作使图像尺寸减小到10，经过池化后变成5。</p>
+</li>
+<li><p>第三模块：包含5×5的120通道卷积。卷积之后的图像尺寸减小到1，但是通道数增加为120。将经过第3次卷积提取到的特征图输入到全连接层。第一个全连接层的输出神经元的个数是64，第二个全连接层的输出神经元个数是分类标签的类别数，对于手写数字识别其大小是10。然后使用Softmax激活函数即可计算出每个类别的预测概率。</p>
+</li>
+</ul>
+<h2 id="导入需要的包"><a href="#导入需要的包" class="headerlink" title="导入需要的包"></a>导入需要的包</h2><p>主要是paddlepaddle、numpy等等科学计算的包，plt主要用于测试的时候显示图像。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> paddle
+<span class="token keyword">import</span> paddle<span class="token punctuation">.</span>fluid <span class="token keyword">as</span> fluid
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> paddle<span class="token punctuation">.</span>fluid<span class="token punctuation">.</span>dygraph <span class="token keyword">import</span> Conv2D<span class="token punctuation">,</span> Pool2D<span class="token punctuation">,</span> Linear<span class="token punctuation">,</span> BatchNorm
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> random
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+</code></pre>
+<h2 id="数据读取模块的编写"><a href="#数据读取模块的编写" class="headerlink" title="数据读取模块的编写"></a>数据读取模块的编写</h2><p>读取模块分为4个函数，一个是读训练数据，一个是读测试数据，一个是读全部有标签的数据，一个是读待预测的数据。</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#数据读取模块</span>
+
+<span class="token comment" spellcheck="true">#训练数据</span>
+<span class="token keyword">def</span> <span class="token function">trainDatareader</span><span class="token punctuation">(</span>path<span class="token operator">=</span><span class="token string">'ml_problems_1_train.csv'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    df<span class="token operator">=</span>pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    arr<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>df<span class="token punctuation">.</span>values<span class="token punctuation">)</span>
+    x<span class="token operator">=</span>arr<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+    x<span class="token operator">=</span>x<span class="token operator">/</span><span class="token number">255.0</span>
+    y<span class="token operator">=</span>arr<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>int<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">0.9</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">yield</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#测试数据</span>
+<span class="token keyword">def</span> <span class="token function">testDatareader</span><span class="token punctuation">(</span>path<span class="token operator">=</span><span class="token string">'ml_problems_1_train.csv'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    df<span class="token operator">=</span>pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    arr<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>df<span class="token punctuation">.</span>values<span class="token punctuation">)</span>
+    x<span class="token operator">=</span>arr<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+    x<span class="token operator">=</span>x<span class="token operator">/</span><span class="token number">255.0</span>
+    y<span class="token operator">=</span>arr<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>int<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">0.9</span><span class="token punctuation">)</span><span class="token punctuation">,</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">yield</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#全部数据</span>
+<span class="token keyword">def</span> <span class="token function">dataReader</span><span class="token punctuation">(</span>path<span class="token operator">=</span><span class="token string">'ml_problems_1_train.csv'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    df<span class="token operator">=</span>pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    arr<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>df<span class="token punctuation">.</span>values<span class="token punctuation">)</span>
+    x<span class="token operator">=</span>arr<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+    x<span class="token operator">=</span>x<span class="token operator">/</span><span class="token number">255.0</span>
+    y<span class="token operator">=</span>arr<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">yield</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#待预测数据</span>
+<span class="token keyword">def</span> <span class="token function">evalReader</span><span class="token punctuation">(</span>path<span class="token operator">=</span><span class="token string">"ml_problems_1_test.csv"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    df<span class="token operator">=</span>pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    arr<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>df<span class="token punctuation">.</span>values<span class="token punctuation">)</span>
+    arr<span class="token operator">=</span>arr<span class="token operator">/</span><span class="token number">255.0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">yield</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+</code></pre>
+<h2 id="网络结构模块"><a href="#网络结构模块" class="headerlink" title="网络结构模块"></a>网络结构模块</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 定义 LeNet 网络结构</span>
+<span class="token keyword">class</span> <span class="token class-name">LeNet</span><span class="token punctuation">(</span>fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>Layer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> num_classes<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>LeNet<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># 创建卷积和池化层块，每个卷积层使用relu激活函数，后面跟着一个2x2的池化</span>
+        self<span class="token punctuation">.</span>conv1 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>num_channels<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> num_filters<span class="token operator">=</span><span class="token number">6</span><span class="token punctuation">,</span> filter_size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> act<span class="token operator">=</span><span class="token string">'sigmoid'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pool1 <span class="token operator">=</span> Pool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> pool_stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> pool_type<span class="token operator">=</span><span class="token string">'max'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>conv2 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>num_channels<span class="token operator">=</span><span class="token number">6</span><span class="token punctuation">,</span> num_filters<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span> filter_size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> act<span class="token operator">=</span><span class="token string">'sigmoid'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pool2 <span class="token operator">=</span> Pool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> pool_stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> pool_type<span class="token operator">=</span><span class="token string">'max'</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 创建第3个卷积层</span>
+        self<span class="token punctuation">.</span>conv3 <span class="token operator">=</span> Conv2D<span class="token punctuation">(</span>num_channels<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span> num_filters<span class="token operator">=</span><span class="token number">120</span><span class="token punctuation">,</span> filter_size<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> act<span class="token operator">=</span><span class="token string">'sigmoid'</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 创建全连接层，第一个全连接层的输出神经元个数为64， 第二个全连接层输出神经元个数为分类标签的类别数</span>
+        self<span class="token punctuation">.</span>fc1 <span class="token operator">=</span> Linear<span class="token punctuation">(</span>input_dim<span class="token operator">=</span><span class="token number">120</span><span class="token punctuation">,</span> output_dim<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> act<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>fc2 <span class="token operator">=</span> Linear<span class="token punctuation">(</span>input_dim<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> output_dim<span class="token operator">=</span>num_classes<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 网络的前向计算过程</span>
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>pool1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>conv2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>pool2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>conv3<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token punctuation">[</span>x<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>fc1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>fc2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> x
+</code></pre>
+<h2 id="训练模块"><a href="#训练模块" class="headerlink" title="训练模块"></a>训练模块</h2><p>一开始的batchsize是10后来改成50效果有所改善，而且小网络训练速度也比较快，可以多调几次参数看看。</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># LeNet 识别手写数字 训练模块</span>
+
+<span class="token comment" spellcheck="true"># 定义训练过程</span>
+<span class="token keyword">def</span> <span class="token function">train</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'start training ... '</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># model_dict, _ = fluid.load_dygraph("LeNet")</span>
+    <span class="token comment" spellcheck="true"># model.load_dict(model_dict)</span>
+    model<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    epoch_num <span class="token operator">=</span><span class="token number">30</span>
+    opt <span class="token operator">=</span>fluid<span class="token punctuation">.</span>optimizer<span class="token punctuation">.</span>AdamOptimizer<span class="token punctuation">(</span>learning_rate<span class="token operator">=</span><span class="token number">0.0001</span><span class="token punctuation">,</span> parameter_list<span class="token operator">=</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 使用Paddle自带的数据读取器</span>
+    train_loader <span class="token operator">=</span> paddle<span class="token punctuation">.</span>batch<span class="token punctuation">(</span>trainDatareader<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span>
+    valid_loader <span class="token operator">=</span> paddle<span class="token punctuation">.</span>batch<span class="token punctuation">(</span>testDatareader<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>epoch_num<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> batch_id<span class="token punctuation">,</span> data <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>train_loader<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 调整输入数据形状和类型</span>
+            x_data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>item<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">for</span> item <span class="token keyword">in</span> data<span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'float32'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">#plt.imshow(x_data[0][0])</span>
+            <span class="token comment" spellcheck="true">#plt.show()</span>
+            y_data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">for</span> item <span class="token keyword">in</span> data<span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'int64'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">#print(y_data[0][0].shape)</span>
+            <span class="token comment" spellcheck="true"># 将numpy.ndarray转化成Tensor</span>
+            img <span class="token operator">=</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>to_variable<span class="token punctuation">(</span>x_data<span class="token punctuation">)</span>
+            label <span class="token operator">=</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>to_variable<span class="token punctuation">(</span>y_data<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 计算模型输出</span>
+            <span class="token comment" spellcheck="true">#print(img)</span>
+            logits <span class="token operator">=</span> model<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">#print(logits)</span>
+            <span class="token comment" spellcheck="true">#print(logits)</span>
+            <span class="token comment" spellcheck="true"># 计算损失函数</span>
+            loss <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>softmax_with_cross_entropy<span class="token punctuation">(</span>logits<span class="token punctuation">,</span> label<span class="token punctuation">)</span>
+            avg_loss <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>loss<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> batch_id <span class="token operator">%</span> <span class="token number">200</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"epoch: {}, batch_id: {}, loss is: {}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>epoch<span class="token punctuation">,</span> batch_id<span class="token punctuation">,</span> avg_loss<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            avg_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            opt<span class="token punctuation">.</span>minimize<span class="token punctuation">(</span>avg_loss<span class="token punctuation">)</span>
+            model<span class="token punctuation">.</span>clear_gradients<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        model<span class="token punctuation">.</span>eval<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        accuracies <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        losses <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> batch_id<span class="token punctuation">,</span> data <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>valid_loader<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 调整输入数据形状和类型</span>
+            x_data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>item<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">for</span> item <span class="token keyword">in</span> data<span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'float32'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span>
+            y_data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">for</span> item <span class="token keyword">in</span> data<span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'int64'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 将numpy.ndarray转化成Tensor</span>
+            img <span class="token operator">=</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>to_variable<span class="token punctuation">(</span>x_data<span class="token punctuation">)</span>
+            label <span class="token operator">=</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>to_variable<span class="token punctuation">(</span>y_data<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 计算模型输出</span>
+            logits <span class="token operator">=</span> model<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+            
+            pred <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>logits<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 计算损失函数</span>
+            loss <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>softmax_with_cross_entropy<span class="token punctuation">(</span>logits<span class="token punctuation">,</span> label<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">#print(pred)</span>
+            acc <span class="token operator">=</span> fluid<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>accuracy<span class="token punctuation">(</span>pred<span class="token punctuation">,</span> label<span class="token punctuation">)</span>
+            accuracies<span class="token punctuation">.</span>append<span class="token punctuation">(</span>acc<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            losses<span class="token punctuation">.</span>append<span class="token punctuation">(</span>loss<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[validation] accuracy/loss: {}/{}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>accuracies<span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>losses<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        model<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># 保存模型参数</span>
+        fluid<span class="token punctuation">.</span>save_dygraph<span class="token punctuation">(</span>model<span class="token punctuation">.</span>state_dict<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'LeNet'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># 创建模型 用GPU训练  没有配置好GPU环境的话把fluid.CUDAPlace(0)删掉就行</span>
+    <span class="token keyword">with</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>guard<span class="token punctuation">(</span>fluid<span class="token punctuation">.</span>CUDAPlace<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        model<span class="token operator">=</span>LeNet<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#启动训练过程</span>
+        train<span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+</code></pre>
+<h2 id="预测模块"><a href="#预测模块" class="headerlink" title="预测模块"></a>预测模块</h2><p>预测并且将预测结果保存到csv文件中，到时候用excel打开删除第一列就可以了。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">predict</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'start predict ... '</span><span class="token punctuation">)</span>
+    model_dict<span class="token punctuation">,</span> _ <span class="token operator">=</span> fluid<span class="token punctuation">.</span>load_dygraph<span class="token punctuation">(</span><span class="token string">"LeNet"</span><span class="token punctuation">)</span>
+    model<span class="token punctuation">.</span>load_dict<span class="token punctuation">(</span>model_dict<span class="token punctuation">)</span>
+    model<span class="token punctuation">.</span>eval<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    df<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    i<span class="token operator">=</span><span class="token number">1</span>
+    <span class="token keyword">for</span> item <span class="token keyword">in</span> evalReader<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        item<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>item<span class="token punctuation">,</span>dtype<span class="token operator">=</span><span class="token string">'float32'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">28</span><span class="token punctuation">,</span><span class="token number">28</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># item2=np.array(item*255,dtype='int32').reshape(28,28)</span>
+        <span class="token comment" spellcheck="true"># plt.imshow(item2)</span>
+        <span class="token comment" spellcheck="true"># plt.show()</span>
+        img<span class="token operator">=</span>fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>to_variable<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+        result <span class="token operator">=</span> model<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># print(result)</span>
+        <span class="token comment" spellcheck="true"># print("预测结果为",np.argmax(result.numpy()[0]))</span>
+        df<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>i<span class="token punctuation">,</span>np<span class="token punctuation">.</span>argmax<span class="token punctuation">(</span>result<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        i<span class="token operator">+=</span><span class="token number">1</span>
+        <span class="token comment" spellcheck="true"># time.sleep(0.5)</span>
+    df<span class="token operator">=</span>pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>df<span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"ImageId"</span><span class="token punctuation">,</span><span class="token string">"Label"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    df<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">"results1.csv"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># 创建模型</span>
+    <span class="token keyword">with</span> fluid<span class="token punctuation">.</span>dygraph<span class="token punctuation">.</span>guard<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        model <span class="token operator">=</span> LeNet<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#启动预测</span>
+        predict<span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+</code></pre>
+<h2 id="看看成果"><a href="#看看成果" class="headerlink" title="看看成果"></a>看看成果</h2><p>最终的准确率大概在97%左右，期间也尝试了很多其他的更先进的网络，譬如AlexNet但是大网络对于这种小尺度图片的效果也不一定会好，合适最好。<br><br></br></p>
+<center><img src="/images/lintcodeP1.jpg" width = "800"></center>
+<center><br>图2：预测准确率</br></center>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">青椒</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zhkgo.github.io/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/">https://zhkgo.github.io/2020/08/15/%E5%88%A9%E7%94%A8paddlepaddle%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本笔记所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">青椒</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
+                                </a>
+                            
+                                <a href="/tags/paddlepaddle/">
+                                    <span class="chip bg-color">paddlepaddle</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/08/17/%E5%88%A9%E7%94%A8paddlepaddle%E5%AE%9E%E7%8E%B0%E7%8C%AB%E7%8B%97%E5%88%86%E7%B1%BB/">
+                    <div class="card-image">
+                        
+                        <img src="/images/20200910170717.jpeg" class="responsive-img" alt="利用paddlepaddle实现猫狗分类">
+                        
+                        <span class="card-title">利用paddlepaddle实现猫狗分类</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+因为百度的AIStudio平台提供了免费的GPU算力,而且帮我配好了运行环境，只不过需要使用paddlepaddle这个框架，我就打算顺便在学习paddlepaddle的同时完成lintcode上面的刷题任务。
+
+题目描述题目链接给出一张
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                    <a href="/tags/paddlepaddle/">
+                        <span class="chip bg-color">paddlepaddle</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/01/05/newwork/">
+                    <div class="card-image">
+                        
+                        <img src="/images/20200910170847.jpeg" class="responsive-img" alt="计算机网络期末复习">
+                        
+                        <span class="card-title">计算机网络期末复习</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            网络及其计算复习
+如有谬误，欢迎指正
+
+第一章简述分组交换的要点
+报文分组，加首部。
+经路由器储存转发。
+在目的地合并。
+
+比较电路交换、报文交换和分组交换的主要优缺点电路交换——整个报文的比特流连续地从源点直达终点，好像在一个管道中传送。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            青椒
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 青椒的学习笔记<br />'
+            + '文章作者: 青椒<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归zhanghangkui所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="song"
+                   id="1986979130"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='1'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">青椒</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" rel="external nofollow noreferrer" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" rel="external nofollow noreferrer" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">53.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zhkgo" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:896378080@qq.com" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=896378080" rel="external nofollow noreferrer" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 896378080" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
