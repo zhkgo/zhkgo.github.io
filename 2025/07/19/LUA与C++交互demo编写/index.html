@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标题, 青椒的学习笔记">
+    <meta name="keywords" content="LUA与C++交互demo编写, 青椒的学习笔记">
     <meta name="description" content="俗人一个。贪财有道,好色有品,博学有识,读书有瘾">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标题 | 青椒的学习笔记</title>
+    <title>LUA与C++交互demo编写 | 青椒的学习笔记</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -265,12 +265,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">标题</h1>
+                    <h1 class="description center-align post-title">LUA与C++交互demo编写</h1>
                 </div>
             </div>
         </div>
@@ -455,9 +455,29 @@
 <ol>
 <li>首先创建一个空的Visual Sudio项目目录。</li>
 <li>其次按照前述目录结构进行构建。</li>
-<li>最后引入lua头文件、库目录。</li>
+<li>配置头文件。<ul>
+<li>在 Visual Studio 右侧的 “解决方案资源管理器” 中，<strong>右键点击你的项目名称</strong>（注意是项目，不是解决方案），然后选择 <strong>“属性”</strong>。</li>
+<li>在属性窗口的顶部，确保 <strong>“配置”</strong> 设置为 <strong>“所有配置 (All Configurations)”</strong>，<strong>“平台”</strong> 设置为 <strong>“所有平台 (All Platforms)”</strong>。这样你的设置就会对 Debug 和 Release 模式同时生效，避免重复设置。</li>
+<li>在左侧导航栏，展开 <strong>“配置属性” -&gt; “C/C++” -&gt; “常规 (General)”</strong>。</li>
+<li>在右侧的选项中，找到 <strong>“附加包含目录 (Additional Include Directories)”</strong>。</li>
+<li>点击“附加包含目录”右边的下拉箭头，选择 <strong>“&lt;编辑…&gt;”</strong>。</li>
+<li>在弹出的新窗口中，点击第一行的图标（“新建行”）。</li>
+<li>将lua头文件目录<code>$(ProjectDir)\3rd\luajit\src;</code>路径加入。</li>
+</ul>
+</li>
+<li>配置库文件。<ul>
+<li>还是在项目属性页面。</li>
+<li>在左侧导航栏，展开 <strong>“配置属性” -&gt; “链接器 (Linker)” -&gt; “常规 (General)”</strong>。</li>
+<li>在右侧找到 <strong>“附加库目录 (Additional Library Directories)”</strong>。</li>
+<li>同样地，点击 <strong>“&lt;编辑…&gt;”</strong> 并添加你的 <code>.lib</code> 文件所在的目录。</li>
+<li>添加<code>$(ProjectDir)\3rd\luajit\src;</code>路径。luajit编译后<code>.lib</code>文件和源代码文件均在该目录下。</li>
+<li>除了链接外还需要指定用到的lib文件。</li>
+<li>在左侧导航栏，选择 <strong>“链接器 (Linker)” -&gt; “输入 (Input)”</strong>。</li>
+<li>在右侧找到 <strong>“附加依赖项 (Additional Dependencies)”</strong>。</li>
+<li>点击 <strong>“&lt;编辑…&gt;”</strong>，在弹出的窗口中，输入用到的<code>lua51.lib</code>。</li>
+</ul>
+</li>
 </ol>
-<p>在VS中引入lua头文件、库目录的方法如下。<br>4. 配置头文件。<br>    - 在 Visual Studio 右侧的 “解决方案资源管理器” 中，<strong>右键点击你的项目名称</strong>（注意是项目，不是解决方案），然后选择 <strong>“属性”</strong>。<br>    - 在属性窗口的顶部，确保 <strong>“配置”</strong> 设置为 <strong>“所有配置 (All Configurations)”</strong>，<strong>“平台”</strong> 设置为 <strong>“所有平台 (All Platforms)”</strong>。这样你的设置就会对 Debug 和 Release 模式同时生效，避免重复设置。<br>    - 在左侧导航栏，展开 <strong>“配置属性” -&gt; “C/C++” -&gt; “常规 (General)”</strong>。<br>    - 在右侧的选项中，找到 <strong>“附加包含目录 (Additional Include Directories)”</strong>。<br>    - 点击“附加包含目录”右边的下拉箭头，选择 <strong>“&lt;编辑…&gt;”</strong>。<br>    - 在弹出的新窗口中，点击第一行的图标（“新建行”）。<br>    - 将lua头文件目录<code>$(ProjectDir)\3rd\luajit\src;</code>路径加入。<br>5. 配置库文件。<br>    - 还是在项目属性页面。<br>    - 在左侧导航栏，展开 <strong>“配置属性” -&gt; “链接器 (Linker)” -&gt; “常规 (General)”</strong>。<br>    - 在右侧找到 <strong>“附加库目录 (Additional Library Directories)”</strong>。<br>    - 同样地，点击 <strong>“&lt;编辑…&gt;”</strong> 并添加你的 <code>.lib</code> 文件所在的目录。<br>    - 添加<code>$(ProjectDir)\3rd\luajit\src;</code>路径。luajit编译后<code>.lib</code>文件和源代码文件均在该目录下。<br>    - 除了链接外还需要指定用到的lib文件。<br>    - 在左侧导航栏，选择 <strong>“链接器 (Linker)” -&gt; “输入 (Input)”</strong>。<br>    - 在右侧找到 <strong>“附加依赖项 (Additional Dependencies)”</strong>。<br>    - 点击 <strong>“&lt;编辑…&gt;”</strong>，在弹出的窗口中，输入用到的<code>lua51.lib</code>。</p>
 <h2 id="编写main文件"><a href="#编写main文件" class="headerlink" title="编写main文件"></a>编写main文件</h2><p> 主要是编写<code>main.cpp</code>和<code>main.lua</code>。分别放在<code>source</code>和<code>lua</code>目录下。</p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// main.cpp</span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
@@ -655,9 +675,9 @@ L:\LuaCpp\x64\Debug\LuaCpp.exe (进程 11200)已退出，代码为 0。
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="标题">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="LUA与C++交互demo编写">
                         
-                        <span class="card-title">标题</span>
+                        <span class="card-title">LUA与C++交互demo编写</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
