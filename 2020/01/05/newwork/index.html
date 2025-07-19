@@ -487,7 +487,7 @@
 <li>四种编码方式：不归零制、归零制、曼切斯特编码、差分曼切斯特编码。</li>
 <li>信噪比：信号的平均功率和噪声的平均功率之比。</li>
 <li>$信噪比（dB)=10 log_{10}(S/N)(dB)$</li>
-<li>香农公式指明了信道的极限信息传输速率C。<script type="math/tex; mode=display">C=Wlog_2(1+S/N)</script></li>
+<li>香农公式指明了信道的极限信息传输速率C。<br>$$ C=Wlog_2(1+S/N) $$</li>
 <li>传输媒体也称传输介质或传输媒体。分为导引型传输媒体和非导引型传输媒体。</li>
 <li>同轴电缆是由内导体铜质芯线、绝缘层、网状编织的外导体屏蔽层和保护塑料外层所所组成。<br><img src="/images/timg.jpg" alt="line"></li>
 <li>光纤通常由非常透明的<strong>石英玻璃拉成细丝</strong>，主要由<strong>纤芯</strong>（高折射率）和<strong>包层</strong>（低折射率）构成双层通信圆柱体。</li>
@@ -544,55 +544,51 @@
 <li>虚拟局域网限制接收广播信息的计算机数，<strong>避免因为传播过多广播信息（广播风暴）而引起性能恶化。</strong></li>
 </ol>
 <h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><p>1.虚电路服务与数据报服务的对比。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">试试</th>
-<th style="text-align:center">虚电路服务</th>
-<th style="text-align:center">数据报服务</th>
+<th align="center">试试</th>
+<th align="center">虚电路服务</th>
+<th align="center">数据报服务</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">思路</td>
-<td style="text-align:center">可靠通信应当由网络来保证</td>
-<td style="text-align:center">可靠通讯应当由用户主机来保证</td>
+<tbody><tr>
+<td align="center">思路</td>
+<td align="center">可靠通信应当由网络来保证</td>
+<td align="center">可靠通讯应当由用户主机来保证</td>
 </tr>
 <tr>
-<td style="text-align:center">连接的建立</td>
-<td style="text-align:center">必须有</td>
-<td style="text-align:center">不需要</td>
+<td align="center">连接的建立</td>
+<td align="center">必须有</td>
+<td align="center">不需要</td>
 </tr>
 <tr>
-<td style="text-align:center">终点地址</td>
-<td style="text-align:center">仅在连接建立阶段使用，每个分组使用短的虚电路号</td>
-<td style="text-align:center">每个分组都有终点的完整地址</td>
+<td align="center">终点地址</td>
+<td align="center">仅在连接建立阶段使用，每个分组使用短的虚电路号</td>
+<td align="center">每个分组都有终点的完整地址</td>
 </tr>
 <tr>
-<td style="text-align:center">分组的转发</td>
-<td style="text-align:center">属于同一条虚电路的分组均按照同一路由进行转发</td>
-<td style="text-align:center">每个分组独立选择路由进行转发</td>
+<td align="center">分组的转发</td>
+<td align="center">属于同一条虚电路的分组均按照同一路由进行转发</td>
+<td align="center">每个分组独立选择路由进行转发</td>
 </tr>
 <tr>
-<td style="text-align:center">当结点出故障时</td>
-<td style="text-align:center">所有通过出故障的结点的虚电路均不能工作</td>
-<td style="text-align:center">出故障的结点可能会丢失分组，一些路由可能会发生变化</td>
+<td align="center">当结点出故障时</td>
+<td align="center">所有通过出故障的结点的虚电路均不能工作</td>
+<td align="center">出故障的结点可能会丢失分组，一些路由可能会发生变化</td>
 </tr>
 <tr>
-<td style="text-align:center">分组的顺序</td>
-<td style="text-align:center">总是按发送顺序到达终点</td>
-<td style="text-align:center">到达终点时不一定按发送顺序</td>
+<td align="center">分组的顺序</td>
+<td align="center">总是按发送顺序到达终点</td>
+<td align="center">到达终点时不一定按发送顺序</td>
 </tr>
 <tr>
-<td style="text-align:center">差错处理和流量控制</td>
-<td style="text-align:center">由网络负责，也可以由用户主机负责</td>
-<td style="text-align:center">由用户主机负责</td>
+<td align="center">差错处理和流量控制</td>
+<td align="center">由网络负责，也可以由用户主机负责</td>
+<td align="center">由用户主机负责</td>
 </tr>
-</tbody>
-</table>
-</div>
-<ol>
+</tbody></table>
+<ol start="2">
 <li>网际协议IP式TCP/IP体系中两个最主要的协议之一。与IP协议配套使用的还有三个协议，<strong>地址解析协议ARP，网际控制报文协议ICMP，网际组管理协议IGMP。</strong></li>
 <li>网络互连的四种中间设备。<strong>物理层-转发器。数据链路层-网桥或桥接器。网络层 -路由器。网络层以上-网关。</strong></li>
 <li>IP地址的编址三个阶段，<strong>分类的IP地址，子网的划分，构成超网。</strong></li>
@@ -608,7 +604,7 @@
 <li>为了使地址简洁，IPV6采用冒号十六进制记法。</li>
 <li>IPV6地址分类了解一下。</li>
 </ol>
-<h2 id="第五章"><a href="#第五章" class="headerlink" title="　第五章"></a>　第五章</h2><ol>
+<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><ol>
 <li>面向<strong>连接的TCP和无连接的UDP</strong>。</li>
 <li>用户数据包协议UDP，传输控制协议TCP。</li>
 <li>常用的熟知端口号。</li>
@@ -624,7 +620,7 @@
 <li>SNMP-162(trap)</li>
 <li>HTTPS-443</li>
 </ul>
-<ol>
+<ol start="4">
 <li>UDP 的主要<strong>特点</strong>是：</li>
 </ol>
 <ul>
@@ -635,7 +631,7 @@
 <li>UDP支持一对一，一对多，多对一和多对多的交互通信。</li>
 <li>UDP的首部开销小(8个字节)。</li>
 </ul>
-<ol>
+<ol start="5">
 <li>UDP首部<strong>四个字段</strong>。</li>
 </ol>
 <ul>
@@ -644,21 +640,29 @@
 <li>长度</li>
 <li>检验和</li>
 </ul>
-<ol>
-<li>TCP把连接作为最基本的抽象。</li>
-<li>套接字socket=IP地址：端口号</li>
-<li>理想的传输条件有以下两个特点。<br>　- 传输信道不产生差错。<br>　- 不管发送方以多快的速度发送数据，接收方总是来得及处理收到的数据。</li>
-<li><p>A发送分组的时间为$T_D$,B发送确认分组的时间为$T_A$,往返时间为RTT。</p>
-<script type="math/tex; mode=display">信道利用率U=\frac{T_D}{T_D+RTT+T_A}</script></li>
-<li><p>超时重传机制计算</p>
-<script type="math/tex; mode=display">新RTT_S＝(1-\alpha)*(旧的RTT_S)+\alpha*x新的RTT样本</script><script type="math/tex; mode=display">RTO=RTT_S+4*RTT_D</script><script type="math/tex; mode=display">新的RTT_D=(1-\beta)*(旧的RTT_D)+\beta*|RTT_S-新的RTT样本|</script></li>
+<ol start="6">
+<li><p>TCP把连接作为最基本的抽象。</p>
+</li>
+<li><p>套接字socket=IP地址：端口号</p>
+</li>
+<li><p>理想的传输条件有以下两个特点。<br>　- 传输信道不产生差错。<br>　- 不管发送方以多快的速度发送数据，接收方总是来得及处理收到的数据。</p>
+</li>
+<li><p>A发送分组的时间为$T_D$,B发送确认分组的时间为$T_A$,往返时间为RTT。<br>$$信道利用率U=\frac{T_D}{T_D+RTT+T_A}$$</p>
+</li>
+<li><p>超时重传机制计算<br>$$新RTT_S＝(1-\alpha)<em>(旧的RTT_S)+\alpha</em>x新的RTT样本$$<br>$$RTO=RTT_S+4<em>RTT_D$$<br>$$新的RTT_D=(1-\beta)</em>(旧的RTT_D)+\beta*|RTT_S-新的RTT样本|$$</p>
+</li>
 <li><p><strong>流量控制</strong>就是让发送方的发送速率不要太快，要让接收方来得及接收。</p>
 </li>
-<li>计算机网络中的链路容量、交换节点中的缓存和处理机等都是<strong>网络资源</strong>。</li>
-<li>对于某一资源需求超过可用资源，即会<strong>拥塞</strong>。</li>
-<li>拥塞控制就是防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。</li>
-<li>流量控制往往指点对点通信量的控制。</li>
-<li>TCP拥塞控制的算法四种。(计算题）</li>
+<li><p>计算机网络中的链路容量、交换节点中的缓存和处理机等都是<strong>网络资源</strong>。</p>
+</li>
+<li><p>对于某一资源需求超过可用资源，即会<strong>拥塞</strong>。</p>
+</li>
+<li><p>拥塞控制就是防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。</p>
+</li>
+<li><p>流量控制往往指点对点通信量的控制。</p>
+</li>
+<li><p>TCP拥塞控制的算法四种。(计算题）</p>
+</li>
 </ol>
 <ul>
 <li>慢开始 ＊２</li>
@@ -666,7 +670,7 @@
 <li>快重传</li>
 <li>快恢复 $cwnd=ssthresh=cwnd*\frac{1}{2}$</li>
 </ul>
-<ol>
+<ol start="17">
 <li>TCP运输连接就有三个阶段</li>
 </ol>
 <ul>
@@ -674,7 +678,7 @@
 <li>数据传送</li>
 <li>连接释放</li>
 </ul>
-<ol>
+<ol start="18">
 <li>TCP需解决的三问题。</li>
 </ol>
 <ul>
@@ -682,8 +686,9 @@
 <li>允许双方协商一些参数。</li>
 <li>能够对运输实体资源进行分配。</li>
 </ul>
-<ol>
-<li>TCP中主动的叫客户，被动的叫服务器。<br>20.　TCP三次握手四次挥手。</li>
+<ol start="19">
+<li>TCP中主动的叫客户，被动的叫服务器。</li>
+<li>　TCP三次握手四次挥手。</li>
 </ol>
 <h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><ol>
 <li>域名系统DNS是互联网使用的命名系统，用来把便于人们使用的机器名字转换为IP地址。</li>
@@ -700,11 +705,11 @@
 <li>启动从属进程处理客户进程请求。</li>
 <li>回到等待状态，继续接受其他客户进程发来的请求。</li>
 </ul>
-<ol>
+<ol start="8">
 <li>TELNET是一个简单的<strong>远程终端协议</strong>，也是互联网的正式标准。</li>
 <li>万维网以客户服务器方式工作，客户程序向服务器发出请求，服务器程序向客户程序送回客户所需的万维网文档。</li>
 <li><strong>统一资源定位符URL</strong>。用来表示从互联网上得到的资源位置和访问这些资源的方法。</li>
-<li><a href="http://&lt;主机" target="_blank" rel="noopener external nofollow noreferrer">http://&lt;主机</a>:&lt;端口&gt;/&gt;&lt;路径&gt;</li>
+<li>&lt;http://&lt;主机&gt;:&lt;端口&gt;/&gt;&lt;路径&gt;</li>
 <li>主页概念。</li>
 </ol>
 <ul>
@@ -712,7 +717,7 @@
 <li>某一个组织或部门一个定制的页面或目录。</li>
 <li>由某一个人自己设计的描述他本人情况的WWW页面。</li>
 </ul>
-<ol>
+<ol start="13">
 <li>电子邮件的两个重要标准：<strong>简单邮件传送协议SMTP和互联网文本报文格式</strong>。</li>
 <li>邮件读取协议POP3和IMAP。</li>
 </ol>
@@ -1162,7 +1167,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">51.6k</span>&nbsp;字
+                class="white-color">52.7k</span>&nbsp;字
             
             
             
